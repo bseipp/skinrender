@@ -220,6 +220,9 @@ Transform LookAt(const Point3f &pos, const Point3f &look, const Vector3f &up) {
     }
     Vector3f right = Normalize(Cross(Normalize(up), dir));
     Vector3f newUp = Cross(dir, right);
+    Float xscale = 0.1f;
+    Float yscale = 0.1f;
+    Float zscale = 0.04f;
     cameraToWorld.m[0][0] = right.x;
     cameraToWorld.m[1][0] = right.y;
     cameraToWorld.m[2][0] = right.z;
@@ -232,6 +235,18 @@ Transform LookAt(const Point3f &pos, const Point3f &look, const Vector3f &up) {
     cameraToWorld.m[1][2] = dir.y;
     cameraToWorld.m[2][2] = dir.z;
     cameraToWorld.m[3][2] = 0.;
+
+    
+    //Matrix4x4 view_clipper;
+    //for (int i =0; i< 4; i++){
+	//for(int j = 0; j<4; j++)
+	    //view_clipper[i][j] = 0;
+    //}
+    //view_clipper[0][0] = xscale;
+    //view_clipper[1][1] = yscale;
+    //view_clipper[2][2] = zscale;
+    //view_clipper[3][3] = 1;
+    //cameraToWorld = cameraToWorld * view_clipper;
     return Transform(Inverse(cameraToWorld), cameraToWorld);
 }
 

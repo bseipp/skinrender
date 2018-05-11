@@ -56,6 +56,12 @@ class FourierMaterial : public Material {
     void ComputeScatteringFunctions(SurfaceInteraction *si, MemoryArena &arena,
                                     TransportMode mode,
                                     bool allowMultipleLobes) const;
+    void ComputeScatteringFunctionsUpdated(SurfaceInteraction *si, MemoryArena &arena,
+                                    TransportMode mode,
+                                    bool allowMultipleLobes,
+				    Ray &ray,
+				    Sampler &sampler) const {
+    };
 
   private:
     // FourierMaterial Private Data

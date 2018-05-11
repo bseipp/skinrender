@@ -113,7 +113,9 @@ Spectrum VolPathIntegrator::Li(const RayDifferential &r, const Scene &scene,
             if (!foundIntersection || bounces >= maxDepth) break;
 
             // Compute scattering functions and skip over medium boundaries
-            isect.ComputeScatteringFunctions(ray, arena, true);
+            //isect.ComputeScatteringFunctions(ray, arena, true, TransportMode::Radiance, sampler);
+	    isect.ComputeScatteringFunctionsUpdated(ray,
+	       	arena, ray, sampler, true, TransportMode::Radiance);
             if (!isect.bsdf) {
                 ray = isect.SpawnRay(ray.d);
                 bounces--;
@@ -151,8 +153,12 @@ Spectrum VolPathIntegrator::Li(const RayDifferential &r, const Scene &scene,
             if (isect.bssrdf && (flags & BSDF_TRANSMISSION)) {
                 // Importance sample the BSSRDF
                 SurfaceInteraction pi;
-                Spectrum S = isect.bssrdf->Sample_S(
-                    scene, sampler.Get1D(), sampler.Get2D(), arena, &pi, &pdf);
+		//Spectrum S = isect.bssrdf->Sample_S(
+		    //scene, sampler.Get1D(), sampler.Get2D(), arena, &pi, &pdf);
+		Spectrum S = isect.bssrdf->Sample_S_Updated(
+		    scene, sampler.Get1D(), sampler.Get2D(),
+		    arena, &pi, &pdf, ray,
+		    wi, sampler);
                 DCHECK(std::isinf(beta.y()) == false);
                 if (S.IsBlack() || pdf == 0) break;
                 beta *= S / pdf;

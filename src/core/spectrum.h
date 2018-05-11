@@ -485,6 +485,16 @@ class RGBSpectrum : public CoefficientSpectrum<3> {
         xyz[2] *= scale;
         return FromXYZ(xyz);
     }
+    RGBSpectrum divideMe(const RGBSpectrum &s2, int nss) const {
+        DCHECK(!s2.HasNaNs());
+        RGBSpectrum ret = *this;
+        for (int i = 0; i < nss; ++i) {
+	  //if(s2.c[i] == 0) ret.c[i] = s2.c[i];
+	  if(s2.c[i] == 0) continue;
+          ret.c[i] /= s2.c[i];
+        }
+        return ret;
+    }
 };
 
 // Spectrum Inline Functions

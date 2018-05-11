@@ -60,6 +60,12 @@ class Primitive {
                                             MemoryArena &arena,
                                             TransportMode mode,
                                             bool allowMultipleLobes) const = 0;
+    virtual void ComputeScatteringFunctionsUpdated(SurfaceInteraction *isect,
+                                            MemoryArena &arena,
+                                            TransportMode mode,
+                                            bool allowMultipleLobes,
+					    Ray &ray,
+					    Sampler &sampler) const = 0;
 };
 
 // GeometricPrimitive Declarations
@@ -78,6 +84,11 @@ class GeometricPrimitive : public Primitive {
     void ComputeScatteringFunctions(SurfaceInteraction *isect,
                                     MemoryArena &arena, TransportMode mode,
                                     bool allowMultipleLobes) const;
+    void ComputeScatteringFunctionsUpdated(SurfaceInteraction *isect,
+                                    MemoryArena &arena, TransportMode mode,
+                                    bool allowMultipleLobes,
+				    Ray &ray,
+				    Sampler &sampler) const;
 
   private:
     // GeometricPrimitive Private Data
@@ -104,6 +115,15 @@ class TransformedPrimitive : public Primitive {
             "TransformedPrimitive::ComputeScatteringFunctions() shouldn't be "
             "called";
     }
+    void ComputeScatteringFunctionsUpdated(SurfaceInteraction *isect,
+                                    MemoryArena &arena, TransportMode mode,
+                                    bool allowMultipleLobes,
+				    Ray &ray,
+				    Sampler &sampler) const {
+        LOG(FATAL) <<
+            "TransformedPrimitive::ComputeScatteringFunctions() shouldn't be "
+            "called";
+    }
     Bounds3f WorldBound() const {
         return PrimitiveToWorld.MotionBounds(primitive->WorldBound());
     }
@@ -123,6 +143,11 @@ class Aggregate : public Primitive {
     void ComputeScatteringFunctions(SurfaceInteraction *isect,
                                     MemoryArena &arena, TransportMode mode,
                                     bool allowMultipleLobes) const;
+    void ComputeScatteringFunctionsUpdated(SurfaceInteraction *isect,
+                                    MemoryArena &arena, TransportMode mode,
+                                    bool allowMultipleLobes,
+				    Ray &ray,
+				    Sampler &sampler) const;
 };
 
 }  // namespace pbrt

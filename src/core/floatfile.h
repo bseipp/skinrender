@@ -44,6 +44,12 @@
 namespace pbrt {
 
 bool ReadFloatFile(const char *filename, std::vector<Float> *values);
+bool ReadSkinFloatFile(const char *filename, std::vector<Float> *trans_r,
+			 std::vector<Float> *trans_g, std::vector<Float> *trans_b,
+			std::vector<Float> *scat_r,
+			std::vector<Float> *scat_g,
+			std::vector<Float> *scat_b);
+bool WriteSkinFloatFile(const char *filename, std::vector<Float> *trans_r);
 
 }  // namespace pbrt
 

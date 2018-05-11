@@ -371,7 +371,7 @@ class DisneyBSSRDF : public SeparableBSSRDF {
     DisneyBSSRDF(const Spectrum &R, const Spectrum &d,
                  const SurfaceInteraction &po, Float eta,
                  const Material *material, TransportMode mode)
-        : SeparableBSSRDF(po, eta, material, mode), R(R), d(d) {}
+        : SeparableBSSRDF(po, eta, material, mode, 0.0f), R(R), d(d) {}
 
     Spectrum S(const SurfaceInteraction &pi, const Vector3f &wi);
     Spectrum Sr(Float d) const;
@@ -381,6 +381,7 @@ class DisneyBSSRDF : public SeparableBSSRDF {
   private:
     Spectrum R, d;
 };
+
 
 // We need to override BSSRDF::S() so that we can have access to the full
 // hit information in order to modulate based on surface normal

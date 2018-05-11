@@ -36,6 +36,7 @@
 #include "interpolation.h"
 #include "parallel.h"
 #include "scene.h"
+#include "media/grid.h"
 
 namespace pbrt {
 
@@ -204,25 +205,25 @@ Spectrum TabulatedBSSRDF::Sr(Float r) const {
         // Compute spline weights to interpolate BSSRDF on channel _ch_
         int rhoOffset, radiusOffset;
         Float rhoWeights[4], radiusWeights[4];
-        if (!CatmullRomWeights(table.nRhoSamples, table.rhoSamples.get(),
-                               rho[ch], &rhoOffset, rhoWeights) ||
-            !CatmullRomWeights(table.nRadiusSamples, table.radiusSamples.get(),
-                               rOptical, &radiusOffset, radiusWeights))
+	if (!CatmullRomWeights(table.nRhoSamples, table.rhoSamples.get(),
+			       rho[ch], &rhoOffset, rhoWeights) ||
+	    !CatmullRomWeights(table.nRadiusSamples, table.radiusSamples.get(),
+			       rOptical, &radiusOffset, radiusWeights))
             continue;
 
         // Set BSSRDF value _Sr[ch]_ using tensor spline interpolation
         Float sr = 0;
         for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
-                Float weight = rhoWeights[i] * radiusWeights[j];
+	    for (int j = 0; j < 4; ++j) {
+		Float weight = rhoWeights[i] * radiusWeights[j];
                 if (weight != 0)
                     sr += weight *
-                          table.EvalProfile(rhoOffset + i, radiusOffset + j);
-            }
+			  table.EvalProfile(rhoOffset + i, radiusOffset + j);
+	    }
         }
 
         // Cancel marginal PDF factor from tabulated BSSRDF profile
-        if (rOptical != 0) sr /= 2 * Pi * rOptical;
+	if (rOptical != 0) sr /= 2 * Pi * rOptical;
         Sr[ch] = sr;
     }
     // Transform BSSRDF value into world space units
@@ -236,12 +237,21 @@ Spectrum SeparableBSSRDF::Sample_S(const Scene &scene, Float u1,
     ProfilePhase pp(Prof::BSSRDFSampling);
     Spectrum Sp = Sample_Sp(scene, u1, u2, arena, si, pdf);
     if (!Sp.IsBlack()) {
-        // Initialize material model at sampled surface interaction
-        si->bsdf = ARENA_ALLOC(arena, BSDF)(*si);
-        si->bsdf->Add(ARENA_ALLOC(arena, SeparableBSSRDFAdapter)(this));
-        si->wo = Vector3f(si->shading.n);
+	//Initialize material model at sampled surface interaction
+	si->bsdf = ARENA_ALLOC(arena, BSDF)(*si);
+	si->bsdf->Add(ARENA_ALLOC(arena, SeparableBSSRDFAdapter)(this));
+	si->wo = Vector3f(si->shading.n);
     }
     return Sp;
+}
+
+Spectrum SeparableBSSRDF::Sample_S_Updated(const Scene &scene, Float u1,
+                                   const Point2f &u2, MemoryArena &arena,
+                                   SurfaceInteraction *si, Float *pdf,
+				   Ray ray, Vector3f wi,
+				   Sampler &sampler) const {
+    return Sample_S(scene, u1, u2, arena, si, pdf);
+    ProfilePhase pp(Prof::BSSRDFEvaluation);
 }
 
 Spectrum SeparableBSSRDF::Sample_Sp(const Scene &scene, Float u1,

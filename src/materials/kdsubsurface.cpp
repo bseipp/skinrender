@@ -94,7 +94,7 @@ void KdSubsurfaceMaterial::ComputeScatteringFunctions(
     Spectrum sig_a, sig_s;
     SubsurfaceFromDiffuse(table, kd, mfree, &sig_a, &sig_s);
     si->bssrdf = ARENA_ALLOC(arena, TabulatedBSSRDF)(*si, this, mode, eta,
-                                                     sig_a, sig_s, table);
+						     sig_a, sig_s, table);
 }
 
 KdSubsurfaceMaterial *CreateKdSubsurfaceMaterial(const TextureParams &mp) {

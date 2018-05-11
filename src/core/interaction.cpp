@@ -97,7 +97,18 @@ void SurfaceInteraction::ComputeScatteringFunctions(const RayDifferential &ray,
                                                     TransportMode mode) {
     ComputeDifferentials(ray);
     primitive->ComputeScatteringFunctions(this, arena, mode,
-                                          allowMultipleLobes);
+					  allowMultipleLobes);
+}
+void SurfaceInteraction::ComputeScatteringFunctionsUpdated(const RayDifferential &ray,
+                                                    MemoryArena &arena,
+						    Ray &nray,
+						    Sampler &sampler,
+                                                    bool allowMultipleLobes,
+                                                    TransportMode mode) {
+    ComputeDifferentials(ray);
+    primitive->ComputeScatteringFunctionsUpdated(this, arena, mode,
+                                          allowMultipleLobes,
+					  nray, sampler);
 }
 
 void SurfaceInteraction::ComputeDifferentials(

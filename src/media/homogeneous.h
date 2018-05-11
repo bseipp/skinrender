@@ -53,6 +53,26 @@ class HomogeneousMedium : public Medium {
           sigma_t(sigma_s + sigma_a),
           g(g) {}
     Spectrum Tr(const Ray &ray, Sampler &sampler) const;
+    Spectrum Tr_Updated(const Ray &ray, Sampler &sampler) const{
+    }
+    Float GetTransmittanceR(const Point3i &p) const {
+    }
+    Float GetTransmittanceG(const Point3i &p) const {
+    }
+    Float GetTransmittanceB(const Point3i &p) const {
+    }
+    Float TransmittancePropertyR(const Point3f &p) const {
+    };
+    Float TransmittancePropertyG(const Point3f &p) const {
+    };
+    Float TransmittancePropertyB(const Point3f &p) const {
+    };
+    Float GetTransR(int index) const{
+    };
+    Float GetTransG(int index) const{
+    };
+    Float GetTransB(int index) const{
+    };
     Spectrum Sample(const Ray &ray, Sampler &sampler, MemoryArena &arena,
                     MediumInteraction *mi) const;
 

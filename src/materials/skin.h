@@ -1,4 +1,3 @@
-
 /*
     pbrt source code is Copyright(c) 1998-2016
                         Matt Pharr, Greg Humphreys, and Wenzel Jakob.
@@ -35,55 +34,75 @@
 #pragma once
 #endif
 
-#ifndef PBRT_MATERIALS_TRANSLUCENT_H
-#define PBRT_MATERIALS_TRANSLUCENT_H
+#ifndef PBRT_MATERIALS_SKIN_H
+#define PBRT_MATERIALS_SKIN_H
 
-// materials/translucent.h*
+// materials/kdsubsurface.h*
 #include "pbrt.h"
+#include "reflection.h"
 #include "material.h"
+#include "bssrdf.h"
 
 namespace pbrt {
 
-// TranslucentMaterial Declarations
-class TranslucentMaterial : public Material {
+// SkinMaterial Declarations
+class SkinMaterial : public Material {
   public:
-    // TranslucentMaterial Public Methods
-    TranslucentMaterial(const std::shared_ptr<Texture<Spectrum>> &kd,
-                        const std::shared_ptr<Texture<Spectrum>> &ks,
-                        const std::shared_ptr<Texture<Float>> &rough,
-                        const std::shared_ptr<Texture<Spectrum>> &refl,
-                        const std::shared_ptr<Texture<Spectrum>> &trans,
-                        const std::shared_ptr<Texture<Float>> &bump,
-                        bool remap) {
-        Kd = kd;
-        Ks = ks;
-        roughness = rough;
-        reflect = refl;
-        transmit = trans;
-        bumpMap = bump;
-        remapRoughness = remap;
+    // SkinMaterial Public Methods
+    SkinMaterial(Float scale,
+                         const std::shared_ptr<Texture<Spectrum>> &Kd,
+                         const std::shared_ptr<Texture<Spectrum>> &Kr,
+                         const std::shared_ptr<Texture<Spectrum>> &Kt,
+                         const std::shared_ptr<Texture<Spectrum>> &mfp, Float g,
+                         Float eta,
+                         const std::shared_ptr<Texture<Float>> &uRoughness,
+                         const std::shared_ptr<Texture<Float>> &vRoughness,
+                         const std::shared_ptr<Texture<Float>> &bumpMap,
+                         bool remapRoughness,
+			 Float addition_param,
+			 Float variant_param)
+        : scale(scale),
+          Kd(Kd),
+          Kr(Kr),
+          Kt(Kt),
+          mfp(mfp),
+          uRoughness(uRoughness),
+          vRoughness(vRoughness),
+          bumpMap(bumpMap),
+          eta(eta),
+          remapRoughness(remapRoughness),
+          table(100, 64),
+	  addition_param(addition_param),
+	  variant_param(variant_param) {
+	      this->is_skin_material = true;
+	    ComputeBeamDiffusionBSSRDF(g, eta, &table);
     }
     void ComputeScatteringFunctions(SurfaceInteraction *si, MemoryArena &arena,
                                     TransportMode mode,
-                                    bool allowMultipleLobes) const;
+                                    bool allowMultipleLobes) const
+    {
+    };
     void ComputeScatteringFunctionsUpdated(SurfaceInteraction *si, MemoryArena &arena,
                                     TransportMode mode,
                                     bool allowMultipleLobes,
 				    Ray &ray,
-				    Sampler &sampler) const {
-    };
+				    Sampler &sampler) const;
 
   private:
-    // TranslucentMaterial Private Data
-    std::shared_ptr<Texture<Spectrum>> Kd, Ks;
-    std::shared_ptr<Texture<Float>> roughness;
-    std::shared_ptr<Texture<Spectrum>> reflect, transmit;
+    // SkinMaterial Private Data
+    Float scale;
+    std::shared_ptr<Texture<Spectrum>> Kd, Kr, Kt, mfp;
+    std::shared_ptr<Texture<Float>> uRoughness, vRoughness;
     std::shared_ptr<Texture<Float>> bumpMap;
+    Float eta;
     bool remapRoughness;
+    BSSRDFTable table;
+    Float addition_param;
+    Float variant_param;
 };
 
-TranslucentMaterial *CreateTranslucentMaterial(const TextureParams &mp);
+SkinMaterial *CreateSkinMaterial(const TextureParams &mp);
 
 }  // namespace pbrt
 
-#endif  // PBRT_MATERIALS_TRANSLUCENT_H
+#endif  // PBRT_MATERIALS_KDSUBSURFACE_H

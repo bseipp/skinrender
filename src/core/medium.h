@@ -77,9 +77,19 @@ class Medium {
     // Medium Interface
     virtual ~Medium() {}
     virtual Spectrum Tr(const Ray &ray, Sampler &sampler) const = 0;
+    virtual Spectrum Tr_Updated(const Ray &ray, Sampler &sampler) const = 0;
     virtual Spectrum Sample(const Ray &ray, Sampler &sampler,
                             MemoryArena &arena,
                             MediumInteraction *mi) const = 0;
+    virtual Float GetTransmittanceR(const Point3i &p) const = 0;
+    virtual Float GetTransmittanceG(const Point3i &p) const = 0;
+    virtual Float GetTransmittanceB(const Point3i &p) const = 0;
+    virtual Float TransmittancePropertyR(const Point3f &p) const = 0;
+    virtual Float TransmittancePropertyG(const Point3f &p) const = 0;
+    virtual Float TransmittancePropertyB(const Point3f &p) const = 0;
+    virtual Float GetTransR(int index) const = 0;
+    virtual Float GetTransG(int index) const = 0;
+    virtual Float GetTransB(int index) const = 0;
 };
 
 // HenyeyGreenstein Declarations

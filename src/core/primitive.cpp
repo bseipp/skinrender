@@ -65,6 +65,16 @@ void Aggregate::ComputeScatteringFunctions(SurfaceInteraction *isect,
         "Aggregate::ComputeScatteringFunctions() method"
         "called; should have gone to GeometricPrimitive";
 }
+void Aggregate::ComputeScatteringFunctionsUpdated(SurfaceInteraction *isect,
+                                           MemoryArena &arena,
+                                           TransportMode mode,
+                                           bool allowMultipleLobes,
+					   Ray &ray,
+					   Sampler &sampler) const {
+    LOG(FATAL) <<
+        "Aggregate::ComputeScatteringFunctions() method"
+        "called; should have gone to GeometricPrimitive";
+}
 
 // TransformedPrimitive Method Definitions
 TransformedPrimitive::TransformedPrimitive(std::shared_ptr<Primitive> &primitive,
@@ -144,6 +154,24 @@ void GeometricPrimitive::ComputeScatteringFunctions(
     if (material)
         material->ComputeScatteringFunctions(isect, arena, mode,
                                              allowMultipleLobes);
+    CHECK_GE(Dot(isect->n, isect->shading.n), 0.);
+}
+void GeometricPrimitive::ComputeScatteringFunctionsUpdated(
+    SurfaceInteraction *isect, MemoryArena &arena, TransportMode mode,
+    bool allowMultipleLobes, Ray &ray,
+    Sampler &sampler) const {
+    ProfilePhase p(Prof::ComputeScatteringFuncs);
+    if (material) {
+	if(material->is_skin_material){
+	    material->ComputeScatteringFunctionsUpdated(isect, arena, mode,
+						 allowMultipleLobes,
+						 ray, sampler);
+	}
+	else{
+	    material->ComputeScatteringFunctions(isect, arena, mode,
+						 allowMultipleLobes);
+	}
+    }
     CHECK_GE(Dot(isect->n, isect->shading.n), 0.);
 }
 

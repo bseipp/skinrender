@@ -57,10 +57,14 @@ class BSSRDF {
     virtual ~BSSRDF() {}
 
     // BSSRDF Interface
-    virtual Spectrum S(const SurfaceInteraction &pi, const Vector3f &wi) = 0;
+    virtual Spectrum S(const SurfaceInteraction &pi, const Vector3f &wi, Float d) = 0;
     virtual Spectrum Sample_S(const Scene &scene, Float u1, const Point2f &u2,
                               MemoryArena &arena, SurfaceInteraction *si,
                               Float *pdf) const = 0;
+    virtual Spectrum Sample_S_Updated(const Scene &scene, Float u1, const Point2f &u2,
+                      MemoryArena &arena, SurfaceInteraction *si,
+                      Float *pdf, Ray currentRay, Vector3f wi,
+		      Sampler &sampler) const = 0;
 
   protected:
     // BSSRDF Protected Data
@@ -74,14 +78,17 @@ class SeparableBSSRDF : public BSSRDF {
   public:
     // SeparableBSSRDF Public Methods
     SeparableBSSRDF(const SurfaceInteraction &po, Float eta,
-                    const Material *material, TransportMode mode)
+                    const Material *material, TransportMode mode,
+		    Float variant_param)
         : BSSRDF(po, eta),
           ns(po.shading.n),
           ss(Normalize(po.shading.dpdu)),
           ts(Cross(ns, ss)),
           material(material),
-          mode(mode) {}
-    Spectrum S(const SurfaceInteraction &pi, const Vector3f &wi) {
+          mode(mode),
+	  variant_param(variant_param) {}
+    Spectrum S(const SurfaceInteraction &pi, const Vector3f &wi, Float d) {
+	printf("thos will never be called");
         ProfilePhase pp(Prof::BSSRDFEvaluation);
         Float Ft = FrDielectric(CosTheta(po.wo), 1, eta);
         return (1 - Ft) * Sp(pi) * Sw(wi);
@@ -91,36 +98,58 @@ class SeparableBSSRDF : public BSSRDF {
         return (1 - FrDielectric(CosTheta(w), 1, eta)) / (c * Pi);
     }
     Spectrum Sp(const SurfaceInteraction &pi) const {
-        return Sr(Distance(po.p, pi.p));
+	return Sr(Distance(po.p, pi.p));
     }
     Spectrum Sample_S(const Scene &scene, Float u1, const Point2f &u2,
                       MemoryArena &arena, SurfaceInteraction *si,
                       Float *pdf) const;
+    Spectrum Sample_S_Updated(const Scene &scene, Float u1, const Point2f &u2,
+                      MemoryArena &arena, SurfaceInteraction *si,
+                      Float *pdf, Ray currentRay, Vector3f wi,
+		      Sampler &sampler) const;
     Spectrum Sample_Sp(const Scene &scene, Float u1, const Point2f &u2,
                        MemoryArena &arena, SurfaceInteraction *si,
                        Float *pdf) const;
     Float Pdf_Sp(const SurfaceInteraction &si) const;
+
+    Spectrum Generate_surin(const Scene &scene,SurfaceInteraction *pi,
+			    MemoryArena &arena, Sampler &sampler, const Point2f &u2,
+			    Float u1, Float *pdf,
+			    Ray old_ray) const;
 
     // SeparableBSSRDF Interface
     virtual Spectrum Sr(Float d) const = 0;
     virtual Float Sample_Sr(int ch, Float u) const = 0;
     virtual Float Pdf_Sr(int ch, Float r) const = 0;
 
-  private:
-    // SeparableBSSRDF Private Data
     const Normal3f ns;
     const Vector3f ss, ts;
     const Material *material;
     const TransportMode mode;
+    Float variant_param;
+  private:
+    // SeparableBSSRDF Private Data
 };
 
 class TabulatedBSSRDF : public SeparableBSSRDF {
   public:
     // TabulatedBSSRDF Public Methods
+    //TabulatedBSSRDF(const SurfaceInteraction &po, const Material *material,
+                    //TransportMode mode, Float eta, const Spectrum &sigma_a,
+                    //const Spectrum &sigma_s, const BSSRDFTable &table,
+		    //Float addition_param, Float variant_param)
+        //: SeparableBSSRDF(po, eta, material, mode, variant_param), table(table),
+	    //addition_param(addition_param), sampler(nullptr),
+	    //ray(nullptr){
+        //sigma_t = sigma_a + sigma_s;
+        //for (int c = 0; c < Spectrum::nSamples; ++c)
+            //rho[c] = sigma_t[c] != 0 ? (sigma_s[c] / sigma_t[c]) : 0;
+    //}
     TabulatedBSSRDF(const SurfaceInteraction &po, const Material *material,
                     TransportMode mode, Float eta, const Spectrum &sigma_a,
                     const Spectrum &sigma_s, const BSSRDFTable &table)
-        : SeparableBSSRDF(po, eta, material, mode), table(table) {
+        : SeparableBSSRDF(po, eta, material, mode, 0.0f),
+       	table(table){
         sigma_t = sigma_a + sigma_s;
         for (int c = 0; c < Spectrum::nSamples; ++c)
             rho[c] = sigma_t[c] != 0 ? (sigma_s[c] / sigma_t[c]) : 0;
@@ -133,6 +162,8 @@ class TabulatedBSSRDF : public SeparableBSSRDF {
     // TabulatedBSSRDF Private Data
     const BSSRDFTable &table;
     Spectrum sigma_t, rho;
+    Float addition_param;
+    Float variant_param;
 };
 
 struct BSSRDFTable {

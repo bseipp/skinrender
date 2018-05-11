@@ -55,9 +55,16 @@ class Material {
                                             MemoryArena &arena,
                                             TransportMode mode,
                                             bool allowMultipleLobes) const = 0;
+    virtual void ComputeScatteringFunctionsUpdated(SurfaceInteraction *si,
+                                            MemoryArena &arena,
+                                            TransportMode mode,
+                                            bool allowMultipleLobes,
+					    Ray &ray,
+					    Sampler &sampler) const = 0;
     virtual ~Material();
     static void Bump(const std::shared_ptr<Texture<Float>> &d,
                      SurfaceInteraction *si);
+    bool is_skin_material = false;
 };
 
 }  // namespace pbrt

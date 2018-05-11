@@ -332,12 +332,13 @@ Float ParamSet::FindOneFloat(const std::string &name, Float d) const {
 }
 
 const Float *ParamSet::FindFloat(const std::string &name, int *n) const {
-    for (const auto &f : floats)
+    for (const auto &f : floats) {
         if (f->name == name) {
             *n = f->nValues;
             f->lookedUp = true;
             return f->values.get();
         }
+    }
     return nullptr;
 }
 

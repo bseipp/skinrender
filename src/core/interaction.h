@@ -131,6 +131,12 @@ class SurfaceInteraction : public Interaction {
         const RayDifferential &ray, MemoryArena &arena,
         bool allowMultipleLobes = false,
         TransportMode mode = TransportMode::Radiance);
+    void ComputeScatteringFunctionsUpdated(
+        const RayDifferential &ray, MemoryArena &arena,
+	Ray &nray,
+	Sampler &sampler,
+        bool allowMultipleLobes = false,
+        TransportMode mode = TransportMode::Radiance);
     void ComputeDifferentials(const RayDifferential &r) const;
     Spectrum Le(const Vector3f &w) const;
 

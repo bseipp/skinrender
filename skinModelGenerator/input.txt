@@ -1,0 +1,12 @@
+length_of_room 10
+width_of_room 10
+height_of_room 10
+distance_from_object 4
+field_of_view 45
+rays_per_pixel 2048
+image_width 400
+image_height 400
+image_filename image
+light_intensity 8
+hair_density 1
+hair_color blonde

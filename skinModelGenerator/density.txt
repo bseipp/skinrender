@@ -1,0 +1,5 @@
+File: density.raw
+x: 626
+y: 626
+z: 3130
+type: char

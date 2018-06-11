@@ -49,6 +49,7 @@ bool ReadSkinFloatFile(const char *filename, std::vector<Float> *trans_r,
 			std::vector<Float> *scat_r,
 			std::vector<Float> *scat_g,
 			std::vector<Float> *scat_b);
+bool ReadSkinCharFile(const char *filename, std::vector<Float> *tissue_type);
 bool WriteSkinFloatFile(const char *filename, std::vector<Float> *trans_r);
 
 }  // namespace pbrt

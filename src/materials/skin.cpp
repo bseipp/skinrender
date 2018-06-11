@@ -202,17 +202,9 @@ Spectrum SkinBSSRDF::Generate_surin(const Scene &scene,
 	return Spectrum(0.f);
     }
     *pi = isect;
-    *pdf = this->Pdf_Sp(*pi) / mis;
-    //return beta.Clamp();
-    //*pdf = 1.f/2;
-    //*pdf = Pdf_Sp(*pi);
-    //*pdf = 1.f;
-    return beta.Clamp();
-    //Spectrum Sp = this->RenderSurface(Distance(po.p, pi->p), beta);
+    *pdf = 0.47;
+    //*pdf = this->Pdf_Sp(*pi) / mis;
     Float ptr, ptg, ptb;
-    ptr = prev_ray.medium->TransmittancePropertyR(ray.o);
-    ptg = prev_ray.medium->TransmittancePropertyG(ray.o);
-    ptb = prev_ray.medium->TransmittancePropertyB(ray.o);
     Float vox_r, vox_g, vox_b;
     Point3f voxel_cords(ray.o.x * 100 - .5f, ray.o.y * 100 - .5f, ray.o.z * 40 - .5f);
     Point3i voxel_locs = (Point3i)Floor(voxel_cords);
@@ -222,48 +214,13 @@ Spectrum SkinBSSRDF::Generate_surin(const Scene &scene,
 	voxel_locs[1] *= -1;
     if(voxel_locs[2] < 0)
 	voxel_locs[2] *= -1;
-    vox_r = ray.medium->GetTransR(voxel_locs[0]);
-    vox_g = ray.medium->GetTransG(voxel_locs[1]);
-    vox_b = ray.medium->GetTransB(voxel_locs[2]);
-    float max_range = 0.99999f;
-    float min_range = 0.0001f;
-    float ratio, b, r;
-    ratio = 2 * (vox_r - min_range) / (max_range - min_range);
-    vox_r = 255.f * (1-ratio);
-    ratio = 2 * (vox_g - min_range) / (max_range - min_range);
-    vox_g = 255.f * (ratio - 1);
-    ratio = 2 * (vox_b - min_range) / (max_range - min_range);
-    b = 255.f * (1-ratio);
-    r = 255.f * (ratio - 1);
-    vox_b = 255.f - b - r;
-    if(vox_r < 0.f)
-	vox_r *= -1;
-    if(vox_g < 0.f)
-	vox_g *= -1;
-    if(vox_b < 0.f)
-	vox_b *= -1;
-    //Spectrum extinction = Spectrum::FromRGB(ergb,SpectrumType::Illuminant);
-    //Spectrum scat_albedo = Spectrum::FromRGB(srgb,SpectrumType::Illuminant);
-    if (ptr != 0.f) {
-	vox_r = vox_r / ptr;
-    } else {
-    }
-    if (ptg != 0.f) {
-	vox_g = vox_g / ptg;
-    } else {
-    }
-    if (ptb != 0.f) {
-	vox_b = vox_b / ptb;
-    } else {
-    }
-    //Float rgbarray[3] = {(vox_r * ptr), (vox_g * ptg), (vox_b * ptb)};
+    vox_r = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[0]));
+    vox_g = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[1]));
+    vox_b = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[2]));
+    //printf("\nusing :: %f, %f,%f\n", vox_r, vox_g, vox_b);
     Float rgbarray[3] = {vox_r, vox_g,vox_b};
-    //printf("\n$found %f,%f,%f$\n",rgbarray[0],rgbarray[1],rgbarray[2]);
-    //rgbarray[2] = 180.f;
     Spectrum scat_albedo = Spectrum::FromRGB(rgbarray,SpectrumType::Illuminant);
-    //return scat_albedo;
-    //beta = scat_albedo.divideMe(beta, Spectrum::nSamples);
-    beta = beta.divideMe(scat_albedo, Spectrum::nSamples);
+    beta = scat_albedo.divideMe(beta, Spectrum::nSamples);
     return beta.Clamp();
 }
 
@@ -354,11 +311,75 @@ SkinMaterial *CreateSkinMaterial(const TextureParams &mp) {
     asr = mp.FindFloat("asr", 0.0f);
     asg = mp.FindFloat("asg", 0.0f);
     asb = mp.FindFloat("asb", 0.0f);
+    std::string t1 = mp.FindString("t1");
+    std::vector<Float> tissue_one;
+    std::vector<Float> tissue_two;
+    std::vector<Float> tissue_three;
+    std::vector<Float> tissue_four;
+    std::vector<Float> tissue_five;
+    char curNumber[32];
+    int float_index = 0, pos = 0;
+    int tracked_floats = 0, tissue_index = 0;
+    for(unsigned int i = 0; i< t1.length(); i++)
+    {
+	if(isspace(t1[i]))
+	{
+	    curNumber[pos++] = '\0';
+	    switch(tissue_index) {
+	    case 0:
+		tissue_one.push_back(atof(curNumber));
+	    case 1:
+		tissue_two.push_back(atof(curNumber));
+	    case 2:
+		tissue_three.push_back(atof(curNumber));
+	    case 3:
+		tissue_four.push_back(atof(curNumber));
+	    case 4:
+		tissue_five.push_back(atof(curNumber));
+	    }
+	    tracked_floats++;
+	    if(tracked_floats == 5) {
+		tissue_index++;
+		tracked_floats = 0;
+		float_index = 0;
+	    }
+	    pos = 0;
+	}
+	else
+	    curNumber[pos++] = t1[i];
+    }
+    if (pos > 0)
+    {
+	curNumber[pos++] = '\0';
+	    switch(tissue_index) {
+	    case 0:
+		tissue_one.push_back(atof(curNumber));
+	    case 1:
+		tissue_two.push_back(atof(curNumber));
+	    case 2:
+		tissue_three.push_back(atof(curNumber));
+	    case 3:
+		tissue_four.push_back(atof(curNumber));
+	    case 4:
+		tissue_five.push_back(atof(curNumber));
+	    }
+    }
+    const Float *ts1 = &tissue_one[0];
+    const Float *t2 = &tissue_two[0];
+    const Float *t3 = &tissue_three[0];
+    const Float *t4 = &tissue_four[0];
+    const Float *t5 = &tissue_five[0];
+    //tissues_pointer = &tissues[0];
     bool remapRoughness = mp.FindBool("remaproughness", true);
     return new SkinMaterial(scale, kd, kr, kt, mfp, g, eta, roughu,
                                     roughv, bumpMap, remapRoughness,
 				    addition_param,
-				    variant_param);
+				    variant_param,
+				    ts1,
+				    t2,
+				    t3,
+				    t4,
+				    t5);
 }
 
 }  // namespace pbrt

@@ -82,6 +82,7 @@ class KdSubsurfaceMaterial : public Material {
 				    Ray &ray,
 				    Sampler &sampler) const{};
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // KdSubsurfaceMaterial Private Data
     Float scale;

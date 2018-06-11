@@ -63,6 +63,7 @@ class MirrorMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // MirrorMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> Kr;

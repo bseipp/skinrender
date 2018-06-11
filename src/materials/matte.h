@@ -62,6 +62,7 @@ class MatteMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // MatteMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> Kd;

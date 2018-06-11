@@ -82,6 +82,7 @@ class SubsurfaceMaterial : public Material {
 				    Ray &ray,
 				    Sampler &sampler) const{};
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // SubsurfaceMaterial Private Data
     const Float scale;

@@ -731,12 +731,7 @@ std::shared_ptr<Medium> MakeMedium(const std::string &name,
     } else if (name == "skin_heterogeneous") {
         int nitems;
         std::vector<Float> vals;
-        std::vector<Float> trans_r;
-        std::vector<Float> trans_g;
-        std::vector<Float> trans_b;
-        std::vector<Float> scat_r;
-        std::vector<Float> scat_g;
-        std::vector<Float> scat_b;
+        std::vector<Float> tt;
 	std::string density_file = paramSet.FindOneFilename("density_file", "");
 	std::string volume_color_file = paramSet.FindOneFilename("volumetric_colors", "");
 	std::string write_destination = paramSet.FindOneFilename("write_destination", "");
@@ -744,27 +739,14 @@ std::shared_ptr<Medium> MakeMedium(const std::string &name,
             Error("No \"density\" values provided for heterogeneous medium?");
             return NULL;
         }
-	if(!ReadSkinFloatFile(volume_color_file.c_str(),
-	    &trans_r, &trans_g, &trans_b,
-	    &scat_r, &scat_g, &scat_b))
+	if(!ReadSkinCharFile(volume_color_file.c_str(),
+	    &tt))
             Error("Failed to read volumetric_colors");
         const Float *data = &vals[0];
-        const Float *tr = &trans_r[0];
-        const Float *tg = &trans_g[0];
-        const Float *tb = &trans_b[0];
-        const Float *sr = &scat_r[0];
-        const Float *sg = &scat_g[0];
-        const Float *sb = &scat_b[0];
-	WriteSkinFloatFile(write_destination.c_str(), &scat_r);
+        const Float *tissue_type = &tt[0];
         int tx = paramSet.FindOneInt("trans_x", 1);
         int ty = paramSet.FindOneInt("trans_y", 1);
         int tz = paramSet.FindOneInt("trans_z", 1);
-        int sx = paramSet.FindOneInt("scat_x", 1);
-        int sy = paramSet.FindOneInt("scat_y", 1);
-        int sz = paramSet.FindOneInt("scat_z", 1);
-	Float sFactorX = paramSet.FindOneFloat("scale_x", 1.f);
-	Float sFactorY = paramSet.FindOneFloat("scale_y", 1.f);
-	Float sFactorZ = paramSet.FindOneFloat("scale_z", 1.f);
         Point3f p0 = paramSet.FindOnePoint3f("p0", Point3f(0.f, 0.f, 0.f));
         Point3f p1 = paramSet.FindOnePoint3f("p1", Point3f(1.f, 1.f, 1.f));
         if (vals.size() != tx * ty * tz) {
@@ -776,11 +758,9 @@ std::shared_ptr<Medium> MakeMedium(const std::string &name,
         }
 	Transform data2Medium = Translate(Vector3f(p0)) *
 				Scale(p1.x - p0.x, p1.y - p0.y, p1.z - p0.z);
-        //Transform data2Medium =  Scale(sFactorX, sFactorY, sFactorZ);
-	//data2Medium = data2Medium * Inverse(Scale(sFactorX, sFactorY, sFactorZ));
         m = new GridDensityMedium(sig_a, sig_s, g, tx, ty, tz,
                                   medium2world * data2Medium, data,
-				  tr, tg, tb, sr, sg, sb);
+				  tissue_type);
     } else
         Warning("Medium \"%s\" unknown.", name.c_str());
     paramSet.ReportUnused();

@@ -79,9 +79,7 @@ class GridDensityMedium : public Medium {
     // new constructor for Skin Grid
     GridDensityMedium(const Spectrum &sigma_a, const Spectrum &sigma_s, Float g,
                       int nx, int ny, int nz, const Transform &mediumToWorld,
-                      const Float *d, const Float *tr, const Float *tg,
-		       const Float *tb, const Float *sr, const Float *sg,
-		       const Float *sb)
+                      const Float *d, const Float *tt)
         : sigma_a(sigma_a),
           sigma_s(sigma_s),
           g(g),
@@ -90,40 +88,12 @@ class GridDensityMedium : public Medium {
           nz(nz),
           WorldToMedium(Inverse(mediumToWorld)),
           density(new Float[nx * ny * nz]),
-	    trans_r(new Float[nx*ny*nz]),
-	    trans_g(new Float[nx*ny*nz]),
-	    trans_b(new Float[nx*ny*nz]),
-	    scat_r(new Float[nx*ny*nz]),
-	    scat_g(new Float[nx*ny*nz]),
-	    scat_b(new Float[nx*ny*nz]){
-        densityBytes += nx * ny * nz * sizeof(Float);
-        densityBytes += nx * ny * nz * sizeof(Float);
-        densityBytes += nx * ny * nz * sizeof(Float);
-        densityBytes += nx * ny * nz * sizeof(Float);
-        densityBytes += nx * ny * nz * sizeof(Float);
+	    tissue_type(new Float[nx*ny*nz]){
         densityBytes += nx * ny * nz * sizeof(Float);
         densityBytes += nx * ny * nz * sizeof(Float);
         memcpy((Float *)density.get(), d, sizeof(Float) * nx * ny * nz);
-	memcpy((Float *)trans_r.get(), tr, sizeof(Float) * nx * ny * nz);
-	//
-	
-    FILE *f = fopen("/home/aditya/development/ra/pbrt/trials/tests/pin_cushion/pbrt-v3/build/test.txt", "w+");
-    if (!f) {
-        Error("Unable to open file /home/aditya/development/ra/pbrt/trials/tests/pin_cushion/pbrt-v3/build/test.txt");
-    }
-    fclose(f);
-	//
-	//memcpy((Float *)trans_r.get(), tr, sizeof(Float));
-	memcpy((Float *)trans_g.get(), tg, sizeof(Float) * nx * ny * nz);
-        //memcpy((Float *)trans_g.get(), tg, sizeof(Float) * 1);
-	memcpy((Float *)trans_b.get(), tb, sizeof(Float) * nx * ny * nz);
-        //memcpy((Float *)trans_b.get(), tb, sizeof(Float) * 1);
-	memcpy((Float *)scat_r.get(), sr, sizeof(Float) * nx * ny * nz);
-        //memcpy((Float *)scat_r.get(), sr, sizeof(Float) * 1);
-	memcpy((Float *)scat_g.get(), sg, sizeof(Float) * nx * ny * nz);
-        //memcpy((Float *)scat_g.get(), sg, sizeof(Float) * 1);
-	memcpy((Float *)scat_b.get(), sb, sizeof(Float) * nx * ny * nz);
-        //memcpy((Float *)scat_b.get(), sb, sizeof(Float) * 1);
+	memcpy((Float *)tissue_type.get(), tt, sizeof(Float) * nx * ny * nz);
+
         // Precompute values for Monte Carlo sampling of _GridDensityMedium_
         sigma_t = (sigma_a + sigma_s)[0];
         if (Spectrum(sigma_t) != sigma_a + sigma_s)
@@ -147,7 +117,7 @@ class GridDensityMedium : public Medium {
         return density[(p.z * ny + p.y) * nx + p.x];
     }
     Float GetTransR(int index) const {
-	return trans_r[index];
+	return tissue_type[index];
     }
     Float GetTransG(int index) const {
 	return trans_g[index];
@@ -173,21 +143,6 @@ class GridDensityMedium : public Medium {
 	return trans_b[(p.z * ny + p.y) * nx + p.x];
 	//return trans_b[p.z*nz];
     }
-    Float GetScatteringR(const Point3i &p) const {
-        Bounds3i sampleBounds(Point3i(0, 0, 0), Point3i(nx, ny, nz));
-        if (!InsideExclusive(p, sampleBounds)) return 0;
-        return scat_r[(p.z * ny + p.y) * nx + p.x];
-    }
-    Float GetScatteringG(const Point3i &p) const {
-        Bounds3i sampleBounds(Point3i(0, 0, 0), Point3i(nx, ny, nz));
-        if (!InsideExclusive(p, sampleBounds)) return 0;
-        return scat_g[(p.z * ny + p.y) * nx + p.x];
-    }
-    Float GetScatteringB(const Point3i &p) const {
-        Bounds3i sampleBounds(Point3i(0, 0, 0), Point3i(nx, ny, nz));
-        if (!InsideExclusive(p, sampleBounds)) return 0;
-        return scat_b[(p.z * ny + p.y) * nx + p.x];
-    }
     Spectrum Sample(const Ray &ray, Sampler &sampler, MemoryArena &arena,
                     MediumInteraction *mi) const;
     Spectrum Tr(const Ray &ray, Sampler &sampler) const;
@@ -200,7 +155,8 @@ class GridDensityMedium : public Medium {
     const int nx, ny, nz;
     const Transform WorldToMedium;
     std::unique_ptr<Float[]> density;
-    std::unique_ptr<Float[]> trans_r, trans_g, trans_b, scat_r, scat_g, scat_b;
+    std::unique_ptr<Float[]> tissue_type;
+    std::unique_ptr<Float[]> trans_r, trans_g, trans_b;
     Float sigma_t;
     Float invMaxDensity;
 };

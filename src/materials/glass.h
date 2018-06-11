@@ -72,6 +72,7 @@ class GlassMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // GlassMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> Kr, Kt;

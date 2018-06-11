@@ -61,6 +61,7 @@ class Material {
                                             bool allowMultipleLobes,
 					    Ray &ray,
 					    Sampler &sampler) const = 0;
+    virtual Float GetTransmittanceRGB(int tissue_index) const = 0;
     virtual ~Material();
     static void Bump(const std::shared_ptr<Texture<Float>> &d,
                      SurfaceInteraction *si);

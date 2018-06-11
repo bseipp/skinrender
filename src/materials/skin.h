@@ -60,7 +60,12 @@ class SkinMaterial : public Material {
                          const std::shared_ptr<Texture<Float>> &bumpMap,
                          bool remapRoughness,
 			 Float addition_param,
-			 Float variant_param)
+			 Float variant_param,
+			 const Float *ts1,
+			 const Float *ts2,
+			 const Float *ts3,
+			 const Float *ts4,
+			 const Float *ts5)
         : scale(scale),
           Kd(Kd),
           Kr(Kr),
@@ -73,8 +78,18 @@ class SkinMaterial : public Material {
           remapRoughness(remapRoughness),
           table(100, 64),
 	  addition_param(addition_param),
-	  variant_param(variant_param) {
+	  variant_param(variant_param),
+	    tissue_one(new Float[6]),
+	    tissue_two(new Float[6]),
+	    tissue_three(new Float[6]),
+	    tissue_four(new Float[6]),
+	    tissue_five(new Float[6]) {
 	      this->is_skin_material = true;
+	    memcpy((Float *)tissue_one.get(), ts1, sizeof(Float) * 6);
+	    memcpy((Float *)tissue_two.get(), ts2, sizeof(Float) * 6);
+	    memcpy((Float *)tissue_three.get(), ts3, sizeof(Float) * 6);
+	    memcpy((Float *)tissue_four.get(), ts4, sizeof(Float) * 6);
+	    memcpy((Float *)tissue_five.get(), ts5, sizeof(Float) * 6);
 	    ComputeBeamDiffusionBSSRDF(g, eta, &table);
     }
     void ComputeScatteringFunctions(SurfaceInteraction *si, MemoryArena &arena,
@@ -87,7 +102,21 @@ class SkinMaterial : public Material {
                                     bool allowMultipleLobes,
 				    Ray &ray,
 				    Sampler &sampler) const;
-
+    Float GetTransmittanceRGB(int tissue_index) const {
+	    switch(tissue_index) {
+	    case 0:
+		return tissue_one[tissue_index];
+	    case 1:
+		return tissue_two[tissue_index];
+	    case 2:
+		return tissue_three[tissue_index];
+	    case 3:
+		return tissue_four[tissue_index];
+	    case 4:
+		return tissue_five[tissue_index];
+	    }
+	    return 0.f;
+    }
   private:
     // SkinMaterial Private Data
     Float scale;
@@ -99,6 +128,11 @@ class SkinMaterial : public Material {
     BSSRDFTable table;
     Float addition_param;
     Float variant_param;
+    std::unique_ptr<Float[]> tissue_one;
+    std::unique_ptr<Float[]> tissue_two;
+    std::unique_ptr<Float[]> tissue_three;
+    std::unique_ptr<Float[]> tissue_four;
+    std::unique_ptr<Float[]> tissue_five;
 };
 
 SkinMaterial *CreateSkinMaterial(const TextureParams &mp);

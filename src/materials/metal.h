@@ -66,6 +66,7 @@ class MetalMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // MetalMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> eta, k;

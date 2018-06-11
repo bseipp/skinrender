@@ -80,6 +80,7 @@ class UberMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
+    Float GetTransmittanceRGB (int tissue_index) const {};
   private:
     // UberMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> Kd, Ks, Kr, Kt, opacity;

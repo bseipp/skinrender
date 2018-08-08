@@ -1,0 +1,86 @@
+Film "image" "string filename" ["test2.exr"]
+	"integer xresolution" [300] "integer yresolution" [300]
+
+Sampler "02sequence" "integer pixelsamples" [2] 
+Integrator "volpath" "integer maxdepth" [1]
+
+LookAt 0 -3.4 0   0 1 0 0 0 1
+Camera "perspective" "float fov" [45]
+
+
+
+WorldBegin
+
+LightSource "point" "color I" [25 25 25] "point from" [1 0 0.9999]
+
+Texture "checked" "color" "imagemap"
+        "string filename" ["textures/checkerboard.png"]
+
+AttributeBegin
+  # white walls  material
+  Material "plastic" 
+              "color Kd"    [1 1 1]
+		"texture Kd" "checks"
+		"color Ks"    [0.1 0.1 0.1]
+		"float roughness" 0.15
+		#"texture bumpmap" "sponza-bump"
+  # back wall
+  Shape "trianglemesh" 
+		     "integer indices" [0 1 2 2 3 0]
+		"point P" [-1 1 -1   -1 1 1   1 1 1   1 1 -1]
+  # ceiling
+  Shape "trianglemesh" 
+		     "integer indices" [2 1 0 0 3 2]
+		"point P" [-1 1 1   1 1 1   1 -1 1   -1 -1 1]
+  # floor
+  Shape "trianglemesh" 
+		     "integer indices" [0 1 2 2 3 0]
+		"point P" [-1 1 -1   1 1 -1   1 -1 -1   -1 -1 -1]
+  # red wall material
+  Material "plastic" 
+	      "color Kd"    [0.8 0.1 0.1]
+		  "color Ks"    [0.1 0.1 0.1]
+		  "float roughness" 0.15
+  # left red wall
+  Shape "trianglemesh" 
+		     "integer indices" [0 1 2 2 3 0]
+		"point P" [-1 -1 -1   -1 -1 1   -1 1 1   -1 1 -1]
+  # blue wall material
+  Material "plastic" 
+	      "color Kd"    [0.2 0.3 0.8]
+		  "color Ks"    [0.1 0.1 0.1]
+		  "float roughness" 0.15
+  # right blue wall
+  #Shape "trianglemesh" 
+		     #"integer indices" [2 1 0 0 3 2]
+		#"point P" [1 -1 -1   1 -1 1   1 1 1   1 1 -1]
+AttributeEnd
+
+
+TransformBegin
+	Translate -1 0 -1.2
+	Rotate 90 1 0 0
+	Include "geometry/skin_density.pbrt"
+	  "color sigma_a" [30 30 30] "color sigma_s" [50 50 50]
+TransformEnd
+
+Texture "skin_texture" "color" "imagemap"
+        "string filename" ["geometry/brian.png"]
+
+AttributeBegin
+    Translate 0.1 0 -0.5
+
+    Scale 5 5 5
+    Rotate 90 1 0 0
+    MediumInterface "smoke" ""
+    Material "skin"
+	"float eta" [1.33] "color mfp" [1.2953e-03 9.5238e-04 6.7114e-04]
+	"string t1" ["0.42 0.71 0.42 0.93 0.42 0.42 0.93 0.71 0.71 0.42 0.42 0.42 0.42 0.93 0.42 0.93 0.42 0.71 0.42 0.42 0.93 0.42 0.42 0.42 0.71 0.93 0.71 0.42 0.42 0.42"]
+	"texture Kd" "skin_texture"
+	"float asr" 130 "float asg" 80 "float asb" 180
+	"float uroughness" [0.05] "float vroughness" [0.05]
+    Shape "plymesh" "string filename" "geometry/head.ply"
+	  "bool discarddegenerateUVs" ["false"]
+AttributeEnd
+
+WorldEnd

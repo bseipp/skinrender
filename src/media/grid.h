@@ -79,7 +79,8 @@ class GridDensityMedium : public Medium {
     // new constructor for Skin Grid
     GridDensityMedium(const Spectrum &sigma_a, const Spectrum &sigma_s, Float g,
                       int nx, int ny, int nz, const Transform &mediumToWorld,
-                      const Float *d, const Float *tt)
+                      const Float *tt, int ijk)
+                      //const Float *d, const Float *tt)
         : sigma_a(sigma_a),
           sigma_s(sigma_s),
           g(g),
@@ -87,12 +88,13 @@ class GridDensityMedium : public Medium {
           ny(ny),
           nz(nz),
           WorldToMedium(Inverse(mediumToWorld)),
-          density(new Float[nx * ny * nz]),
-	    tissue_type(new Float[nx*ny*nz]){
+          //density(new Float[nx * ny * nz]),
+	    //tissue_type(new Float[nx*ny*nz]){
+          density(new Float[nx * ny * nz]){
         densityBytes += nx * ny * nz * sizeof(Float);
-        densityBytes += nx * ny * nz * sizeof(Float);
-        memcpy((Float *)density.get(), d, sizeof(Float) * nx * ny * nz);
-	memcpy((Float *)tissue_type.get(), tt, sizeof(Float) * nx * ny * nz);
+        //densityBytes += nx * ny * nz * sizeof(Float);
+        memcpy((Float *)density.get(), tt, sizeof(Float) * nx * ny * nz);
+	//memcpy((Float *)tissue_type.get(), tt, sizeof(Float) * nx * ny * nz);
 
         // Precompute values for Monte Carlo sampling of _GridDensityMedium_
         sigma_t = (sigma_a + sigma_s)[0];
@@ -117,7 +119,8 @@ class GridDensityMedium : public Medium {
         return density[(p.z * ny + p.y) * nx + p.x];
     }
     Float GetTransR(int index) const {
-	return tissue_type[index];
+	//return tissue_type[index];
+	return density[index];
     }
     Float GetTransG(int index) const {
 	return trans_g[index];

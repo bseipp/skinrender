@@ -5,8 +5,8 @@ LookAt 0 -4 0 #eye
 	 0 0 0 #look at point
 	0 0 1 #up vector
 Camera "perspective" "float fov" 45
-Sampler "halton" "integer pixelsamples" 2048
-Integrator "path"
+Sampler "02sequence" "integer pixelsamples" 32
+Integrator "volpath" "integer maxdepth" [1]
 Film "image" "string filename" "image.exr"
 "integer xresolution" [400] "integer yresolution" [400]
 
@@ -18,14 +18,25 @@ ActiveTransform All
 ##############
 # Create Arm #
 ##############
+
+TransformBegin
+        Translate -1 0 -1.2
+        Rotate 90 1 0 0
+        Include "geometry/skin_density.pbrt"
+          "color sigma_a" [30 30 30] "color sigma_s" [50 50 50]
+TransformEnd
+
 AttributeBegin
 	Texture "brianskin" "color" "imagemap"
 		"string filename" ["brian.png"]
 
-	Material "kdsubsurface" "texture Kd" "brianskin"
+    MediumInterface "smoke" ""
+    Material "skin" "texture Kd" "brianskin"
 		"float eta" [1.33] "color mfp" [1.2953e-03 9.5238e-04 6.7114e-04]
-		"float uroughness" [0.05] "float vroughness" [0.05]
-		"bool remaproughness" ["false"]	Shape "cylinder" "float radius" 1
+		"string t1" ["0.42 0.71 0.42 0.93 0.42 0.42 0.93 0.71 0.71 0.42 0.42 0.42 0.42 0.93 0.42 0.93 0.42 0.71 0.42 0.42 0.93 0.42 0.42 0.42 0.71 0.93 0.71 0.42 0.42 0.42"]
+        	"float asr" 130 "float asg" 80 "float asb" 180
+        	"float uroughness" [0.05] "float vroughness" [0.05]
+    Shape "cylinder" "float radius" 1
 		"float zmin" -2.500000
 		"float zmax" 2.500000
 		"float phimax" 360

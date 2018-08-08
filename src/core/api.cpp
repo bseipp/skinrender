@@ -735,32 +735,21 @@ std::shared_ptr<Medium> MakeMedium(const std::string &name,
 	std::string density_file = paramSet.FindOneFilename("density_file", "");
 	std::string volume_color_file = paramSet.FindOneFilename("volumetric_colors", "");
 	std::string write_destination = paramSet.FindOneFilename("write_destination", "");
-        if (!ReadFloatFile(density_file.c_str(), &vals)) {
-            Error("No \"density\" values provided for heterogeneous medium?");
-            return NULL;
-        }
 	if(!ReadSkinCharFile(volume_color_file.c_str(),
 	    &tt))
             Error("Failed to read volumetric_colors");
-        const Float *data = &vals[0];
+        //const Float *data = &vals[0];
         const Float *tissue_type = &tt[0];
         int tx = paramSet.FindOneInt("trans_x", 1);
         int ty = paramSet.FindOneInt("trans_y", 1);
         int tz = paramSet.FindOneInt("trans_z", 1);
         Point3f p0 = paramSet.FindOnePoint3f("p0", Point3f(0.f, 0.f, 0.f));
         Point3f p1 = paramSet.FindOnePoint3f("p1", Point3f(1.f, 1.f, 1.f));
-        if (vals.size() != tx * ty * tz) {
-            Error(
-                "GridDensityMedium has %d density values; expected tx*ty*tz = "
-                "%d",
-                (int)vals.size(), tx * ty * tz);
-            return NULL;
-        }
 	Transform data2Medium = Translate(Vector3f(p0)) *
 				Scale(p1.x - p0.x, p1.y - p0.y, p1.z - p0.z);
         m = new GridDensityMedium(sig_a, sig_s, g, tx, ty, tz,
-                                  medium2world * data2Medium, data,
-				  tissue_type);
+                                 medium2world * data2Medium,
+				  tissue_type, 0);
     } else
         Warning("Medium \"%s\" unknown.", name.c_str());
     paramSet.ReportUnused();

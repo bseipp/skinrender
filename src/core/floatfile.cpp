@@ -34,6 +34,9 @@
 #include "floatfile.h"
 #include <ctype.h>
 #include <stdlib.h>
+#include <algorithm>
+#include <iterator>
+#include <fstream>
 
 namespace pbrt {
 
@@ -87,24 +90,9 @@ bool ReadSkinCharFile(const char *filename, std::vector<Float> *tissue_type) {
         Error("Unable to open file \"%s\"", filename);
         return false;
     }
-
     int c;
-    int lineNumber = 0;
-    char curNumber[32];
     while ((c = getc(f)) != EOF) {
-        if (c == '\n') continue;
-	if (isdigit(c)) {
-	    curNumber[0] = c;
-	    curNumber[1] = '\0';
-	    tissue_type->push_back(atof(curNumber));
-	} else if (c == '#') {
-	    while ((c = getc(f)) != '\n' && c != EOF)
-		;
-	    ++lineNumber;
-	} else if (!isspace(c)) {
-	    Warning("Unexpected text found at line %d of float file \"%s\"",
-		    lineNumber, filename);
-	}
+	tissue_type->push_back(c);
     }
     fclose(f);
     return true;

@@ -120,12 +120,14 @@ class GridDensityMedium : public Medium {
     }
     Float GetTransR(int index) const {
 	//return tissue_type[index];
-	return density[index];
+	return density[index + (rand() % 100000)];
     }
     Float GetTransG(int index) const {
+	return density[index];
 	return trans_g[index];
     }
     Float GetTransB(int index) const {
+	return density[index];
 	return trans_b[index];
     }
     Float GetTransmittanceR(const Point3i &p) const {

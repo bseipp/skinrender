@@ -85,6 +85,14 @@ bool ReadFloatFile(const char *filename, std::vector<Float> *values) {
 }
 
 bool ReadSkinCharFile(const char *filename, std::vector<Float> *tissue_type) {
+    std::ifstream fis(filename);
+    char cc;
+    while(fis.get(cc)) {
+	tissue_type->push_back((int)cc);
+    }
+    fis.close();
+    return true;
+    /*
     FILE *f = fopen(filename, "r");
     if (!f) {
         Error("Unable to open file \"%s\"", filename);
@@ -92,10 +100,11 @@ bool ReadSkinCharFile(const char *filename, std::vector<Float> *tissue_type) {
     }
     int c;
     while ((c = getc(f)) != EOF) {
-	tissue_type->push_back(c);
+	tissue_type->push_back((int)c);
     }
     fclose(f);
     return true;
+    */
 }
 
 bool ReadSkinFloatFile(const char *filename,

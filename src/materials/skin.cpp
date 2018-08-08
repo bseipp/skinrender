@@ -214,6 +214,7 @@ Spectrum SkinBSSRDF::Generate_surin(const Scene &scene,
 	voxel_locs[1] *= -1;
     if(voxel_locs[2] < 0)
 	voxel_locs[2] *= -1;
+    //printf("\nusing :: %d, %d,%d\n", (int)ray.medium->GetTransR(voxel_locs[0]), (int)ray.medium->GetTransR(voxel_locs[1]), (int)ray.medium->GetTransR(voxel_locs[2]));
     vox_r = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[0]));
     vox_g = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[1]));
     vox_b = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[2]));
@@ -325,6 +326,7 @@ SkinMaterial *CreateSkinMaterial(const TextureParams &mp) {
 	if(isspace(t1[i]))
 	{
 	    curNumber[pos++] = '\0';
+	    //printf("\n%f\n", atof(curNumber));
 	    switch(tissue_index) {
 	    case 0:
 		tissue_one.push_back(atof(curNumber));
@@ -364,6 +366,8 @@ SkinMaterial *CreateSkinMaterial(const TextureParams &mp) {
 		tissue_five.push_back(atof(curNumber));
 	    }
     }
+    //printf("\n%f, %f, %f, %f, %f, %f\n", tissue_one[0], tissue_one[1], tissue_one[2], tissue_one[3], tissue_one[4], tissue_one[5]);
+    //printf("\n%f, %f, %f, %f, %f, %f\n", tissue_two[0], tissue_two[1], tissue_two[2], tissue_two[3], tissue_two[4], tissue_two[5]);
     const Float *ts1 = &tissue_one[0];
     const Float *t2 = &tissue_two[0];
     const Float *t3 = &tissue_three[0];

@@ -62,7 +62,7 @@ class MixMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
-    Float GetTransmittanceRGB (int tissue_index) const {};
+    Float GetTransmittanceRGB (int tissue_index, int type) const {};
   private:
     // MixMaterial Private Data
     std::shared_ptr<Material> m1, m2;

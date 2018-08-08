@@ -83,7 +83,7 @@ class HairMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
-    Float GetTransmittanceRGB (int tissue_index) const {};
+    Float GetTransmittanceRGB (int tissue_index, int type) const {};
   private:
     // HairMaterial Private Data
     std::shared_ptr<Texture<Spectrum>> sigma_a, color;

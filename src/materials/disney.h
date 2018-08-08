@@ -89,7 +89,7 @@ class DisneyMaterial : public Material {
 				    Ray &ray,
 				    Sampler &sampler) const {
     };
-    Float GetTransmittanceRGB (int tissue_index) const {};
+    Float GetTransmittanceRGB (int tissue_index, int type) const {};
 
   private:
     // DisneyMaterial Private Data

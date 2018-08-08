@@ -215,9 +215,9 @@ Spectrum SkinBSSRDF::Generate_surin(const Scene &scene,
     if(voxel_locs[2] < 0)
 	voxel_locs[2] *= -1;
     //printf("\nusing :: %d, %d,%d\n", (int)ray.medium->GetTransR(voxel_locs[0]), (int)ray.medium->GetTransR(voxel_locs[1]), (int)ray.medium->GetTransR(voxel_locs[2]));
-    vox_r = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[0]));
-    vox_g = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[1]));
-    vox_b = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[2]));
+    vox_r = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[0]), 0);
+    vox_g = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[1]), 1);
+    vox_b = this->material->GetTransmittanceRGB((int)ray.medium->GetTransR(voxel_locs[2]), 2);
     //printf("\nusing :: %f, %f,%f\n", vox_r, vox_g, vox_b);
     Float rgbarray[3] = {vox_r, vox_g,vox_b};
     Spectrum scat_albedo = Spectrum::FromRGB(rgbarray,SpectrumType::Illuminant);

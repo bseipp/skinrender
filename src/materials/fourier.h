@@ -63,7 +63,7 @@ class FourierMaterial : public Material {
 				    Sampler &sampler) const {
     };
 
-    Float GetTransmittanceRGB (int tissue_index) const {};
+    Float GetTransmittanceRGB (int tissue_index, int type) const {};
   private:
     // FourierMaterial Private Data
     FourierBSDFTable *bsdfTable;

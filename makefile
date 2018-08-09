@@ -8,7 +8,7 @@ test_prereqs: $(REQ_FILES)
 
 install: $(REQ_FILES)
 	@mkdir src/build
-	@cd src/build; cmake ../../;
+	@cd src/build; cmake3 ../../;
 
 clean:
 	@rm -rf src/build

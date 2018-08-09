@@ -441,7 +441,7 @@ void generateFile(string filename)
 
     pbrtFile.close();
     
-    int arm_length = convertToUM(ARM_LENGTH);
+    /*    int arm_length = convertToUM(ARM_LENGTH);
     int arm_radius = convertToUM(ARM_RADIUS);
     unsigned int arraySize = arm_length * arm_radius * arm_radius;
     try {
@@ -476,7 +476,7 @@ void generateFile(string filename)
     FILE* fd = fopen("density.raw", "wb");
     fwrite(&grid[0], sizeof(char), arm_length * arm_radius * arm_radius * CHANNELS, fd);
     fclose(fd);
-
+    */
     renderMenu(iFilename);
 }
 

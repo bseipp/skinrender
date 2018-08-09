@@ -168,7 +168,7 @@ float noise2(vec2f v) {
 
 float calculateNoise(vec2f uv, int octives, int scale) {
     float z = 0.0;
-    for (unsigned int i = 1; i < octives; i*=2){
+    for (int i = 1; i < octives; i*=2){
         z += noise2(uv * (float)i) / i;
     }
     
@@ -249,13 +249,49 @@ void buildDensityModel(int offset){
     }
 }
 
+void generateVolumeModel(int threadCount){
+    int arm_length = convertToUM(ARM_LENGTH);
+    int arm_radius = convertToUM(ARM_RADIUS);
+    unsigned int arraySize = arm_length * arm_radius * arm_radius;
+    try {
+        grid = new char[arraySize];
+    } catch (std::bad_alloc&) {
+        cout << endl << "Bad alloc" << endl;
+        exit(0);
+    }
+    
+    fprintf(stderr, "Building density volume.\n");
+    thread threads[threadCount];
+    for (int i = 1; i < threadCount; i++){
+        threads[i] = thread(buildDensityModel, i * 500);
+    }
+    threads[0] = thread(buildDensityModel, 0);
+    for (int i = 0; i < threadCount; i++){
+        threads[i].join();
+    }
+    
+    fprintf(stderr, "Writing density structure file.\n");
+    ofstream densityFormatFile;
+    densityFormatFile.open("density.txt");
+    densityFormatFile << "File: density.raw\n";
+    densityFormatFile << "x: " + to_string(arm_radius) + "\n";
+    densityFormatFile << "y: " + to_string(arm_radius) + "\n";
+    densityFormatFile << "z: " + to_string(arm_length) + "\n";
+    densityFormatFile << "type: char\n";
+    densityFormatFile.close();
+    
+    fprintf(stderr, "Writing density volume file.\n");
+    FILE* fd = fopen("density.raw", "wb");
+    fwrite(&grid[0], sizeof(char), arm_length * arm_radius * arm_radius * CHANNELS, fd);
+    fclose(fd);
+}
+
 /*****************************
  *****************************
  * PBRT Generator functions: *
  *****************************
  *****************************/
-void renderMenu(string file)
-{
+void renderMenu(string file){
     char renderChoice;
     string cmd = "./pbrt ";
     
@@ -272,10 +308,24 @@ renderInput:
     }
 }
 
-void generateFile(string filename);
+void volumeMenu(int threads){
+    char generateChoice;
+    
+volumeGenerateInput:
+    cout << endl << "\nGenerate volume? Y/N" << endl;
+    cin >> generateChoice;
+    if (generateChoice == 'Y' || generateChoice == 'y'){
+        generateVolumeModel(threads);
+    } else if (generateChoice == 'N' || generateChoice == 'n'){
+        return;
+    } else {
+        goto volumeGenerateInput;
+    }
+}
 
-void inputFile()
-{
+void run(string filename);
+
+void inputFile(){
     string filename = " ";
     cout << "Enter a file to render:" << endl;
     cin >> filename;
@@ -283,16 +333,166 @@ void inputFile()
         inputFile();
         return;
     }
-    generateFile(filename);
+    run(filename);
 }
 
-void generateFile(string filename)
-{
+string generateArmScene(string propertiesFileName, int volumeX, int volumeY, int volumeZ){
+    string armScene = "";
+    
+    armScene += "##############\n# Create Arm #\n##############\n";
+ 
+    //create the medium
+    armScene += "MakeNamedMedium \"smoke\" \"string type\" \"skin_heterogeneous\" \"integer trans_x\" " + to_string(volumeX) + " \"integer trans_y\" " + to_string(volumeY) + " \"integer trans_z\" " + to_string(volumeZ) + "";
+    armScene += "\t\"integer scat_x\" " + to_string(volumeX) + " \"integer scat_y\" " + to_string(volumeY) + " \"integer scat_z\" " + to_string(volumeZ) + "\n";
+    armScene += "\t\"point p0\" [ -0.999999 -0.800000 -0.840000 ] \"point p1\" [ 2.700000 2.490000 0.890000 ]\n";
+    armScene += "\t\"string density_file\" [\"geometry/density.raw\"]\n";
+    armScene += "\t\"string volumetric_colors\" [\"geometry/density.raw\"]\n\n";
+    
+    //Create the material
+    armScene += "AttributeBegin\n";
+    armScene += "\tTexture \"brianskin\" \"color\" \"imagemap\"\n";
+    armScene += "\t\t\"string filename\" [\"brian.png\"]\n\n";
+    armScene +="\tMediumInterface \"smoke\" \"\"\n";
+    armScene +="\tMaterial \"skin\" \"texture Kd\" \"brianskin\"\n";
+    armScene += "\t\t\"float eta\" [1.33] \"color mfp\" [1.2953e-03 9.5238e-04 6.7114e-04]\n";
+    
+    //loop to fetch properties
+    armScene += "\t\t\"string t1\" [\"";
+    armScene += "0.42 0.71 0.42 0.93 0.42 0.42 0.93 0.71 0.71 0.42 0.42 0.42 0.42 0.93 0.42 0.93 0.42 0.71 0.42 0.42 0.93 0.42 0.42 0.42 0.71 0.93 0.71 0.42 0.42 0.42";
+    armScene += "\"]\n";
+    
+    armScene += "\t\t\"float asr\" 130 \"float asg\" 80 \"float asb\" 180\n";
+    armScene += "\t\t\"float uroughness\" [0.05] \"float vroughness\" [0.05]\n";
+    armScene += "\t\t\"bool remaproughness\" [\"false\"]";
+    
+    armScene += "\tShape \"cylinder\" \"float radius\" " + to_string(ARM_RADIUS) + "\n";
+    armScene += "\t\t\"float zmin\" -" + to_string(float(ARM_LENGTH) / 2) + "\n";
+    armScene += "\t\t\"float zmax\" " + to_string(float(ARM_LENGTH) / 2) + "\n";
+    armScene += "\t\t\"float phimax\" 360\n";
+    armScene += "AttributeEnd\n\n\n";
+    
+    return armScene;
+}
+
+string generateRoomScene(int length, int width, int height){
+    string roomScene = "";
+    
+    roomScene += "###############\n# Create Room #\n###############\n";
+    roomScene += "AttributeBegin\n\tTranslate 0 0 -" + to_string(width) + "\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
+    roomScene += "AttributeEnd\n\n";
+
+    roomScene += "AttributeBegin\n\tTranslate 0 0 " + to_string(width) + "\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
+    roomScene += "AttributeEnd\n\n";
+
+    roomScene += "AttributeBegin\n\tTranslate " + to_string(height) + " 0 0\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+
+    roomScene += "AttributeBegin\n\tTranslate -" + to_string(height) + " 0 0\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    roomScene += "AttributeBegin\n\tTranslate 0 -" + to_string(length) + " 0\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    roomScene += "AttributeBegin\n\tTranslate 0 " + to_string(length) + " 0\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
+    roomScene += "\tShape \"trianglemesh\"\n";
+    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    return roomScene;
+}
+
+string generateLighting(int height, int lIntensity){
+    string sceneLighting = "";
+    
+    sceneLighting += "################\n# Create Light #\n################\n";
+    sceneLighting += "AttributeBegin\n";
+    sceneLighting += "\tAreaLightSource \"diffuse\" \"blackbody L\" [ 4000 " + to_string(lIntensity) + " ]\n";
+    sceneLighting += "\tTranslate -" + to_string(height) + " 0 0\n";
+    sceneLighting += "\tShape \"trianglemesh\"";
+    sceneLighting += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    sceneLighting += "\t\t\"point P\" [ 0 -2 -2   0 2 -2  0 2 2   0 -2 2 ]\n";
+    sceneLighting += "AttributeEnd\n\n";
+    sceneLighting += "WorldEnd";
+    
+    return sceneLighting;
+}
+
+string generateHair(string hair_color, float poisson_radius){
+    string sceneHair = "";
+    
+    sceneHair += "\tMakeNamedMaterial  \"black_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 8 ]\n";
+    sceneHair += "\tMakeNamedMaterial  \"red_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 3 ]\n";
+    sceneHair += "\tMakeNamedMaterial  \"brown_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 1.3 ] \"float beta_m\" .25 \"float alpha\" 2\n";
+    sceneHair += "\tMakeNamedMaterial  \"blonde_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ .3 ]\n";
+    
+    sceneHair += "\n\tNamedMaterial \"" + hair_color + "_hair\"\n\n";
+    sceneHair += addHair(poisson_radius);
+    
+    return sceneHair;
+}
+
+string generateView(int distance, int fov, int rays, int iWidth, int iHeight, string iFilename){
+    string sceneView = "";
+    
+    sceneView += "###############\n# Create View #\n###############\n";
+    sceneView += "LookAt 0 -" + to_string(distance) + " 0 #eye\n";
+    sceneView += "\t 0 0 0 #look at point\n\t0 0 1 #up vector\n";
+    sceneView += "Camera \"perspective\" \"float fov\" " + to_string(fov) + "\n";
+    sceneView += "Sampler \"halton\" \"integer pixelsamples\" " + to_string(rays) + "\n";
+    sceneView += "Integrator \"path\"\nFilm \"image\" \"string filename\" \"" + iFilename + ".exr\"\n";
+    sceneView += "\"integer xresolution\" [" + to_string(iWidth) + "] \"integer yresolution\" [" + to_string(iHeight) + "]\n\n";
+    sceneView += "WorldBegin\nRotate 45 1 0 0\nRotate 90 0 1 0\nActiveTransform All\n\n";
+    
+    return sceneView;
+}
+
+void run(string filename){
+    //Read the input file and parse values out
     ifstream file;
     file.open(filename);
     if (file.fail()) { cout << "Bad file name, try again." << endl; inputFile();}
-    int length = 10, width = 10, height = 10, distance = 9, fov = 60, rays = 128, iWidth = 400, iHeight = 400, lIntensity = 20;
-    string iFilename = "temp", line, property, value, hair_color = "brown";
+    int length = 10, width = 10, height = 10, distance = 9, fov = 60, rays = 128, iWidth = 400, iHeight = 400, lIntensity = 20, threads = 1, volumeX = 100, volumeY = 100, volumeZ = 40;
+    string iFilename = "temp", line, property, value, hair_color = "brown", propertiesFile = "properties.txt";
 
     float poisson_radius = 0;
     
@@ -330,156 +530,38 @@ void generateFile(string filename)
             poisson_radius = hair_scalar * .02;
         } else if (property.compare("hair_color") == 0) {
             hair_color = value;
+        } else if (property.compare("max_threads") == 0) {
+            threads = stoi(value, nullptr, 10);
+        }  else if (property.compare("volume_X_dimension") == 0) {
+            volumeX = stoi(value, nullptr, 10);
+        }  else if (property.compare("volume_Y_dimension") == 0) {
+            volumeY = stoi(value, nullptr, 10);
+        }  else if (property.compare("volume_Z_dimension") == 0) {
+            volumeZ = stoi(value, nullptr, 10);
+        } else if (property.compare("properties_file") == 0) {
+            propertiesFile = value;
         } else {
             cout << "Invalid property, cannot map " + property + ". Skipping." << endl;
             continue;
         }
     }
 
+    //generate pbrt input file based on parsed values
     ofstream pbrtFile;
     pbrtFile.open(iFilename + ".pbrt");
-    pbrtFile << "###############\n# Create View #\n###############\n";
-    pbrtFile << "LookAt 0 -" + to_string(distance) + " 0 #eye\n";
-    pbrtFile << "\t 0 0 0 #look at point\n\t0 0 1 #up vector\n";
-    pbrtFile << "Camera \"perspective\" \"float fov\" " + to_string(fov) + "\n";
-    pbrtFile << "Sampler \"halton\" \"integer pixelsamples\" " + to_string(rays) + "\n";
-    pbrtFile << "Integrator \"path\"\nFilm \"image\" \"string filename\" \"" + iFilename + ".exr\"\n";
-    pbrtFile << "\"integer xresolution\" [" + to_string(iWidth) + "] \"integer yresolution\" [" + to_string(iHeight) + "]\n\n";
-    
-    pbrtFile << "WorldBegin\nRotate 45 1 0 0\nRotate 90 0 1 0\nActiveTransform All\n\n";
-    pbrtFile << "##############\n# Create Arm #\n##############\n";
-    pbrtFile << "AttributeBegin\n\tTexture \"brianskin\" \"color\" \"imagemap\"\n";
-    pbrtFile << "\t\t\"string filename\" [\"brian.png\"]\n\n";
-    pbrtFile << "\tMaterial \"kdsubsurface\" \"texture Kd\" \"brianskin\"\n";
-    pbrtFile << "\t\t\"float eta\" [1.33] \"color mfp\" [1.2953e-03 9.5238e-04 6.7114e-04]\n";
-    pbrtFile << "\t\t\"float uroughness\" [0.05] \"float vroughness\" [0.05]\n";
-    pbrtFile << "\t\t\"bool remaproughness\" [\"false\"]";
-    pbrtFile << "\tShape \"cylinder\" \"float radius\" " + to_string(ARM_RADIUS) + "\n";
-    pbrtFile << "\t\t\"float zmin\" -" + to_string(float(ARM_LENGTH) / 2) + "\n";
-    pbrtFile << "\t\t\"float zmax\" " + to_string(float(ARM_LENGTH) / 2) + "\n";
-    pbrtFile << "\t\t\"float phimax\" 360\n";
-    pbrtFile << "AttributeEnd\n\n\n";
-    
-    pbrtFile << "###############\n# Create Room #\n###############\n";
-    pbrtFile << "AttributeBegin\n\tTranslate 0 0 -" + to_string(width) + "\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-
-    pbrtFile << "AttributeBegin\n\tTranslate 0 0 " + to_string(width) + "\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-
-    pbrtFile << "AttributeBegin\n\tTranslate " + to_string(height) + " 0 0\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-
-    pbrtFile << "AttributeBegin\n\tTranslate -" + to_string(height) + " 0 0\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-    
-    pbrtFile << "AttributeBegin\n\tTranslate 0 -" + to_string(length) + " 0\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-    
-    pbrtFile << "AttributeBegin\n\tTranslate 0 " + to_string(length) + " 0\n";
-    pbrtFile << "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    pbrtFile << "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    pbrtFile << "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    pbrtFile << "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    pbrtFile << "\tShape \"trianglemesh\"\n";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-    
-    pbrtFile << "\tMakeNamedMaterial  \"black_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 8 ]\n";
-    pbrtFile << "\tMakeNamedMaterial  \"red_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 3 ]\n";
-    pbrtFile << "\tMakeNamedMaterial  \"brown_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 1.3 ] \"float beta_m\" .25 \"float alpha\" 2\n";
-    pbrtFile << "\tMakeNamedMaterial  \"blonde_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ .3 ]\n";
-    
-    pbrtFile << "\n\tNamedMaterial \"" + hair_color + "_hair\"\n\n";
-    pbrtFile << addHair(poisson_radius);
-    
-    pbrtFile << "################\n# Create Light #\n################\n";
-    pbrtFile << "AttributeBegin\n";
-    pbrtFile << "\tAreaLightSource \"diffuse\" \"blackbody L\" [ 4000 " + to_string(lIntensity) + " ]\n";
-    pbrtFile << "\tTranslate -" + to_string(height) + " 0 0\n";
-    pbrtFile << "\tShape \"trianglemesh\"";
-    pbrtFile << "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    pbrtFile << "\t\t\"point P\" [ 0 -2 -2   0 2 -2  0 2 2   0 -2 2 ]\n";
-    pbrtFile << "AttributeEnd\n\n";
-    pbrtFile << "WorldEnd";
-
+    pbrtFile << generateView(distance, fov, rays, iWidth, iHeight, iFilename);   
+    pbrtFile << generateArmScene(propertiesFile, volumeX, volumeY, volumeZ);
+    pbrtFile << generateRoomScene(length, width, height);
+    pbrtFile << generateLighting(height, lIntensity);
+    pbrtFile << generateHair(hair_color, poisson_radius);
     pbrtFile.close();
     
-    /*    int arm_length = convertToUM(ARM_LENGTH);
-    int arm_radius = convertToUM(ARM_RADIUS);
-    unsigned int arraySize = arm_length * arm_radius * arm_radius;
-    try {
-        grid = new char[arraySize];
-    } catch (std::bad_alloc&) {
-        cout << endl << "Bad alloc" << endl;
-        exit(0);
-    }
-    
-    fprintf(stderr, "Building density volume.\n");
-    int t_count = 7;
-    thread threads[t_count];
-    for (int i = 1; i < t_count; i++){
-        threads[i] = thread(buildDensityModel, i * 500);
-    }
-    threads[0] = thread(buildDensityModel, 0);
-    for (int i = 0; i < t_count; i++){
-        threads[i].join();
-    }
-    
-    fprintf(stderr, "Writing density structure file.\n");
-    ofstream densityFormatFile;
-    densityFormatFile.open("density.txt");
-    densityFormatFile << "File: density.raw\n";
-    densityFormatFile << "x: " + to_string(arm_radius) + "\n";
-    densityFormatFile << "y: " + to_string(arm_radius) + "\n";
-    densityFormatFile << "z: " + to_string(arm_length) + "\n";
-    densityFormatFile << "type: char\n";
-    densityFormatFile.close();
-    
-    fprintf(stderr, "Writing density volume file.\n");
-    FILE* fd = fopen("density.raw", "wb");
-    fwrite(&grid[0], sizeof(char), arm_length * arm_radius * arm_radius * CHANNELS, fd);
-    fclose(fd);
-    */
+    //Ask if a volume file should be generated, generates if requested
+    volumeMenu(threads);
+
+    //Ask if an image should be generated from this model, generates if requested
     renderMenu(iFilename);
 }
-
 
 int main()
 {

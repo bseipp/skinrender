@@ -10,3 +10,8 @@ image_filename image
 light_intensity 8
 hair_density 1
 hair_color blonde
+max_threads 7
+volume_X_dimension 626
+volume_Y_dimension 626
+volume_Z_dimension 3130
+properties_file properties.txt

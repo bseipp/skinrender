@@ -105,25 +105,18 @@ class SkinMaterial : public Material {
     Float GetTransmittanceRGB(int tissue_index, int type) const {
 	    switch(char(tissue_index)) {
 	    case '0':
-		printf("\n%c, %f\n", char(tissue_index), tissue_one[type]);
 		return tissue_one[type];
 	    case '1':
-		printf("\n%c, %f\n", char(tissue_index), tissue_two[type]);
 		return tissue_two[type];
 	    case '2':
-		printf("\n%c, %f\n", char(tissue_index), tissue_three[type]);
 		return tissue_three[type];
 	    case '3':
-		printf("\n%c, %f\n", char(tissue_index), tissue_four[type]);
 		return tissue_four[type];
 	    case '4':
-		printf("\n%c, %f\n", char(tissue_index), tissue_four[type]);
 		return tissue_five[type];
 	    case '5':
-		printf("\n%c, %f\n", char(tissue_index), tissue_five[type]);
 		return tissue_five[type];
 	    }
-	    printf("\nNaN\n");
 	    return 0.f;
     }
   private:

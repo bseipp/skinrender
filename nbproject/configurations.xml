@@ -1,0 +1,3029 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="skinModelGenerator">
+        <df name="dart_throwing">
+          <in>PDSample.cpp</in>
+          <in>PDSampling.cpp</in>
+          <in>RNG.cpp</in>
+          <in>RangeList.cpp</in>
+          <in>ScallopedSector.cpp</in>
+          <in>WeightedDiscretePDF.cpp</in>
+        </df>
+        <df name="density">
+          <in>Shader.cpp</in>
+          <in>density.cpp</in>
+          <in>test.cpp</in>
+        </df>
+        <in>buildPbrtInput.cpp</in>
+      </df>
+      <df name="src">
+        <df name="accelerators">
+          <in>bvh.cpp</in>
+          <in>kdtreeaccel.cpp</in>
+        </df>
+        <df name="cameras">
+          <in>environment.cpp</in>
+          <in>orthographic.cpp</in>
+          <in>perspective.cpp</in>
+          <in>realistic.cpp</in>
+        </df>
+        <df name="core">
+          <in>api.cpp</in>
+          <in>bssrdf.cpp</in>
+          <in>camera.cpp</in>
+          <in>efloat.cpp</in>
+          <in>error.cpp</in>
+          <in>fileutil.cpp</in>
+          <in>film.cpp</in>
+          <in>filter.cpp</in>
+          <in>floatfile.cpp</in>
+          <in>geometry.cpp</in>
+          <in>imageio.cpp</in>
+          <in>integrator.cpp</in>
+          <in>interaction.cpp</in>
+          <in>interpolation.cpp</in>
+          <in>light.cpp</in>
+          <in>lightdistrib.cpp</in>
+          <in>lowdiscrepancy.cpp</in>
+          <in>material.cpp</in>
+          <in>medium.cpp</in>
+          <in>memory.cpp</in>
+          <in>microfacet.cpp</in>
+          <in>parallel.cpp</in>
+          <in>paramset.cpp</in>
+          <in>parser.cpp</in>
+          <in>primitive.cpp</in>
+          <in>progressreporter.cpp</in>
+          <in>quaternion.cpp</in>
+          <in>reflection.cpp</in>
+          <in>sampler.cpp</in>
+          <in>sampling.cpp</in>
+          <in>scene.cpp</in>
+          <in>shape.cpp</in>
+          <in>sobolmatrices.cpp</in>
+          <in>spectrum.cpp</in>
+          <in>stats.cpp</in>
+          <in>texture.cpp</in>
+          <in>transform.cpp</in>
+        </df>
+        <df name="ext">
+          <df name="glog">
+            <df name="src">
+              <df name="windows">
+                <in>port.cc</in>
+              </df>
+              <in>demangle.cc</in>
+              <in>demangle_unittest.cc</in>
+              <in>logging.cc</in>
+              <in>logging_striptest10.cc</in>
+              <in>logging_striptest2.cc</in>
+              <in>logging_striptest_main.cc</in>
+              <in>logging_unittest.cc</in>
+              <in>mock-log_test.cc</in>
+              <in>raw_logging.cc</in>
+              <in>signalhandler.cc</in>
+              <in>signalhandler_unittest.cc</in>
+              <in>stacktrace_unittest.cc</in>
+              <in>stl_logging_unittest.cc</in>
+              <in>symbolize.cc</in>
+              <in>symbolize_unittest.cc</in>
+              <in>utilities.cc</in>
+              <in>utilities_unittest.cc</in>
+              <in>vlog_is_on.cc</in>
+            </df>
+          </df>
+          <df name="openexr">
+            <df name="Contrib">
+              <df name="d_exr">
+                <in>d_exr.C</in>
+              </df>
+              <df name="DtexToExr">
+                <in>DtexToExr.cpp</in>
+                <in>PxDeepUtils.cpp</in>
+              </df>
+              <df name="Photoshop">
+                <df name="src">
+                  <df name="framework">
+                    <in>PSAutoBuffer.cpp</in>
+                    <in>PSBuffer.cpp</in>
+                    <in>PSFormatPlugin.cpp</in>
+                  </df>
+                  <df name="main">
+                    <in>EXRFormatPlugin.cpp</in>
+                    <in>ExrFormatGlobals.cpp</in>
+                    <in>RefNumIO.cpp</in>
+                  </df>
+                  <df name="resample">
+                    <in>EXRResample.cpp</in>
+                  </df>
+                  <df name="ui">
+                    <in>EXRExportDialog.cpp</in>
+                    <in>EXRImportDialog.cpp</in>
+                  </df>
+                </df>
+              </df>
+            </df>
+            <df name="IlmBase">
+              <df name="Half">
+                <in>eLut.cpp</in>
+                <in>half.cpp</in>
+                <in>toFloat.cpp</in>
+              </df>
+              <df name="HalfTest">
+                <in>main.cpp</in>
+                <in>testArithmetic.cpp</in>
+                <in>testBitPatterns.cpp</in>
+                <in>testClassification.cpp</in>
+                <in>testError.cpp</in>
+                <in>testFunction.cpp</in>
+                <in>testLimits.cpp</in>
+                <in>testSize.cpp</in>
+              </df>
+              <df name="Iex">
+                <in>IexBaseExc.cpp</in>
+                <in>IexThrowErrnoExc.cpp</in>
+              </df>
+              <df name="IexMath">
+                <in>IexMathFloatExc.cpp</in>
+                <in>IexMathFpu.cpp</in>
+              </df>
+              <df name="IexTest">
+                <in>main.cpp</in>
+                <in>testBaseExc.cpp</in>
+              </df>
+              <df name="IlmThread">
+                <in>IlmThread.cpp</in>
+                <in>IlmThreadMutex.cpp</in>
+                <in>IlmThreadMutexPosix.cpp</in>
+                <in>IlmThreadMutexWin32.cpp</in>
+                <in>IlmThreadPool.cpp</in>
+                <in>IlmThreadPosix.cpp</in>
+                <in>IlmThreadSemaphore.cpp</in>
+                <in>IlmThreadSemaphorePosix.cpp</in>
+                <in>IlmThreadSemaphorePosixCompat.cpp</in>
+                <in>IlmThreadSemaphoreWin32.cpp</in>
+                <in>IlmThreadWin32.cpp</in>
+              </df>
+              <df name="Imath">
+                <in>ImathBox.cpp</in>
+                <in>ImathColorAlgo.cpp</in>
+                <in>ImathFun.cpp</in>
+                <in>ImathMatrixAlgo.cpp</in>
+                <in>ImathRandom.cpp</in>
+                <in>ImathShear.cpp</in>
+                <in>ImathVec.cpp</in>
+              </df>
+              <df name="ImathTest">
+                <in>main.cpp</in>
+                <in>testBox.cpp</in>
+                <in>testBoxAlgo.cpp</in>
+                <in>testColor.cpp</in>
+                <in>testExtractEuler.cpp</in>
+                <in>testExtractSHRT.cpp</in>
+                <in>testFrustum.cpp</in>
+                <in>testFrustumTest.cpp</in>
+                <in>testFun.cpp</in>
+                <in>testInvert.cpp</in>
+                <in>testJacobiEigenSolver.cpp</in>
+                <in>testLineAlgo.cpp</in>
+                <in>testMatrix.cpp</in>
+                <in>testMiscMatrixAlgo.cpp</in>
+                <in>testProcrustes.cpp</in>
+                <in>testQuat.cpp</in>
+                <in>testQuatSetRotation.cpp</in>
+                <in>testQuatSlerp.cpp</in>
+                <in>testRandom.cpp</in>
+                <in>testRoots.cpp</in>
+                <in>testShear.cpp</in>
+                <in>testTinySVD.cpp</in>
+                <in>testVec.cpp</in>
+              </df>
+            </df>
+            <df name="OpenEXR">
+              <df name="exr2aces">
+                <in>main.cpp</in>
+              </df>
+              <df name="exrbuild">
+                <in>exrbuild.cpp</in>
+              </df>
+              <df name="exrenvmap">
+                <in>EnvmapImage.cpp</in>
+                <in>blurImage.cpp</in>
+                <in>main.cpp</in>
+                <in>makeCubeMap.cpp</in>
+                <in>makeLatLongMap.cpp</in>
+                <in>readInputImage.cpp</in>
+                <in>resizeImage.cpp</in>
+              </df>
+              <df name="exrheader">
+                <in>main.cpp</in>
+              </df>
+              <df name="exrmakepreview">
+                <in>main.cpp</in>
+                <in>makePreview.cpp</in>
+              </df>
+              <df name="exrmaketiled">
+                <in>Image.cpp</in>
+                <in>main.cpp</in>
+                <in>makeTiled.cpp</in>
+              </df>
+              <df name="exrmultipart">
+                <in>exrmultipart.cpp</in>
+              </df>
+              <df name="exrmultiview">
+                <in>Image.cpp</in>
+                <in>main.cpp</in>
+                <in>makeMultiView.cpp</in>
+              </df>
+              <df name="exrstdattr">
+                <in>main.cpp</in>
+              </df>
+              <df name="IlmImf">
+                <in>ImfAcesFile.cpp</in>
+                <in>ImfAttribute.cpp</in>
+                <in>ImfB44Compressor.cpp</in>
+                <in>ImfBoxAttribute.cpp</in>
+                <in>ImfCRgbaFile.cpp</in>
+                <in>ImfChannelList.cpp</in>
+                <in>ImfChannelListAttribute.cpp</in>
+                <in>ImfChromaticities.cpp</in>
+                <in>ImfChromaticitiesAttribute.cpp</in>
+                <in>ImfCompositeDeepScanLine.cpp</in>
+                <in>ImfCompressionAttribute.cpp</in>
+                <in>ImfCompressor.cpp</in>
+                <in>ImfConvert.cpp</in>
+                <in>ImfDeepCompositing.cpp</in>
+                <in>ImfDeepFrameBuffer.cpp</in>
+                <in>ImfDeepImageStateAttribute.cpp</in>
+                <in>ImfDeepScanLineInputFile.cpp</in>
+                <in>ImfDeepScanLineInputPart.cpp</in>
+                <in>ImfDeepScanLineOutputFile.cpp</in>
+                <in>ImfDeepScanLineOutputPart.cpp</in>
+                <in>ImfDeepTiledInputFile.cpp</in>
+                <in>ImfDeepTiledInputPart.cpp</in>
+                <in>ImfDeepTiledOutputFile.cpp</in>
+                <in>ImfDeepTiledOutputPart.cpp</in>
+                <in>ImfDoubleAttribute.cpp</in>
+                <in>ImfDwaCompressor.cpp</in>
+                <in>ImfEnvmap.cpp</in>
+                <in>ImfEnvmapAttribute.cpp</in>
+                <in>ImfFastHuf.cpp</in>
+                <in>ImfFloatAttribute.cpp</in>
+                <in>ImfFloatVectorAttribute.cpp</in>
+                <in>ImfFrameBuffer.cpp</in>
+                <in>ImfFramesPerSecond.cpp</in>
+                <in>ImfGenericInputFile.cpp</in>
+                <in>ImfGenericOutputFile.cpp</in>
+                <in>ImfHeader.cpp</in>
+                <in>ImfHuf.cpp</in>
+                <in>ImfIO.cpp</in>
+                <in>ImfInputFile.cpp</in>
+                <in>ImfInputPart.cpp</in>
+                <in>ImfInputPartData.cpp</in>
+                <in>ImfIntAttribute.cpp</in>
+                <in>ImfKeyCode.cpp</in>
+                <in>ImfKeyCodeAttribute.cpp</in>
+                <in>ImfLineOrderAttribute.cpp</in>
+                <in>ImfLut.cpp</in>
+                <in>ImfMatrixAttribute.cpp</in>
+                <in>ImfMisc.cpp</in>
+                <in>ImfMultiPartInputFile.cpp</in>
+                <in>ImfMultiPartOutputFile.cpp</in>
+                <in>ImfMultiView.cpp</in>
+                <in>ImfOpaqueAttribute.cpp</in>
+                <in>ImfOutputFile.cpp</in>
+                <in>ImfOutputPart.cpp</in>
+                <in>ImfOutputPartData.cpp</in>
+                <in>ImfPartType.cpp</in>
+                <in>ImfPizCompressor.cpp</in>
+                <in>ImfPreviewImage.cpp</in>
+                <in>ImfPreviewImageAttribute.cpp</in>
+                <in>ImfPxr24Compressor.cpp</in>
+                <in>ImfRational.cpp</in>
+                <in>ImfRationalAttribute.cpp</in>
+                <in>ImfRgbaFile.cpp</in>
+                <in>ImfRgbaYca.cpp</in>
+                <in>ImfRle.cpp</in>
+                <in>ImfRleCompressor.cpp</in>
+                <in>ImfScanLineInputFile.cpp</in>
+                <in>ImfStandardAttributes.cpp</in>
+                <in>ImfStdIO.cpp</in>
+                <in>ImfStringAttribute.cpp</in>
+                <in>ImfStringVectorAttribute.cpp</in>
+                <in>ImfSystemSpecific.cpp</in>
+                <in>ImfTestFile.cpp</in>
+                <in>ImfThreading.cpp</in>
+                <in>ImfTileDescriptionAttribute.cpp</in>
+                <in>ImfTileOffsets.cpp</in>
+                <in>ImfTiledInputFile.cpp</in>
+                <in>ImfTiledInputPart.cpp</in>
+                <in>ImfTiledMisc.cpp</in>
+                <in>ImfTiledOutputFile.cpp</in>
+                <in>ImfTiledOutputPart.cpp</in>
+                <in>ImfTiledRgbaFile.cpp</in>
+                <in>ImfTimeCode.cpp</in>
+                <in>ImfTimeCodeAttribute.cpp</in>
+                <in>ImfVecAttribute.cpp</in>
+                <in>ImfVersion.cpp</in>
+                <in>ImfWav.cpp</in>
+                <in>ImfZip.cpp</in>
+                <in>ImfZipCompressor.cpp</in>
+                <in>b44ExpLogTable.cpp</in>
+                <in>dwaLookups.cpp</in>
+              </df>
+              <df name="IlmImfExamples">
+                <in>drawImage.cpp</in>
+                <in>generalInterfaceExamples.cpp</in>
+                <in>generalInterfaceTiledExamples.cpp</in>
+                <in>lowLevelIoExamples.cpp</in>
+                <in>main.cpp</in>
+                <in>previewImageExamples.cpp</in>
+                <in>rgbaInterfaceExamples.cpp</in>
+                <in>rgbaInterfaceTiledExamples.cpp</in>
+              </df>
+              <df name="IlmImfFuzzTest">
+                <in>fuzzFile.cpp</in>
+                <in>main.cpp</in>
+                <in>testFuzzDeepScanLines.cpp</in>
+                <in>testFuzzDeepTiles.cpp</in>
+                <in>testFuzzScanLines.cpp</in>
+                <in>testFuzzTiles.cpp</in>
+              </df>
+              <df name="IlmImfTest">
+                <in>compareB44.cpp</in>
+                <in>compareDwa.cpp</in>
+                <in>compareFloat.cpp</in>
+                <in>main.cpp</in>
+                <in>testAttributes.cpp</in>
+                <in>testBackwardCompatibility.cpp</in>
+                <in>testBadTypeAttributes.cpp</in>
+                <in>testChannels.cpp</in>
+                <in>testCompositeDeepScanLine.cpp</in>
+                <in>testCompression.cpp</in>
+                <in>testConversion.cpp</in>
+                <in>testCopyDeepScanLine.cpp</in>
+                <in>testCopyDeepTiled.cpp</in>
+                <in>testCopyMultiPartFile.cpp</in>
+                <in>testCopyPixels.cpp</in>
+                <in>testCustomAttributes.cpp</in>
+                <in>testDeepScanLineBasic.cpp</in>
+                <in>testDeepScanLineHuge.cpp</in>
+                <in>testDeepScanLineMultipleRead.cpp</in>
+                <in>testDeepTiledBasic.cpp</in>
+                <in>testDwaCompressorSimd.cpp</in>
+                <in>testExistingStreams.cpp</in>
+                <in>testFutureProofing.cpp</in>
+                <in>testHuf.cpp</in>
+                <in>testInputPart.cpp</in>
+                <in>testIsComplete.cpp</in>
+                <in>testLineOrder.cpp</in>
+                <in>testLut.cpp</in>
+                <in>testMagic.cpp</in>
+                <in>testMultiPartApi.cpp</in>
+                <in>testMultiPartFileMixingBasic.cpp</in>
+                <in>testMultiPartSharedAttributes.cpp</in>
+                <in>testMultiPartThreading.cpp</in>
+                <in>testMultiScanlinePartThreading.cpp</in>
+                <in>testMultiTiledPartThreading.cpp</in>
+                <in>testMultiView.cpp</in>
+                <in>testNativeFormat.cpp</in>
+                <in>testOptimized.cpp</in>
+                <in>testOptimizedInterleavePatterns.cpp</in>
+                <in>testPartHelper.cpp</in>
+                <in>testPreviewImage.cpp</in>
+                <in>testRgba.cpp</in>
+                <in>testRgbaThreading.cpp</in>
+                <in>testRle.cpp</in>
+                <in>testSampleImages.cpp</in>
+                <in>testScanLineApi.cpp</in>
+                <in>testSharedFrameBuffer.cpp</in>
+                <in>testStandardAttributes.cpp</in>
+                <in>testTiledCompression.cpp</in>
+                <in>testTiledCopyPixels.cpp</in>
+                <in>testTiledLineOrder.cpp</in>
+                <in>testTiledRgba.cpp</in>
+                <in>testTiledYa.cpp</in>
+                <in>testWav.cpp</in>
+                <in>testXdr.cpp</in>
+                <in>testYca.cpp</in>
+              </df>
+              <df name="IlmImfUtil">
+                <in>ImfDeepImage.cpp</in>
+                <in>ImfDeepImageChannel.cpp</in>
+                <in>ImfDeepImageIO.cpp</in>
+                <in>ImfDeepImageLevel.cpp</in>
+                <in>ImfFlatImage.cpp</in>
+                <in>ImfFlatImageChannel.cpp</in>
+                <in>ImfFlatImageIO.cpp</in>
+                <in>ImfFlatImageLevel.cpp</in>
+                <in>ImfImage.cpp</in>
+                <in>ImfImageChannel.cpp</in>
+                <in>ImfImageDataWindow.cpp</in>
+                <in>ImfImageIO.cpp</in>
+                <in>ImfImageLevel.cpp</in>
+                <in>ImfSampleCountChannel.cpp</in>
+              </df>
+              <df name="IlmImfUtilTest">
+                <in>main.cpp</in>
+                <in>testDeepImage.cpp</in>
+                <in>testFlatImage.cpp</in>
+                <in>testIO.cpp</in>
+              </df>
+            </df>
+            <df name="OpenEXR_Viewers">
+              <df name="exrdisplay">
+                <in>GlWindow3d.cpp</in>
+                <in>ImageView.cpp</in>
+                <in>applyCtl.cpp</in>
+                <in>loadImage.cpp</in>
+                <in>main.cpp</in>
+                <in>scaleImage.cpp</in>
+              </df>
+              <df name="playexr">
+                <in>FileReadingThread.cpp</in>
+                <in>ImageBuffers.cpp</in>
+                <in>Timer.cpp</in>
+                <in>ctlToLut.cpp</in>
+                <in>fileNameForFrame.cpp</in>
+                <in>main.cpp</in>
+                <in>osDependent.cpp</in>
+                <in>playExr.cpp</in>
+              </df>
+            </df>
+            <df name="PyIlmBase">
+              <df name="PyIex">
+                <in>PyIex.cpp</in>
+                <in>iexmodule.cpp</in>
+              </df>
+              <df name="PyImath">
+                <in>PyImath.cpp</in>
+                <in>PyImathAutovectorize.cpp</in>
+                <in>PyImathBasicTypes.cpp</in>
+                <in>PyImathBox.cpp</in>
+                <in>PyImathBox2Array.cpp</in>
+                <in>PyImathBox3Array.cpp</in>
+                <in>PyImathColor3.cpp</in>
+                <in>PyImathColor4.cpp</in>
+                <in>PyImathEuler.cpp</in>
+                <in>PyImathFixedArray.cpp</in>
+                <in>PyImathFixedVArray.cpp</in>
+                <in>PyImathFrustum.cpp</in>
+                <in>PyImathFun.cpp</in>
+                <in>PyImathLine.cpp</in>
+                <in>PyImathM44Array.cpp</in>
+                <in>PyImathMatrix33.cpp</in>
+                <in>PyImathMatrix44.cpp</in>
+                <in>PyImathPlane.cpp</in>
+                <in>PyImathQuat.cpp</in>
+                <in>PyImathRandom.cpp</in>
+                <in>PyImathShear.cpp</in>
+                <in>PyImathStringArray.cpp</in>
+                <in>PyImathStringTable.cpp</in>
+                <in>PyImathTask.cpp</in>
+                <in>PyImathUtil.cpp</in>
+                <in>PyImathVec2fd.cpp</in>
+                <in>PyImathVec2si.cpp</in>
+                <in>PyImathVec3fd.cpp</in>
+                <in>PyImathVec3si.cpp</in>
+                <in>PyImathVec3siArray.cpp</in>
+                <in>PyImathVec4fd.cpp</in>
+                <in>PyImathVec4si.cpp</in>
+                <in>PyImathVec4siArray.cpp</in>
+                <in>imathmodule.cpp</in>
+              </df>
+              <df name="PyImathNumpy">
+                <in>imathnumpymodule.cpp</in>
+              </df>
+            </df>
+          </df>
+          <df name="ptex">
+            <df name="src">
+              <df name="ptex">
+                <in>PtexCache.cpp</in>
+                <in>PtexFilters.cpp</in>
+                <in>PtexHalf.cpp</in>
+                <in>PtexHalfTableGen.cpp</in>
+                <in>PtexReader.cpp</in>
+                <in>PtexSeparableFilter.cpp</in>
+                <in>PtexSeparableKernel.cpp</in>
+                <in>PtexTriangleFilter.cpp</in>
+                <in>PtexTriangleKernel.cpp</in>
+                <in>PtexUtils.cpp</in>
+                <in>PtexWriter.cpp</in>
+              </df>
+              <df name="tests">
+                <in>ftest.cpp</in>
+                <in>halftest.cpp</in>
+                <in>rtest.cpp</in>
+                <in>wtest.cpp</in>
+              </df>
+              <df name="utils">
+                <in>ptxinfo.cpp</in>
+              </df>
+            </df>
+          </df>
+          <df name="zlib">
+            <df name="contrib">
+              <df name="amd64">
+                <in>amd64-match.S</in>
+              </df>
+              <df name="asm686">
+                <in>match.S</in>
+              </df>
+              <df name="blast">
+                <in>blast.c</in>
+              </df>
+              <df name="gcc_gvmat64">
+                <in>gvmat64.S</in>
+              </df>
+              <df name="infback9">
+                <in>infback9.c</in>
+                <in>inftree9.c</in>
+              </df>
+              <df name="inflate86">
+                <in>inffas86.c</in>
+                <in>inffast.S</in>
+              </df>
+              <df name="iostream">
+                <in>test.cpp</in>
+                <in>zfstream.cpp</in>
+              </df>
+              <df name="iostream2">
+                <in>zstream_test.cpp</in>
+              </df>
+              <df name="iostream3">
+                <in>test.cc</in>
+                <in>zfstream.cc</in>
+              </df>
+              <df name="masmx64">
+                <in>gvmat64.asm</in>
+                <in>inffas8664.c</in>
+                <in>inffasx64.asm</in>
+              </df>
+              <df name="masmx86">
+                <in>inffas32.asm</in>
+                <in>match686.asm</in>
+              </df>
+              <df name="minizip">
+                <in>ioapi.c</in>
+                <in>iowin32.c</in>
+                <in>miniunz.c</in>
+                <in>minizip.c</in>
+                <in>mztools.c</in>
+                <in>unzip.c</in>
+                <in>zip.c</in>
+              </df>
+              <df name="puff">
+                <in>puff.c</in>
+                <in>pufftest.c</in>
+              </df>
+              <df name="testzlib">
+                <in>testzlib.c</in>
+              </df>
+              <df name="untgz">
+                <in>untgz.c</in>
+              </df>
+            </df>
+            <df name="examples">
+              <in>enough.c</in>
+              <in>fitblk.c</in>
+              <in>gun.c</in>
+              <in>gzappend.c</in>
+              <in>gzjoin.c</in>
+              <in>gzlog.c</in>
+              <in>zpipe.c</in>
+              <in>zran.c</in>
+            </df>
+            <df name="test">
+              <in>example.c</in>
+              <in>infcover.c</in>
+              <in>minigzip.c</in>
+            </df>
+            <in>adler32.c</in>
+            <in>compress.c</in>
+            <in>crc32.c</in>
+            <in>deflate.c</in>
+            <in>gzclose.c</in>
+            <in>gzlib.c</in>
+            <in>gzread.c</in>
+            <in>gzwrite.c</in>
+            <in>infback.c</in>
+            <in>inffast.c</in>
+            <in>inflate.c</in>
+            <in>inftrees.c</in>
+            <in>trees.c</in>
+            <in>uncompr.c</in>
+            <in>zutil.c</in>
+          </df>
+          <in>ArHosekSkyModel.c</in>
+          <in>lodepng.cpp</in>
+          <in>rply.cpp</in>
+          <in>targa.cpp</in>
+        </df>
+        <df name="filters">
+          <in>box.cpp</in>
+          <in>gaussian.cpp</in>
+          <in>mitchell.cpp</in>
+          <in>sinc.cpp</in>
+          <in>triangle.cpp</in>
+        </df>
+        <df name="integrators">
+          <in>ao.cpp</in>
+          <in>bdpt.cpp</in>
+          <in>directlighting.cpp</in>
+          <in>mlt.cpp</in>
+          <in>path.cpp</in>
+          <in>sppm.cpp</in>
+          <in>volpath.cpp</in>
+          <in>whitted.cpp</in>
+        </df>
+        <df name="lights">
+          <in>diffuse.cpp</in>
+          <in>distant.cpp</in>
+          <in>goniometric.cpp</in>
+          <in>infinite.cpp</in>
+          <in>point.cpp</in>
+          <in>projection.cpp</in>
+          <in>spot.cpp</in>
+        </df>
+        <df name="main">
+          <in>pbrt.cpp</in>
+        </df>
+        <df name="materials">
+          <in>disney.cpp</in>
+          <in>fourier.cpp</in>
+          <in>glass.cpp</in>
+          <in>hair.cpp</in>
+          <in>kdsubsurface.cpp</in>
+          <in>matte.cpp</in>
+          <in>metal.cpp</in>
+          <in>mirror.cpp</in>
+          <in>mixmat.cpp</in>
+          <in>plastic.cpp</in>
+          <in>skin.cpp</in>
+          <in>substrate.cpp</in>
+          <in>subsurface.cpp</in>
+          <in>translucent.cpp</in>
+          <in>uber.cpp</in>
+        </df>
+        <df name="media">
+          <in>grid.cpp</in>
+          <in>homogeneous.cpp</in>
+        </df>
+        <df name="samplers">
+          <in>halton.cpp</in>
+          <in>maxmin.cpp</in>
+          <in>random.cpp</in>
+          <in>sobol.cpp</in>
+          <in>stratified.cpp</in>
+          <in>zerotwosequence.cpp</in>
+        </df>
+        <df name="shapes">
+          <in>cone.cpp</in>
+          <in>curve.cpp</in>
+          <in>cylinder.cpp</in>
+          <in>disk.cpp</in>
+          <in>heightfield.cpp</in>
+          <in>hyperboloid.cpp</in>
+          <in>loopsubdiv.cpp</in>
+          <in>nurbs.cpp</in>
+          <in>paraboloid.cpp</in>
+          <in>plymesh.cpp</in>
+          <in>sphere.cpp</in>
+          <in>triangle.cpp</in>
+        </df>
+        <df name="tests">
+          <df name="gtest">
+            <in>gtest-all.cc</in>
+            <in>gtest_main.cc</in>
+          </df>
+          <in>analytic_scenes.cpp</in>
+          <in>animatedtransform.cpp</in>
+          <in>bitops.cpp</in>
+          <in>bounds.cpp</in>
+          <in>bsdfs.cpp</in>
+          <in>fileutil.cpp</in>
+          <in>find_interval.cpp</in>
+          <in>fourierbsdf.cpp</in>
+          <in>fp_tests.cpp</in>
+          <in>hair.cpp</in>
+          <in>hg.cpp</in>
+          <in>imageio.cpp</in>
+          <in>parallel.cpp</in>
+          <in>parser.cpp</in>
+          <in>print.cpp</in>
+          <in>sampling.cpp</in>
+          <in>shapes.cpp</in>
+          <in>spectrum.cpp</in>
+        </df>
+        <df name="textures">
+          <in>bilerp.cpp</in>
+          <in>checkerboard.cpp</in>
+          <in>constant.cpp</in>
+          <in>dots.cpp</in>
+          <in>fbm.cpp</in>
+          <in>imagemap.cpp</in>
+          <in>marble.cpp</in>
+          <in>mix.cpp</in>
+          <in>ptex.cpp</in>
+          <in>scale.cpp</in>
+          <in>uv.cpp</in>
+          <in>windy.cpp</in>
+          <in>wrinkled.cpp</in>
+        </df>
+        <df name="tools">
+          <in>bsdftest.cpp</in>
+          <in>cyhair2pbrt.cpp</in>
+          <in>imgtool.cpp</in>
+          <in>obj2pbrt.cpp</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_C_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_CXX_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .</preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="skinModelGenerator/buildPbrtInput.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/PDSample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/PDSampling.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/RNG.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/RangeList.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/ScallopedSector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/dart_throwing/WeightedDiscretePDF.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/density/Shader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/density/density.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/density/test.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/accelerators/bvh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/accelerators/kdtreeaccel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/cameras/environment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/cameras/orthographic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/cameras/perspective.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/cameras/realistic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/api.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/bssrdf.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/efloat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/error.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/fileutil.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/film.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/filter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/floatfile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/geometry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/imageio.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/integrator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/interaction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/interpolation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/light.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/lightdistrib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/lowdiscrepancy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/material.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/medium.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/memory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/microfacet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/parallel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/paramset.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/parser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/primitive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/progressreporter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/quaternion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/reflection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/sampler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/sampling.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/scene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/shape.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/sobolmatrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/spectrum.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/stats.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/texture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/core/transform.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/ArHosekSkyModel.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/demangle.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/demangle_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/logging.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/logging_striptest10.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/logging_striptest2.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/logging_striptest_main.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/logging_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/mock-log_test.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/raw_logging.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/signalhandler.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/signalhandler_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/stacktrace_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/stl_logging_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/symbolize.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/symbolize_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/utilities.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/utilities_unittest.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/vlog_is_on.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/glog/src/windows/port.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/lodepng.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/DtexToExr/DtexToExr.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/DtexToExr/PxDeepUtils.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/framework/PSAutoBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/framework/PSBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/framework/PSFormatPlugin.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/main/EXRFormatPlugin.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/main/ExrFormatGlobals.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/main/RefNumIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/resample/EXRResample.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/ui/EXRExportDialog.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/Photoshop/src/ui/EXRImportDialog.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/Contrib/d_exr/d_exr.C"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Half/eLut.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Half/half.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Half/toFloat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testArithmetic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testBitPatterns.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testClassification.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testError.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testFunction.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testLimits.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/HalfTest/testSize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Iex/IexBaseExc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Iex/IexThrowErrnoExc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IexMath/IexMathFloatExc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IexMath/IexMathFpu.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IexTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IexTest/testBaseExc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThread.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadMutex.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadMutexPosix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadMutexWin32.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadPool.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadPosix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadSemaphore.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadSemaphorePosix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadSemaphorePosixCompat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadSemaphoreWin32.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/IlmThread/IlmThreadWin32.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathBox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathColorAlgo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathFun.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathMatrixAlgo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathRandom.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathShear.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/Imath/ImathVec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testBox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testBoxAlgo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testColor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testExtractEuler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testExtractSHRT.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testFrustum.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testFrustumTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testFun.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testInvert.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testJacobiEigenSolver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testLineAlgo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testMatrix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testMiscMatrixAlgo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testProcrustes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testQuat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testQuatSetRotation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testQuatSlerp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testRandom.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testRoots.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testShear.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testTinySVD.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/IlmBase/ImathTest/testVec.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfAcesFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfB44Compressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfBoxAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfCRgbaFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfChannelList.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfChannelListAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfChromaticities.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfChromaticitiesAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfCompositeDeepScanLine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfCompressionAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfCompressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfConvert.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepCompositing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepFrameBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepImageStateAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepScanLineInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepScanLineInputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepScanLineOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepScanLineOutputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepTiledInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepTiledInputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepTiledOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDeepTiledOutputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDoubleAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfDwaCompressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfEnvmap.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfEnvmapAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfFastHuf.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfFloatAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfFloatVectorAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfFrameBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfFramesPerSecond.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfGenericInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfGenericOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfHeader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfHuf.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfInputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfInputPartData.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfIntAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfKeyCode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfKeyCodeAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfLineOrderAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfLut.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfMatrixAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfMisc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfMultiPartInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfMultiPartOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfMultiView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfOpaqueAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfOutputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfOutputPartData.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfPartType.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfPizCompressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfPreviewImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfPreviewImageAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfPxr24Compressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRational.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRationalAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRgbaFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRgbaYca.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfRleCompressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfScanLineInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfStandardAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfStdIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfStringAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfStringVectorAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfSystemSpecific.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTestFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfThreading.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTileDescriptionAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTileOffsets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledInputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledInputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledMisc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledOutputFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledOutputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTiledRgbaFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTimeCode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfTimeCodeAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfVecAttribute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfVersion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfWav.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfZip.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/ImfZipCompressor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/b44ExpLogTable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImf/dwaLookups.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/drawImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/generalInterfaceExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/generalInterfaceTiledExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/lowLevelIoExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/previewImageExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/rgbaInterfaceExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfExamples/rgbaInterfaceTiledExamples.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/fuzzFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/testFuzzDeepScanLines.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/testFuzzDeepTiles.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/testFuzzScanLines.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfFuzzTest/testFuzzTiles.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/compareB44.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/compareDwa.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/compareFloat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testBackwardCompatibility.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testBadTypeAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testChannels.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCompositeDeepScanLine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCompression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testConversion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCopyDeepScanLine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCopyDeepTiled.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCopyMultiPartFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCopyPixels.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testCustomAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testDeepScanLineBasic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testDeepScanLineHuge.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testDeepScanLineMultipleRead.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testDeepTiledBasic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testDwaCompressorSimd.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testExistingStreams.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testFutureProofing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testHuf.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testInputPart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testIsComplete.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testLineOrder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testLut.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMagic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiPartApi.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiPartFileMixingBasic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiPartSharedAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiPartThreading.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiScanlinePartThreading.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiTiledPartThreading.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testMultiView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testNativeFormat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testOptimized.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testOptimizedInterleavePatterns.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testPartHelper.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testPreviewImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testRgba.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testRgbaThreading.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testRle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testSampleImages.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testScanLineApi.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testSharedFrameBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testStandardAttributes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testTiledCompression.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testTiledCopyPixels.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testTiledLineOrder.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testTiledRgba.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testTiledYa.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testWav.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testXdr.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfTest/testYca.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfDeepImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfDeepImageChannel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfDeepImageIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfDeepImageLevel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfFlatImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfFlatImageChannel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfFlatImageIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfFlatImageLevel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfImageChannel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfImageDataWindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfImageIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfImageLevel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtil/ImfSampleCountChannel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtilTest/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtilTest/testDeepImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtilTest/testFlatImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/IlmImfUtilTest/testIO.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exr2aces/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrbuild/exrbuild.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/EnvmapImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/blurImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/makeCubeMap.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/makeLatLongMap.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/readInputImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrenvmap/resizeImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrheader/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmakepreview/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmakepreview/makePreview.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmaketiled/Image.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmaketiled/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmaketiled/makeTiled.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmultipart/exrmultipart.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmultiview/Image.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmultiview/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrmultiview/makeMultiView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR/exrstdattr/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/GlWindow3d.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/ImageView.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/applyCtl.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/loadImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/exrdisplay/scaleImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/FileReadingThread.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/ImageBuffers.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/Timer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/ctlToLut.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/fileNameForFrame.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/osDependent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/OpenEXR_Viewers/playexr/playExr.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyIex/PyIex.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyIex/iexmodule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImath.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathAutovectorize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathBasicTypes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathBox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathBox2Array.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathBox3Array.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathColor3.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathColor4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathEuler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathFixedArray.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathFixedVArray.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathFrustum.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathFun.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathLine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathM44Array.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathMatrix33.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathMatrix44.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathPlane.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathQuat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathRandom.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathShear.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathStringArray.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathStringTable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathTask.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathUtil.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec2fd.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec2si.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec3fd.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec3si.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec3siArray.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec4fd.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec4si.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/PyImathVec4siArray.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImath/imathmodule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/openexr/PyIlmBase/PyImathNumpy/imathnumpymodule.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexCache.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexFilters.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexHalf.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexHalfTableGen.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexReader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexSeparableFilter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexSeparableKernel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexTriangleFilter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexTriangleKernel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexUtils.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/ptex/PtexWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/tests/ftest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/tests/halftest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/tests/rtest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/tests/wtest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/ptex/src/utils/ptxinfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/rply.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/targa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/adler32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/compress.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/amd64/amd64-match.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/asm686/match.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/blast/blast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/gcc_gvmat64/gvmat64.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/infback9/infback9.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/infback9/inftree9.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/inflate86/inffas86.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/inflate86/inffast.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/iostream/test.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/iostream/zfstream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/iostream2/zstream_test.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/iostream3/test.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/iostream3/zfstream.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/masmx64/gvmat64.asm"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/masmx64/inffas8664.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/masmx64/inffasx64.asm"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/masmx86/inffas32.asm"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/masmx86/match686.asm"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/ioapi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/iowin32.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/miniunz.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/minizip.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/mztools.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/unzip.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/minizip/zip.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/puff/puff.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/puff/pufftest.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/testzlib/testzlib.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ext/zlib/contrib/untgz/untgz.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/crc32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/deflate.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/enough.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/fitblk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/gun.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/gzappend.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/gzjoin.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/gzlog.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/zpipe.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/examples/zran.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/gzclose.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/gzlib.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/gzread.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/gzwrite.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/infback.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/inffast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/inflate.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/inftrees.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/test/example.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/test/infcover.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/test/minigzip.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/trees.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/uncompr.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ext/zlib/zutil.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/filters/box.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/filters/gaussian.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/filters/mitchell.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/filters/sinc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/filters/triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/ao.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/bdpt.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/directlighting.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/mlt.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/path.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/sppm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/volpath.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/integrators/whitted.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/diffuse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/distant.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/goniometric.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/infinite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/point.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/projection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/lights/spot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/main/pbrt.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/disney.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/fourier.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/glass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/hair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/kdsubsurface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/matte.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/metal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/mirror.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/mixmat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/plastic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/skin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/substrate.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/subsurface.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/translucent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/materials/uber.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/media/grid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/media/homogeneous.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/halton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/maxmin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/random.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/sobol.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/stratified.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/samplers/zerotwosequence.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/cone.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/curve.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/cylinder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/disk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/heightfield.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/hyperboloid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/loopsubdiv.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/nurbs.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/paraboloid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/plymesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/sphere.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/shapes/triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/analytic_scenes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/animatedtransform.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/bitops.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/bounds.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/bsdfs.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/fileutil.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/find_interval.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/fourierbsdf.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/fp_tests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/gtest/gtest-all.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/gtest/gtest_main.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/hair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/hg.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/imageio.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/parallel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/parser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/print.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/sampling.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/shapes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tests/spectrum.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/bilerp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/checkerboard.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/constant.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/dots.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/fbm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/imagemap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/marble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/mix.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/ptex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/scale.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/uv.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/windy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/textures/wrinkled.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tools/bsdftest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tools/cyhair2pbrt.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tools/imgtool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tools/obj2pbrt.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

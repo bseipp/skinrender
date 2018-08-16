@@ -1,0 +1,211 @@
+LookAt 0 0.1 1.7 #eye
+	 0 0 0 #look at point
+	0 0 1 #up vector
+Camera "perspective" "float fov" 45
+Sampler "02sequence" "integer pixelsamples" 128
+Integrator "volpath" "integer maxdepth" [1]
+Film "image" "string filename" "test.png"
+"integer xresolution" [400] "integer yresolution" [400]
+
+WorldBegin
+######################
+# build dermatascope #
+######################
+TransformBegin
+	AttributeBegin
+	    Translate 0 0 1.3
+	    Material "matte" "rgb Kd" [ 0 0 0 ]
+	    Shape "cylinder" "float radius" .5
+	    "float zmin" -.5
+	    "float zmax" .5
+	    "float phimax" 360
+	AttributeEnd
+
+	#Points of dermatascope
+	# L1 => -.5 -.5 1.3
+	# L2 => .5 -.5 1.3
+	# L3 => .5 .5 1.3
+	# L4 => -.5 .5 1.3
+	# U1 => -.5 -.5 1.8
+	# U2 => .5 -.5 1.8
+	# U3 => .5 .5 1.8
+	# U4 => -.5 .5 1.8
+
+	#Light from scope form halo
+	AttributeBegin
+		LightSource "point" "rgb I" [1 1 1] "point from" [ .5 0 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [1 1 1] "point from" [ -.5 0 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [1 1 1] "point from" [ 0 -.5 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [1 1 1] "point from" [ 0 .5 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+	    AreaLightSource "diffuse" "rgb L" [ 1 1 1 ]
+	    Shape "disk" "float height" 1.71
+		         "float radius" .5
+		         "float innerradius" 0
+		         "float phimax" 360
+	AttributeEnd
+
+	#AttributeBegin
+	#    LightSource "spot"  "point from" [ -.5 0 1.71 ]
+	#			"point to" [ 0 0 0 ] 
+	#			"float coneangle" 16.29 
+	#			"float conedeltaangle" 5
+	#			"rgb I" [ 1 1 1 ]
+	#AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   1. -.5 1.8   1. .5 1.8   -.5 .5 1.8 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   -.5 .5 1.8   -.5 .5 2.3   -.5 -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   1. -.5 1.8   1. -.5 2.3   -.5 -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 .5 2.3   -.5 .5 1.8    1. .5 1.8    1. .5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ 1. .5 2.3   1. .5 1.8    1. -.5 1.8    1. -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 2.3   -.5 .5 2.3    1. .5 2.3    1. -.5 2.3 ]
+	AttributeEnd
+TransformEnd
+
+######################
+#     build arm      #
+######################
+MakeNamedMedium "smoke" "string type" "skin_heterogeneous" "integer trans_x" 100 "integer trans_y" 100 "integer trans_z" 40
+	"point p0" [ -2.5 -1 -1 ] "point p1" [  2.5 1 1 ]
+	"string density_file" ["geometry/density.raw"]
+	"string volumetric_colors" ["geometry/density.raw"] 
+	"color sigma_a" [30 30 30] "color sigma_s" [50 50 50]
+
+
+AttributeBegin
+    Rotate 90 0 1 0
+    Texture "brianskin" "color" "imagemap"
+		"string filename" ["brian.png"]
+
+    MediumInterface "smoke" ""
+    Material "skin" "texture Kd" "brianskin"
+		"float eta" [1.33] "color mfp" [1.2953e-03 9.5238e-04 6.7114e-04]
+		"string t1" ["0.172982 0.112202 0.102329 0.827018 0.887798 0.897671 0.765914 0.441713 0.258535 0.234086 0.558287 0.741465 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162"]
+        	"float asr" 130 "float asg" 80 "float asb" 180
+        	"float uroughness" [0.05] "float vroughness" [0.05]
+    Shape "cylinder" "float radius" 1
+		"float zmin" -2.500000
+		"float zmax" 2.500000
+		"float phimax" 360
+AttributeEnd
+
+######################
+#     build room     #
+######################
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ -15 -15 -15   15 -15 -15   15 15 -15   -15 15 -15 ]
+AttributeEnd
+
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ -15 -15 -15   -15 15 -15   -15 15 15   -15 -15 15 ]
+AttributeEnd
+
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ -15 -15 -15   15 -15 -15   15 -15 15   -15 -15 15 ]
+AttributeEnd
+
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ 1 0 0 ] "rgb tex2" [ 1 0 0 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ -15 15 15   -15 15 -15    15 15 -15    15 15 15 ]
+AttributeEnd
+
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ 15 15 15   15 15 -15    15 -15 -15    15 -15 15 ]
+AttributeEnd
+
+AttributeBegin
+    Texture "checks" "spectrum" "checkerboard"
+    "float uscale" [8] "float vscale" [8]
+    "rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+    Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+    "integer indices" [0 1 2 0 2 3]
+    "point P" [ -15 -15 15   -15 15 15    15 15 15    15 -15 15 ]
+AttributeEnd
+
+AttributeBegin
+	AreaLightSource "diffuse" "blackbody L" [ 4000 8 ]
+	Shape "trianglemesh"        "integer indices" [0 1 2 0 2 3]
+	"point P" [ -5 -5 15   -5 5 15    5 5 15    5 -5 15 ]
+AttributeEnd
+WorldEnd

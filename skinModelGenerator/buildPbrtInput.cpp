@@ -23,11 +23,39 @@ const float DERMIS_DISTANCE_FROM_CENTER = 311;
 const float EPIDERMIS_DISTANCE_FROM_CENTER = 313;
 
 enum Layer {NOT_IN_ARM, EPIDERMIS, DERMIS, HYPERDERMIS, MUSCLE, BONE };
-enum Channel { TRANSMITANCE_R, TRANSMITANCE_G, TRANSMITANCE_B, ALBIEDO_R, ALBIEDO_G, ALBIEDO_B };
+enum Channel { RED, GREEN, BLUE };
+enum Property { TRANSMITANCE, ALBIEDO };
 
 const int MUSCLE_NOISE_CYCLES = 60;
 const int HYPERDERMIS_NOISE_CYCLES = 1;
 const int DERMIS_NOISE_CYCLES = 60;
+
+const float LAYER_OPTICAL_PROPERTIES[6][2][3] = { 
+                                { 
+                                    { 0.172982, 0.112202, 0.102329 }, 
+                                    { 0.827018, 0.887798, 0.897671 } 
+                                },
+                                { 
+                                    { 0.765914, 0.441713, 0.258535 }, 
+                                    { 0.234086, 0.558287, 0.741465 } 
+                                },                                
+                                { 
+                                    { 0.776247, 0.512861, 0.281838 }, 
+                                    { 0.223753, 0.487139, 0.718162 } 
+                                },
+                                { 
+                                    { 0.776247, 0.512861, 0.281838 }, 
+                                    { 0.223753, 0.487139, 0.718162 } 
+                                },
+                                { 
+                                    { 0.776247, 0.512861, 0.281838 }, 
+                                    { 0.223753, 0.487139, 0.718162 } 
+                                },
+                                { 
+                                    { 0.776247, 0.512861, 0.281838 }, 
+                                    { 0.223753, 0.487139, 0.718162 } 
+                                }
+                              };
 
 char* grid;
 
@@ -358,7 +386,14 @@ string generateArmScene(string propertiesFileName, int volumeX, int volumeY, int
     
     //loop to fetch properties
     armScene += "\t\t\"string t1\" [\"";
-    armScene += "0.42 0.71 0.42 0.93 0.42 0.42 0.93 0.71 0.71 0.42 0.42 0.42 0.42 0.93 0.42 0.93 0.42 0.71 0.42 0.42 0.93 0.42 0.42 0.42 0.71 0.93 0.71 0.42 0.42 0.42";
+    
+    for (int layer = NOT_IN_ARM; layer <= BONE; layer++){
+        for (int property = TRANSMITANCE; property <= ALBIEDO; property++){
+            for (int channel = RED; channel <= BLUE; channel++){
+                armScene += to_string(LAYER_OPTICAL_PROPERTIES[layer][property][channel]) + " ";
+            }
+        }
+    }
     armScene += "\"]\n";
     
     armScene += "\t\t\"float asr\" 130 \"float asg\" 80 \"float asb\" 180\n";

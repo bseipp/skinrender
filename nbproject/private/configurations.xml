@@ -75,6 +75,7 @@
         </df>
         <in>buildPbrtInput.cpp</in>
         <in>mat2.h</in>
+        <in>properties.h</in>
         <in>vec2.h</in>
       </df>
       <df name="src">
@@ -83,6 +84,320 @@
           <in>bvh.h</in>
           <in>kdtreeaccel.cpp</in>
           <in>kdtreeaccel.h</in>
+        </df>
+        <df name="build">
+          <df name="CMakeFiles">
+            <df name="3.5.1">
+              <df name="CompilerIdC">
+                <in>CMakeCCompilerId.c</in>
+              </df>
+              <df name="CompilerIdCXX">
+                <in>CMakeCXXCompilerId.cpp</in>
+              </df>
+            </df>
+            <df name="bsdftest.dir">
+              <df name="src">
+                <df name="tools">
+                </df>
+              </df>
+            </df>
+            <df name="CheckTypeSize">
+              <in>HAVE_UINT16_T.c</in>
+              <in>HAVE_U_INT16_T.c</in>
+              <in>HAVE___UINT16.c</in>
+            </df>
+            <df name="CMakeTmp">
+            </df>
+            <df name="cyhair2pbrt.dir">
+              <df name="src">
+                <df name="tools">
+                </df>
+              </df>
+            </df>
+            <df name="imgtool.dir">
+              <df name="src">
+                <df name="tools">
+                </df>
+              </df>
+            </df>
+            <df name="obj2pbrt.dir">
+              <df name="src">
+                <df name="tools">
+                </df>
+              </df>
+            </df>
+            <df name="pbrt.dir">
+              <df name="src">
+                <df name="accelerators">
+                </df>
+                <df name="cameras">
+                </df>
+                <df name="core">
+                </df>
+                <df name="ext">
+                </df>
+                <df name="filters">
+                </df>
+                <df name="integrators">
+                </df>
+                <df name="lights">
+                </df>
+                <df name="materials">
+                </df>
+                <df name="media">
+                </df>
+                <df name="samplers">
+                </df>
+                <df name="shapes">
+                </df>
+                <df name="textures">
+                </df>
+              </df>
+            </df>
+            <df name="pbrt_exe.dir">
+              <df name="src">
+                <df name="main">
+                </df>
+              </df>
+            </df>
+            <df name="pbrt_test.dir">
+              <df name="src">
+                <df name="tests">
+                  <df name="gtest">
+                  </df>
+                </df>
+              </df>
+            </df>
+            <in>feature_tests.c</in>
+            <in>feature_tests.cxx</in>
+          </df>
+          <df name="src">
+            <df name="ext">
+              <df name="glog">
+                <df name="CMakeFiles">
+                  <df name="CMakeTmp">
+                  </df>
+                  <df name="demangle_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="Export">
+                    <df name="lib">
+                      <df name="cmake">
+                        <df name="glog">
+                        </df>
+                      </df>
+                    </df>
+                  </df>
+                  <df name="glog.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="logging_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="signalhandler_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="stacktrace_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="stl_logging_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="symbolize_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                  <df name="utilities_unittest.dir">
+                    <df name="src">
+                    </df>
+                  </df>
+                </df>
+                <df name="glog">
+                  <in>logging.h</in>
+                  <in>raw_logging.h</in>
+                  <in>stl_logging.h</in>
+                  <in>vlog_is_on.h</in>
+                </df>
+                <in>config.h</in>
+              </df>
+              <df name="openexr">
+                <df name="CMakeFiles">
+                  <df name="CopyIlmBaseLibs.dir">
+                  </df>
+                </df>
+                <df name="IlmBase">
+                  <df name="CMakeFiles">
+                  </df>
+                  <df name="config">
+                    <in>IlmBaseConfig.h</in>
+                  </df>
+                  <df name="Half">
+                    <df name="CMakeFiles">
+                      <df name="eLut.dir">
+                      </df>
+                      <df name="Half.dir">
+                      </df>
+                      <df name="toFloat.dir">
+                      </df>
+                    </df>
+                    <in>eLut.h</in>
+                    <in>toFloat.h</in>
+                  </df>
+                  <df name="Iex">
+                    <df name="CMakeFiles">
+                      <df name="Iex.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="IexMath">
+                    <df name="CMakeFiles">
+                      <df name="IexMath.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="IlmThread">
+                    <df name="CMakeFiles">
+                      <df name="IlmThread.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="Imath">
+                    <df name="CMakeFiles">
+                      <df name="Imath.dir">
+                      </df>
+                    </df>
+                  </df>
+                </df>
+                <df name="OpenEXR">
+                  <df name="CMakeFiles">
+                  </df>
+                  <df name="config">
+                    <in>OpenEXRConfig.h</in>
+                  </df>
+                  <df name="IlmImf">
+                    <df name="CMakeFiles">
+                      <df name="b44ExpLogTable.dir">
+                      </df>
+                      <df name="dwaLookups.dir">
+                      </df>
+                      <df name="IlmImf.dir">
+                      </df>
+                    </df>
+                    <df name="Release">
+                    </df>
+                    <in>b44ExpLogTable.h</in>
+                    <in>dwaLookups.h</in>
+                  </df>
+                </df>
+              </df>
+              <df name="ptex">
+                <df name="CMakeFiles">
+                  <df name="Continuous.dir">
+                  </df>
+                  <df name="ContinuousBuild.dir">
+                  </df>
+                  <df name="ContinuousConfigure.dir">
+                  </df>
+                  <df name="ContinuousCoverage.dir">
+                  </df>
+                  <df name="ContinuousMemCheck.dir">
+                  </df>
+                  <df name="ContinuousStart.dir">
+                  </df>
+                  <df name="ContinuousSubmit.dir">
+                  </df>
+                  <df name="ContinuousTest.dir">
+                  </df>
+                  <df name="ContinuousUpdate.dir">
+                  </df>
+                  <df name="Experimental.dir">
+                  </df>
+                  <df name="ExperimentalBuild.dir">
+                  </df>
+                  <df name="ExperimentalConfigure.dir">
+                  </df>
+                  <df name="ExperimentalCoverage.dir">
+                  </df>
+                  <df name="ExperimentalMemCheck.dir">
+                  </df>
+                  <df name="ExperimentalStart.dir">
+                  </df>
+                  <df name="ExperimentalSubmit.dir">
+                  </df>
+                  <df name="ExperimentalTest.dir">
+                  </df>
+                  <df name="ExperimentalUpdate.dir">
+                  </df>
+                  <df name="Nightly.dir">
+                  </df>
+                  <df name="NightlyBuild.dir">
+                  </df>
+                  <df name="NightlyConfigure.dir">
+                  </df>
+                  <df name="NightlyCoverage.dir">
+                  </df>
+                  <df name="NightlyMemCheck.dir">
+                  </df>
+                  <df name="NightlyMemoryCheck.dir">
+                  </df>
+                  <df name="NightlyStart.dir">
+                  </df>
+                  <df name="NightlySubmit.dir">
+                  </df>
+                  <df name="NightlyTest.dir">
+                  </df>
+                  <df name="NightlyUpdate.dir">
+                  </df>
+                </df>
+                <df name="src">
+                  <df name="doc">
+                    <df name="CMakeFiles">
+                      <df name="doc.dir">
+                      </df>
+                      <df name="doxygen.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="ptex">
+                    <df name="CMakeFiles">
+                      <df name="Ptex_dynamic.dir">
+                      </df>
+                      <df name="Ptex_static.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="tests">
+                    <df name="CMakeFiles">
+                      <df name="ftest.dir">
+                      </df>
+                      <df name="halftest.dir">
+                      </df>
+                      <df name="rtest.dir">
+                      </df>
+                      <df name="wtest.dir">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="utils">
+                    <df name="CMakeFiles">
+                      <df name="ptxinfo.dir">
+                      </df>
+                    </df>
+                  </df>
+                </df>
+                <df name="Testing">
+                  <df name="Temporary">
+                  </df>
+                </df>
+              </df>
+            </df>
+          </df>
         </df>
         <df name="cameras">
           <in>environment.cpp</in>
@@ -1089,6 +1404,8 @@
           <df name="ptex">
             <df name="src">
               <df name="doc">
+                <df name="ptex">
+                </df>
               </df>
               <df name="ptex">
                 <in>PtexCache.cpp</in>

@@ -7,13 +7,14 @@
 #include "dart_throwing/PDSampling.h"
 #include "vec2.h"
 #include <thread>
+#include "properties.h"
 
 using namespace std;
 
 const int ARM_LENGTH = 5;
 const int ARM_RADIUS = 1;
 const int CHANNELS = 6;
-const double PI = 3.14159265;
+const double PI = 3.1415;
 
 //Thickness in micrometers for different internal densities
 const float BONE_DISTANCE_FROM_CENTER = 100;
@@ -30,32 +31,7 @@ const int MUSCLE_NOISE_CYCLES = 60;
 const int HYPERDERMIS_NOISE_CYCLES = 1;
 const int DERMIS_NOISE_CYCLES = 60;
 
-const float LAYER_OPTICAL_PROPERTIES[6][2][3] = { 
-                                { 
-                                    { 0.172982, 0.112202, 0.102329 }, 
-                                    { 0.827018, 0.887798, 0.897671 } 
-                                },
-                                { 
-                                    { 0.765914, 0.441713, 0.258535 }, 
-                                    { 0.234086, 0.558287, 0.741465 } 
-                                },                                
-                                { 
-                                    { 0.776247, 0.512861, 0.281838 }, 
-                                    { 0.223753, 0.487139, 0.718162 } 
-                                },
-                                { 
-                                    { 0.776247, 0.512861, 0.281838 }, 
-                                    { 0.223753, 0.487139, 0.718162 } 
-                                },
-                                { 
-                                    { 0.776247, 0.512861, 0.281838 }, 
-                                    { 0.223753, 0.487139, 0.718162 } 
-                                },
-                                { 
-                                    { 0.776247, 0.512861, 0.281838 }, 
-                                    { 0.223753, 0.487139, 0.718162 } 
-                                }
-                              };
+const int THREADS = 7;
 
 char* grid;
 
@@ -277,7 +253,7 @@ void buildDensityModel(int offset){
     }
 }
 
-void generateVolumeModel(int threadCount){
+void generateVolumeModel(Properties simulation){
     int arm_length = convertToUM(ARM_LENGTH);
     int arm_radius = convertToUM(ARM_RADIUS);
     unsigned int arraySize = arm_length * arm_radius * arm_radius;
@@ -289,97 +265,48 @@ void generateVolumeModel(int threadCount){
     }
     
     fprintf(stderr, "Building density volume.\n");
-    thread threads[threadCount];
-    for (int i = 1; i < threadCount; i++){
+    thread threads[THREADS];
+    for (int i = 1; i < THREADS; i++){
         threads[i] = thread(buildDensityModel, i * 500);
     }
     threads[0] = thread(buildDensityModel, 0);
-    for (int i = 0; i < threadCount; i++){
+    for (int i = 0; i < THREADS; i++){
         threads[i].join();
     }
     
-    fprintf(stderr, "Writing density structure file.\n");
-    ofstream densityFormatFile;
-    densityFormatFile.open("density.txt");
-    densityFormatFile << "File: density.raw\n";
-    densityFormatFile << "x: " + to_string(arm_radius) + "\n";
-    densityFormatFile << "y: " + to_string(arm_radius) + "\n";
-    densityFormatFile << "z: " + to_string(arm_length) + "\n";
-    densityFormatFile << "type: char\n";
-    densityFormatFile.close();
-    
     fprintf(stderr, "Writing density volume file.\n");
-    FILE* fd = fopen("density.raw", "wb");
+    FILE* fd = fopen(simulation.arm.volumePath.c_str(), "wb");
     fwrite(&grid[0], sizeof(char), arm_length * arm_radius * arm_radius * CHANNELS, fd);
     fclose(fd);
 }
 
-/*****************************
- *****************************
- * PBRT Generator functions: *
- *****************************
- *****************************/
-void renderMenu(string file){
-    char renderChoice;
-    string cmd = "./pbrt ";
-    
-renderInput:
-    cout << endl << "Render after generation? Y/N" << endl;
-    cin >> renderChoice;
-    if (renderChoice == 'Y' || renderChoice == 'y'){
-        cmd += file + ".pbrt";
-        system(cmd.c_str());
-    } else if (renderChoice == 'N' || renderChoice == 'n'){
-        return;
-    } else {
-        goto renderInput;
-    }
-}
-
-void volumeMenu(int threads){
-    char generateChoice;
-    
-volumeGenerateInput:
-    cout << endl << "\nGenerate volume? Y/N" << endl;
-    cin >> generateChoice;
-    if (generateChoice == 'Y' || generateChoice == 'y'){
-        generateVolumeModel(threads);
-    } else if (generateChoice == 'N' || generateChoice == 'n'){
-        return;
-    } else {
-        goto volumeGenerateInput;
-    }
-}
-
 void run(string filename);
 
-void inputFile(){
-    string filename = " ";
-    cout << "Enter a file to render:" << endl;
-    cin >> filename;
-    if (filename.compare(" ") == 0){
-        inputFile();
-        return;
-    }
-    run(filename);
-}
-
-string generateArmScene(string propertiesFileName, int volumeX, int volumeY, int volumeZ){
+/**********************
+ **********************
+ *  Scene functions:  *
+ **********************
+ **********************/
+string generateArmScene(Properties simulation){
     string armScene = "";
-    
-    armScene += "##############\n# Create Arm #\n##############\n";
+
+    armScene += "##############\n";
+    armScene += "# Create Arm #\n";
+    armScene += "##############\n\n";
  
     //create the medium
-    armScene += "MakeNamedMedium \"smoke\" \"string type\" \"skin_heterogeneous\" \"integer trans_x\" " + to_string(volumeX) + " \"integer trans_y\" " + to_string(volumeY) + " \"integer trans_z\" " + to_string(volumeZ) + "";
-    armScene += "\t\"integer scat_x\" " + to_string(volumeX) + " \"integer scat_y\" " + to_string(volumeY) + " \"integer scat_z\" " + to_string(volumeZ) + "\n";
-    armScene += "\t\"point p0\" [ -0.999999 -0.800000 -0.840000 ] \"point p1\" [ 2.700000 2.490000 0.890000 ]\n";
+    armScene += "MakeNamedMedium \"smoke\" \"string type\" \"skin_heterogeneous\" \"integer trans_x\" " + to_string(simulation.arm.x) + " \"integer trans_y\" " + to_string(simulation.arm.y) + " \"integer trans_z\" " + to_string(simulation.arm.z) + "\n";
+    armScene += "\t\"point p0\" [ -2.5 -1. -1. ] \"point p1\" [ 2.5 1 1 ]\n";
     armScene += "\t\"string density_file\" [\"geometry/density.raw\"]\n";
-    armScene += "\t\"string volumetric_colors\" [\"geometry/density.raw\"]\n\n";
+    armScene += "\t\"string volumetric_colors\" [\"" + simulation.arm.volumePath + "\"]\n\n";
+    armScene += "\t\"color sigma_a\" [30 30 30] \"color sigma_s\" [50 50 50]\n\n";
     
     //Create the material
     armScene += "AttributeBegin\n";
+    armScene += "\tRotate 90 0 1 0\n";
     armScene += "\tTexture \"brianskin\" \"color\" \"imagemap\"\n";
     armScene += "\t\t\"string filename\" [\"brian.png\"]\n\n";
+    
     armScene +="\tMediumInterface \"smoke\" \"\"\n";
     armScene +="\tMaterial \"skin\" \"texture Kd\" \"brianskin\"\n";
     armScene += "\t\t\"float eta\" [1.33] \"color mfp\" [1.2953e-03 9.5238e-04 6.7114e-04]\n";
@@ -390,7 +317,7 @@ string generateArmScene(string propertiesFileName, int volumeX, int volumeY, int
     for (int layer = NOT_IN_ARM; layer <= BONE; layer++){
         for (int property = TRANSMITANCE; property <= ALBIEDO; property++){
             for (int channel = RED; channel <= BLUE; channel++){
-                armScene += to_string(LAYER_OPTICAL_PROPERTIES[layer][property][channel]) + " ";
+                armScene += to_string(simulation.arm.optics[layer][property][channel]) + " ";
             }
         }
     }
@@ -398,209 +325,271 @@ string generateArmScene(string propertiesFileName, int volumeX, int volumeY, int
     
     armScene += "\t\t\"float asr\" 130 \"float asg\" 80 \"float asb\" 180\n";
     armScene += "\t\t\"float uroughness\" [0.05] \"float vroughness\" [0.05]\n";
-    armScene += "\t\t\"bool remaproughness\" [\"false\"]";
     
-    armScene += "\tShape \"cylinder\" \"float radius\" " + to_string(ARM_RADIUS) + "\n";
-    armScene += "\t\t\"float zmin\" -" + to_string(float(ARM_LENGTH) / 2) + "\n";
-    armScene += "\t\t\"float zmax\" " + to_string(float(ARM_LENGTH) / 2) + "\n";
+    armScene += "\tShape \"cylinder\" \"float radius\" 1\n";
+    armScene += "\t\t\"float zmin\" -2.5\n";
+    armScene += "\t\t\"float zmax\" 2.5\n";
     armScene += "\t\t\"float phimax\" 360\n";
     armScene += "AttributeEnd\n\n\n";
     
     return armScene;
 }
 
-string generateRoomScene(int length, int width, int height){
+string generateRoomScene(Properties simulation){
     string roomScene = "";
-    
+
+    roomScene += "######################\n";
+    roomScene += "#     build room     #\n";
+    roomScene += "######################\n\n";
+
     roomScene += "###############\n# Create Room #\n###############\n";
-    roomScene += "AttributeBegin\n\tTranslate 0 0 -" + to_string(width) + "\n";
+    roomScene += "AttributeBegin\n";
     roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + " ]\n";
     roomScene += "AttributeEnd\n\n";
 
-    roomScene += "AttributeBegin\n\tTranslate 0 0 " + to_string(width) + "\n";
+    roomScene += "AttributeBegin\n";
     roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ -" + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " -" + to_string(width) + " 0   " + to_string(width) + " " + to_string(width) + " 0   -" + to_string(width) + " " + to_string(width) + " 0 ]\n";
-    roomScene += "AttributeEnd\n\n";
-
-    roomScene += "AttributeBegin\n\tTranslate " + to_string(height) + " 0 0\n";
-    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
-    roomScene += "AttributeEnd\n\n";
-
-    roomScene += "AttributeBegin\n\tTranslate -" + to_string(height) + " 0 0\n";
-    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ 0 -" + to_string(height) + " -" + to_string(height) + "   0 " + to_string(height) + " -" + to_string(height) + "  0 " + to_string(height) + " " + to_string(height) + "   0 -" + to_string(height) + " " + to_string(height) + " ]\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
-    roomScene += "AttributeBegin\n\tTranslate 0 -" + to_string(length) + " 0\n";
+    roomScene += "AttributeBegin\n";
     roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
-    roomScene += "AttributeBegin\n\tTranslate 0 " + to_string(length) + " 0\n";
+    roomScene += "AttributeBegin\n";
     roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    roomScene += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    roomScene += "\t\t\"rgb tex1\" [ .95 .95 .95 ] \"rgb tex2\" [ .95 .95 .95 ]\n";
-    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\"";
-    roomScene += "\tShape \"trianglemesh\"\n";
-    roomScene += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\t\"point P\" [ -" + to_string(length) + " 0 -" + to_string(length) + "   -" + to_string(length) + " 0 " + to_string(length) + "  " + to_string(length) + " 0 " + to_string(length) + "   " + to_string(length) + " 0 -" + to_string(length) + " ]\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    roomScene += "AttributeBegin\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.y) + " -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    roomScene += "AttributeBegin\n";
+    roomScene += "\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    roomScene += "\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
+    roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
+    roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "AttributeEnd\n\n";
+    
+    roomScene += "AttributeBegin\n";
+    roomScene += "\tAreaLightSource \"diffuse\" \"rgb L\" [ " + to_string(simulation.room.lightRgb[0]) + " " + to_string(simulation.room.lightRgb[1]) + " " + to_string(simulation.room.lightRgb[2]) + " ]\n";
+    roomScene += "\tShape \"trianglemesh\"        \"integer indices\" [0 1 2 0 2 3]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x / 3) + " -" + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x / 3) + " " + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x / 3) + " " + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x / 3) + " -" + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     return roomScene;
 }
 
-string generateLighting(int height, int lIntensity){
-    string sceneLighting = "";
-    
-    sceneLighting += "################\n# Create Light #\n################\n";
-    sceneLighting += "AttributeBegin\n";
-    sceneLighting += "\tAreaLightSource \"diffuse\" \"blackbody L\" [ 4000 " + to_string(lIntensity) + " ]\n";
-    sceneLighting += "\tTranslate -" + to_string(height) + " 0 0\n";
-    sceneLighting += "\tShape \"trianglemesh\"";
-    sceneLighting += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    sceneLighting += "\t\t\"point P\" [ 0 -2 -2   0 2 -2  0 2 2   0 -2 2 ]\n";
-    sceneLighting += "AttributeEnd\n\n";
-    sceneLighting += "WorldEnd";
-    
-    return sceneLighting;
-}
-
-string generateHair(string hair_color, float poisson_radius){
+string generateHair(Properties simulation){    
     string sceneHair = "";
-    
+
+    sceneHair += "######################\n";
+    sceneHair += "#     build hair     #\n";
+    sceneHair += "######################\n\n";
+    sceneHair += "TransformBegin\n";
+    sceneHair += "\tRotate 90 1 0 0\n";
+    sceneHair += "\tRotate 90 0 1 0\n";
     sceneHair += "\tMakeNamedMaterial  \"black_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 8 ]\n";
     sceneHair += "\tMakeNamedMaterial  \"red_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 3 ]\n";
     sceneHair += "\tMakeNamedMaterial  \"brown_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ 1.3 ] \"float beta_m\" .25 \"float alpha\" 2\n";
-    sceneHair += "\tMakeNamedMaterial  \"blonde_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ .3 ]\n";
-    
-    sceneHair += "\n\tNamedMaterial \"" + hair_color + "_hair\"\n\n";
-    sceneHair += addHair(poisson_radius);
-    
+    sceneHair += "\tMakeNamedMaterial  \"blonde_hair\" \"string type\" [ \"hair\" ] \"float eumelanin\" [ .3 ]\n\n";
+    sceneHair += "\tNamedMaterial \"" + simulation.arm.hairColor + "_hair\"\n\n";
+    sceneHair += addHair(simulation.arm.hairDensityFactor * .02);
+    sceneHair += "TransformEnd\n";
     return sceneHair;
 }
 
-string generateView(int distance, int fov, int rays, int iWidth, int iHeight, string iFilename){
+string generateView(Properties simulation){
     string sceneView = "";
     
     sceneView += "###############\n# Create View #\n###############\n";
-    sceneView += "LookAt 0 -" + to_string(distance) + " 0 #eye\n";
-    sceneView += "\t 0 0 0 #look at point\n\t0 0 1 #up vector\n";
-    sceneView += "Camera \"perspective\" \"float fov\" " + to_string(fov) + "\n";
-    sceneView += "Sampler \"halton\" \"integer pixelsamples\" " + to_string(rays) + "\n";
-    sceneView += "Integrator \"path\"\nFilm \"image\" \"string filename\" \"" + iFilename + ".exr\"\n";
-    sceneView += "\"integer xresolution\" [" + to_string(iWidth) + "] \"integer yresolution\" [" + to_string(iHeight) + "]\n\n";
-    sceneView += "WorldBegin\nRotate 45 1 0 0\nRotate 90 0 1 0\nActiveTransform All\n\n";
+    sceneView += "LookAt 0 0.1 " + to_string(1 + simulation.view.z) + " #eye\n";
+    sceneView += "\t 0 0 0 #look at point\n";
+    sceneView += "\t0 0 1 #up vector\n";
+    sceneView += "Camera \"perspective\" \"float fov\" " + to_string(simulation.view.fov) + "\n";
+    sceneView += "Sampler \"02sequence\" \"integer pixelsamples\" " + to_string(simulation.view.raysPerPixel) + "\n";
+    sceneView += "Integrator \"volpath\" \"integer maxdepth\" [1]\n";
+    sceneView += "Film \"image\" \"string filename\" \"image.png\"\n";
+    sceneView += "\"integer xresolution\" [" + to_string(simulation.view.xRes) + "] \"integer yresolution\" [" + to_string(simulation.view.yRes) + "]\n\n";
     
     return sceneView;
 }
 
-void run(string filename){
-    //Read the input file and parse values out
-    ifstream file;
-    file.open(filename);
-    if (file.fail()) { cout << "Bad file name, try again." << endl; inputFile();}
-    int length = 10, width = 10, height = 10, distance = 9, fov = 60, rays = 128, iWidth = 400, iHeight = 400, lIntensity = 20, threads = 1, volumeX = 100, volumeY = 100, volumeZ = 40;
-    string iFilename = "temp", line, property, value, hair_color = "brown", propertiesFile = "properties.txt";
+string generateDermatascope(Properties simulation){
+    string dermatascopeView = "";
 
-    float poisson_radius = 0;
+    dermatascopeView += "######################\n";
+    dermatascopeView += "# build dermatascope #\n";
+    dermatascopeView += "######################\n\n";
     
-    while(getline(file, line)){
-        property = line.substr(0, line.find(" "));
-        line.erase(0, line.find(" ") + 1);
-        value = line;
-        if (property.compare("length_of_room") == 0){
-            length = stoi(value, nullptr, 10);
-        } else if (property.compare("width_of_room") == 0){
-            width = stoi(value, nullptr, 10);
-        } else if (property.compare("height_of_room") == 0){
-            height = stoi(value, nullptr, 10);
-        } else if (property.compare("distance_from_object") == 0){
-            distance = stoi(value, nullptr, 10);
-        } else if (property.compare("field_of_view") == 0){
-            fov = stoi(value, nullptr, 10);
-        } else if (property.compare("rays_per_pixel") == 0){
-            rays = stoi(value, nullptr, 10);
-        } else if (property.compare("image_width") == 0){
-            iWidth = stoi(value, nullptr, 10);
-        } else if (property.compare("image_height") == 0){
-            iHeight = stoi(value, nullptr, 10);
-        } else if (property.compare("image_filename") == 0){
-            iFilename = value;
-        } else if (property.compare("light_intensity") == 0){
-            lIntensity = stoi(value, nullptr, 10);
-        } else if (property.compare("hair_density") == 0){
-            float hair_scalar = stof(value, nullptr);
-            if (hair_scalar < .025){
-                hair_scalar = .025;
-            } else if (hair_scalar > 10.0) {
-                hair_scalar = 10.0;
-            }
-            poisson_radius = hair_scalar * .02;
-        } else if (property.compare("hair_color") == 0) {
-            hair_color = value;
-        } else if (property.compare("max_threads") == 0) {
-            threads = stoi(value, nullptr, 10);
-        }  else if (property.compare("volume_X_dimension") == 0) {
-            volumeX = stoi(value, nullptr, 10);
-        }  else if (property.compare("volume_Y_dimension") == 0) {
-            volumeY = stoi(value, nullptr, 10);
-        }  else if (property.compare("volume_Z_dimension") == 0) {
-            volumeZ = stoi(value, nullptr, 10);
-        } else if (property.compare("properties_file") == 0) {
-            propertiesFile = value;
-        } else {
-            cout << "Invalid property, cannot map " + property + ". Skipping." << endl;
-            continue;
-        }
-    }
+    dermatascopeView += "TransformBegin\n";
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTranslate 0 0 1.3\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"rgb Kd\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tShape \"cylinder\" \"float radius\" .5\n";
+    dermatascopeView += "\t\t\"float zmin\" -.5\n";
+    dermatascopeView += "\t\t\"float zmax\" .5\n";
+    dermatascopeView += "\t\t\"float phimax\" 360\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
 
-    //generate pbrt input file based on parsed values
-    ofstream pbrtFile;
-    pbrtFile.open(iFilename + ".pbrt");
-    pbrtFile << generateView(distance, fov, rays, iWidth, iHeight, iFilename);   
-    pbrtFile << generateArmScene(propertiesFile, volumeX, volumeY, volumeZ);
-    pbrtFile << generateRoomScene(length, width, height);
-    pbrtFile << generateLighting(height, lIntensity);
-    pbrtFile << generateHair(hair_color, poisson_radius);
-    pbrtFile.close();
+    dermatascopeView += "\t#Light from scope form halo\n";
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ .5 0 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ -.5 0 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 -.5 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 .5 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tAreaLightSource \"diffuse\" \"rgb L\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tShape \"disk\" \"float height\" 1.71\n";
+    dermatascopeView += "\t\t\t\"float radius\" .5\n";
+    dermatascopeView += "\t\t\t\"float innerradius\" 0\n";
+    dermatascopeView += "\t\t\t\"float phimax\" 360\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   1. -.5 1.8   1. .5 1.8   -.5 .5 1.8 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   -.5 .5 1.8   -.5 .5 2.3   -.5 -.5 2.3 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   1. -.5 1.8   1. -.5 2.3   -.5 -.5 2.3 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ -.5 .5 2.3   -.5 .5 1.8    1. .5 1.8    1. .5 2.3 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ 1. .5 2.3   1. .5 1.8    1. -.5 1.8    1. -.5 2.3 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
+    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
+    dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
+    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
+    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 2.3   -.5 .5 2.3    1. .5 2.3    1. -.5 2.3 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+    dermatascopeView += "TransformEnd\n\n";
     
-    //Ask if a volume file should be generated, generates if requested
-    volumeMenu(threads);
-
-    //Ask if an image should be generated from this model, generates if requested
-    renderMenu(iFilename);
+    return dermatascopeView;
 }
 
-int main()
+/**********************
+ **********************
+ *  Driver functions: *
+ **********************
+ **********************/
+void run(string filename){
+    //Read the input file and parse values out
+    string cmd;
+    ifstream file;
+    file.open(filename);
+    if (file.fail()) { 
+        cout << "Bad file name" << endl; 
+        return;
+    }
+
+    string line;
+    getline(file, line); //Burn Headers
+    while(getline(file, line)){
+        Properties simulation(line);
+        
+        ofstream pbrtFile;
+        pbrtFile.open(simulation.filename + ".pbrt");
+        pbrtFile << generateView(simulation);  
+        pbrtFile << "WorldBegin\n\n";
+        pbrtFile << generateArmScene(simulation);
+        pbrtFile << generateDermatascope(simulation);
+        pbrtFile << generateRoomScene(simulation);
+        pbrtFile << generateHair(simulation);
+        pbrtFile << "WorldEnd";
+        pbrtFile.close();
+
+        //Verify if density file specified exists, if not, generate a new one
+        ifstream f(simulation.arm.volumePath.c_str());
+        if (!f.good()){
+            generateVolumeModel(simulation);
+        }
+
+        cmd = "./pbrt " + simulation.filename + ".pbrt";
+        system(cmd.c_str());
+    } 
+}
+
+int main(int argc, char *argv[])
 {
-    cout << "Welcome." << endl;
-    inputFile();
-    return 0;
+    if (argc > 1){
+        run(argv[1]);
+        return 0;
+    } else {
+        cout << "No file specified." << endl;
+        return -1;
+    }
 }

@@ -17,6 +17,7 @@
           <in>test.cpp</in>
         </df>
         <in>buildPbrtInput.cpp</in>
+        <in>properties.h</in>
       </df>
       <df name="src">
         <df name="accelerators">
@@ -825,6 +826,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="skinModelGenerator/properties.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/accelerators/bvh.cpp" ex="false" tool="1" flavor2="0">
       </item>

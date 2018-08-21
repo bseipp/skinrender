@@ -1,119 +1,216 @@
 ###############
 # Create View #
 ###############
-LookAt 0 -4 0 #eye
+LookAt 0 0.1 1.7 #eye
 	 0 0 0 #look at point
 	0 0 1 #up vector
 Camera "perspective" "float fov" 45
-Sampler "halton" "integer pixelsamples" 2048
-Integrator "path"
-Film "image" "string filename" "image.exr"
+Sampler "02sequence" "integer pixelsamples" 256
+Integrator "volpath" "integer maxdepth" [1]
+Film "image" "string filename" "image.png"
 "integer xresolution" [400] "integer yresolution" [400]
 
 WorldBegin
-Rotate 45 1 0 0
-Rotate 90 0 1 0
-ActiveTransform All
 
 ##############
 # Create Arm #
 ##############
-MakeNamedMedium "smoke" "string type" "skin_heterogeneous" "integer trans_x" 626 "integer trans_y" 626 "integer trans_z" 3130	"integer scat_x" 626 "integer scat_y" 626 "integer scat_z" 3130
-	"point p0" [ -0.999999 -0.800000 -0.840000 ] "point p1" [ 2.700000 2.490000 0.890000 ]
+
+MakeNamedMedium "smoke" "string type" "skin_heterogeneous" "integer trans_x" 626 "integer trans_y" 626 "integer trans_z" 3130
+	"point p0" [ -2.5 -1. -1. ] "point p1" [ 2.5 1 1 ]
 	"string density_file" ["geometry/density.raw"]
 	"string volumetric_colors" ["geometry/density.raw"]
 
+	"color sigma_a" [30 30 30] "color sigma_s" [50 50 50]
+
 AttributeBegin
+	Rotate 90 0 1 0
 	Texture "brianskin" "color" "imagemap"
 		"string filename" ["brian.png"]
 
 	MediumInterface "smoke" ""
 	Material "skin" "texture Kd" "brianskin"
 		"float eta" [1.33] "color mfp" [1.2953e-03 9.5238e-04 6.7114e-04]
-		"string t1" ["0.42 0.71 0.42 0.93 0.42 0.42 0.93 0.71 0.71 0.42 0.42 0.42 0.42 0.93 0.42 0.93 0.42 0.71 0.42 0.42 0.93 0.42 0.42 0.42 0.71 0.93 0.71 0.42 0.42 0.42"]
+		"string t1" ["0.172982 0.112202 0.102329 0.827018 0.887798 0.897671 0.765914 0.441713 0.258535 0.234086 0.558287 0.741465 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 "]
 		"float asr" 130 "float asg" 80 "float asb" 180
 		"float uroughness" [0.05] "float vroughness" [0.05]
-		"bool remaproughness" ["false"]	Shape "cylinder" "float radius" 1
-		"float zmin" -2.500000
-		"float zmax" 2.500000
+	Shape "cylinder" "float radius" 1
+		"float zmin" -2.5
+		"float zmax" 2.5
 		"float phimax" 360
 AttributeEnd
 
+
+######################
+# build dermatascope #
+######################
+
+TransformBegin
+	AttributeBegin
+		Translate 0 0 1.3
+		Material "matte" "rgb Kd" [ 0 0 0 ]
+		Shape "cylinder" "float radius" .5
+		"float zmin" -.5
+		"float zmax" .5
+		"float phimax" 360
+	AttributeEnd
+
+	#Light from scope form halo
+	AttributeBegin
+		LightSource "point" "rgb I" [ .95686 1 .98039 ] "point from" [ .5 0 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [ .95686 1 .98039 ] "point from" [ -.5 0 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [ .95686 1 .98039 ] "point from" [ 0 -.5 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		LightSource "point" "rgb I" [ .95686 1 .98039 ] "point from" [ 0 .5 1.71 ]
+	AttributeEnd
+
+	AttributeBegin
+		AreaLightSource "diffuse" "rgb L" [ .95686 1 .98039 ]
+		Shape "disk" "float height" 1.71
+			"float radius" .5
+			"float innerradius" 0
+			"float phimax" 360
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   1. -.5 1.8   1. .5 1.8   -.5 .5 1.8 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   -.5 .5 1.8   -.5 .5 2.3   -.5 -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 1.8   1. -.5 1.8   1. -.5 2.3   -.5 -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 .5 2.3   -.5 .5 1.8    1. .5 1.8    1. .5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ 1. .5 2.3   1. .5 1.8    1. -.5 1.8    1. -.5 2.3 ]
+	AttributeEnd
+
+	AttributeBegin
+		Texture "checks" "spectrum" "checkerboard"
+		"float uscale" [8] "float vscale" [8]
+		"rgb tex1" [ 0 0 0 ] "rgb tex2" [ 0 0 0 ]
+		Material "matte" "texture Kd" "checks"    Shape "trianglemesh"
+		"integer indices" [0 1 2 0 2 3]
+		"point P" [ -.5 -.5 2.3   -.5 .5 2.3    1. .5 2.3    1. -.5 2.3 ]
+	AttributeEnd
+
+TransformEnd
+
+######################
+#     build room     #
+######################
 
 ###############
 # Create Room #
 ###############
 AttributeBegin
-	Translate 0 0 -10
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ -10 -10 0   10 -10 0   10 10 0   -10 10 0 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -15 -15 -15   15 -15 -15   15 15 -15   -15 15 -15 ]
 AttributeEnd
 
 AttributeBegin
-	Translate 0 0 10
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ -10 -10 0   10 -10 0   10 10 0   -10 10 0 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -15 -15 -15   -15 15 -15   -15 15 15   -15 -15 15 ]
 AttributeEnd
 
 AttributeBegin
-	Translate 10 0 0
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ 0 -10 -10   0 10 -10  0 10 10   0 -10 10 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -15 -15 -15   15 -15 -15   15 -15 15   -15 -15 15 ]
 AttributeEnd
 
 AttributeBegin
-	Translate -10 0 0
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ 0 -10 -10   0 10 -10  0 10 10   0 -10 10 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -15 15 15   -15 15 -15    15 15 -15    15 15 15 ]
 AttributeEnd
 
 AttributeBegin
-	Translate 0 -10 0
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ -10 0 -10   -10 0 10  10 0 10   10 0 -10 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ 15 15 15   15 15 -15    15 -15 -15    15 -15 15 ]
 AttributeEnd
 
 AttributeBegin
-	Translate 0 10 0
 	Texture "checks" "spectrum" "checkerboard"
-		"float uscale" [8] "float vscale" [8]
-		"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
-	Material "matte" "texture Kd" "checks"	Shape "trianglemesh"
-		"integer indices" [0 1 2 0 2 3]
-		"point P" [ -10 0 -10   -10 0 10  10 0 10   10 0 -10 ]
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ .95 .95 .95 ] "rgb tex2" [ .95 .95 .95 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -15 -15 15   -15 15 15    15 15 15    15 -15 15 ]
 AttributeEnd
 
-################
-# Create Light #
-################
 AttributeBegin
-	AreaLightSource "diffuse" "blackbody L" [ 4000 8 ]
-	Translate -10 0 0
-	Shape "trianglemesh"		"integer indices" [0 1 2 0 2 3]
-		"point P" [ 0 -2 -2   0 2 -2  0 2 2   0 -2 2 ]
+	AreaLightSource "diffuse" "rgb I" [ .95686 1 .98039 ]
+	Shape "trianglemesh"        "integer indices" [0 1 2 0 2 3]
+	"point P" [ -5 -5 15   -5 5 15    5 5 15    5 -5 15 ]
 AttributeEnd
 
-WorldEnd	MakeNamedMaterial  "black_hair" "string type" [ "hair" ] "float eumelanin" [ 8 ]
+######################
+#     build hair     #
+######################
+
+TransformBegin
+	Rotate 90 1 0 0
+	Rotate 90 0 1 0
+	MakeNamedMaterial  "black_hair" "string type" [ "hair" ] "float eumelanin" [ 8 ]
 	MakeNamedMaterial  "red_hair" "string type" [ "hair" ] "float eumelanin" [ 3 ]
 	MakeNamedMaterial  "brown_hair" "string type" [ "hair" ] "float eumelanin" [ 1.3 ] "float beta_m" .25 "float alpha" 2
 	MakeNamedMaterial  "blonde_hair" "string type" [ "hair" ] "float eumelanin" [ .3 ]
@@ -6891,4 +6988,7 @@ WorldEnd	MakeNamedMaterial  "black_hair" "string type" [ "hair" ] "float eumelan
 	Shape "curve" "string type" [ "cylinder" ] "point P" [ -0.433355 0.845401 1.601124 -0.501779 0.978886 1.701124 -0.532279 0.962642 1.801124 -0.501779 0.978886 1.901124 ] "float width0" [ 0.004972 ] "float width1" [ 0.004278 ]
 
 	Shape "curve" "string type" [ "cylinder" ] "point P" [ -0.433355 0.845401 -0.398876 -0.501779 0.978886 -0.298876 -0.532279 0.962642 -0.198876 -0.501779 0.978886 -0.098876 ] "float width0" [ 0.004972 ] "float width1" [ 0.004278 ]
+
+TransformEnd
+WorldEnd
 

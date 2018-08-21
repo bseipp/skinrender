@@ -5,3 +5,6 @@ src/objs
 .sconsign.dblite
 .DS_Store
 makefile
+*.pbrt
+bpbrt
+pbrt

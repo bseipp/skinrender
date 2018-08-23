@@ -1,8 +1,0 @@
-MakeNamedMedium "smoke" "string type" "skin_heterogeneous" "integer trans_x" 100 "integer trans_y" 100 "integer trans_z" 40
-	"integer scat_x" 100 "integer scat_y" 100 "integer scat_z" 40
-	#"float scale_x" 0.1 "float scale_y" 0.1 "float scale_z" 0.04
-	#"point p0" [ -0.4 0 0 ] "point p1" [ 0.6 0 0 ]
-	"point p0" [ -0.999999 -0.800000 -0.840000 ] "point p1" [ 2.700000 2.490000 0.890000 ]
-	#"float skin_density"
-	"string density_file" ["geometry/density.raw"]
-	"string volumetric_colors" ["geometry/density.raw"]

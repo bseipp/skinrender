@@ -33,6 +33,10 @@ const int DERMIS_NOISE_CYCLES = 60;
 
 const int THREADS = 7;
 
+const string PBRT_SCENE_FOLDER = "scenes/";
+const string PBRT_IMAGE_FOLDER = "images/";
+const string PBRT_VOLUME_FOLDER = "volume/";
+const string PBRT_TEXTURE_FOLDER = "textures/";
 char* grid;
 
 /*******************
@@ -114,6 +118,7 @@ string addHair(float hairy_factor){
         hairGeometry += "] \"float width0\" [ 0.004972 ] \"float width1\" [ 0.004278 ]\n\n";
         
     }
+    cout << endl;
     return hairGeometry;
 }
 
@@ -275,7 +280,7 @@ void generateVolumeModel(Properties simulation){
     }
     
     fprintf(stderr, "Writing density volume file.\n");
-    FILE* fd = fopen(simulation.arm.volumePath.c_str(), "wb");
+    FILE* fd = fopen(simulation.arm.filename.c_str(), "wb");
     fwrite(&grid[0], sizeof(char), arm_length * arm_radius * arm_radius * CHANNELS, fd);
     fclose(fd);
 }
@@ -297,15 +302,15 @@ string generateArmScene(Properties simulation){
     //create the medium
     armScene += "MakeNamedMedium \"smoke\" \"string type\" \"skin_heterogeneous\" \"integer trans_x\" " + to_string(simulation.arm.x) + " \"integer trans_y\" " + to_string(simulation.arm.y) + " \"integer trans_z\" " + to_string(simulation.arm.z) + "\n";
     armScene += "\t\"point p0\" [ -2.5 -1. -1. ] \"point p1\" [ 2.5 1 1 ]\n";
-    armScene += "\t\"string density_file\" [\"geometry/density.raw\"]\n";
-    armScene += "\t\"string volumetric_colors\" [\"" + simulation.arm.volumePath + "\"]\n\n";
+    armScene += "\t\"string density_file\" [\"" + PBRT_VOLUME_FOLDER + simulation.arm.filename + "\"]\n";
+    armScene += "\t\"string volumetric_colors\" [\"" + PBRT_VOLUME_FOLDER + simulation.arm.filename + "\"]\n\n";
     armScene += "\t\"color sigma_a\" [30 30 30] \"color sigma_s\" [50 50 50]\n\n";
     
     //Create the material
     armScene += "AttributeBegin\n";
     armScene += "\tRotate 90 0 1 0\n";
     armScene += "\tTexture \"brianskin\" \"color\" \"imagemap\"\n";
-    armScene += "\t\t\"string filename\" [\"brian.png\"]\n\n";
+    armScene += "\t\t\"string filename\" [\"" + PBRT_SCENE_FOLDER + PBRT_TEXTURE_FOLDER + "brian.png\"]\n\n";
     
     armScene +="\tMediumInterface \"smoke\" \"\"\n";
     armScene +="\tMaterial \"skin\" \"texture Kd\" \"brianskin\"\n";
@@ -435,7 +440,7 @@ string generateView(Properties simulation){
     sceneView += "Camera \"perspective\" \"float fov\" " + to_string(simulation.view.fov) + "\n";
     sceneView += "Sampler \"02sequence\" \"integer pixelsamples\" " + to_string(simulation.view.raysPerPixel) + "\n";
     sceneView += "Integrator \"volpath\" \"integer maxdepth\" [1]\n";
-    sceneView += "Film \"image\" \"string filename\" \"image.png\"\n";
+    sceneView += "Film \"image\" \"string filename\" \"" + PBRT_IMAGE_FOLDER + simulation.filename + ".png\"\n";
     sceneView += "\"integer xresolution\" [" + to_string(simulation.view.xRes) + "] \"integer yresolution\" [" + to_string(simulation.view.yRes) + "]\n\n";
     
     return sceneView;
@@ -562,7 +567,19 @@ void run(string filename){
         Properties simulation(line);
         
         ofstream pbrtFile;
-        pbrtFile.open(simulation.filename + ".pbrt");
+        
+        //Check that the files we are about to create don't already exist. 
+        string originalFilename = simulation.filename;
+        int duplicateFileCounter = 1;
+        ifstream file((PBRT_SCENE_FOLDER + simulation.filename + ".pbrt").c_str());
+        while (file.good()){
+            simulation.filename = originalFilename + " (" + to_string(duplicateFileCounter) + ")";
+            duplicateFileCounter++;
+            file.close();
+            file.open((PBRT_SCENE_FOLDER + simulation.filename + ".pbrt").c_str());
+        }
+
+        pbrtFile.open(PBRT_SCENE_FOLDER + simulation.filename + ".pbrt");
         pbrtFile << generateView(simulation);  
         pbrtFile << "WorldBegin\n\n";
         pbrtFile << generateArmScene(simulation);
@@ -573,12 +590,12 @@ void run(string filename){
         pbrtFile.close();
 
         //Verify if density file specified exists, if not, generate a new one
-        ifstream f(simulation.arm.volumePath.c_str());
+        ifstream f(PBRT_VOLUME_FOLDER + simulation.arm.filename.c_str());
         if (!f.good()){
             generateVolumeModel(simulation);
         }
 
-        cmd = "./pbrt " + simulation.filename + ".pbrt";
+        cmd = "./pbrt " + PBRT_SCENE_FOLDER + simulation.filename + ".pbrt";
         system(cmd.c_str());
     } 
 }

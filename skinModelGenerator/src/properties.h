@@ -29,7 +29,7 @@ public:
     class Arm {
     public:
         int x, y, z, hairDensityFactor;
-        string hairColor, volumePath;
+        string hairColor, filename;
         float optics[6][2][3];
     };
 
@@ -73,7 +73,7 @@ public:
         arm.x = stoi(result[6], nullptr);
         arm.y = stoi(result[7], nullptr);
         arm.z = stoi(result[8], nullptr);
-        arm.volumePath = result[9];
+        arm.filename = result[9];
         arm.hairColor = result[10];
         arm.hairDensityFactor = stoi(result[11], nullptr);
         //Handle optics

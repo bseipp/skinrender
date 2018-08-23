@@ -571,15 +571,15 @@ void run(string filename){
         //Check that the files we are about to create don't already exist. 
         string originalFilename = simulation.filename;
         int duplicateFileCounter = 1;
-        ifstream file((PBRT_SCENE_FOLDER + simulation.filename + ".pbrt").c_str());
+        ifstream file((simulation.filename + ".pbrt").c_str());
         while (file.good()){
-            simulation.filename = originalFilename + " (" + to_string(duplicateFileCounter) + ")";
+            simulation.filename = originalFilename + "_" + to_string(duplicateFileCounter);
             duplicateFileCounter++;
             file.close();
-            file.open((PBRT_SCENE_FOLDER + simulation.filename + ".pbrt").c_str());
+            file.open((simulation.filename + ".pbrt").c_str());
         }
 
-        pbrtFile.open(PBRT_SCENE_FOLDER + simulation.filename + ".pbrt");
+        pbrtFile.open(simulation.filename + ".pbrt");
         pbrtFile << generateView(simulation);  
         pbrtFile << "WorldBegin\n\n";
         pbrtFile << generateArmScene(simulation);
@@ -595,7 +595,10 @@ void run(string filename){
             generateVolumeModel(simulation);
         }
 
-        cmd = "./pbrt " + PBRT_SCENE_FOLDER + simulation.filename + ".pbrt";
+        cmd = "./pbrt " + simulation.filename + ".pbrt";
+        system(cmd.c_str());
+        
+        cmd = "mv " + simulation.filename + ".pbrt " + PBRT_SCENE_FOLDER;
         system(cmd.c_str());
     } 
 }

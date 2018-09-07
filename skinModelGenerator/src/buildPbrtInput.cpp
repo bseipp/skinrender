@@ -11,8 +11,11 @@
 
 using namespace std;
 
-const int ARM_LENGTH = 5;
-const int ARM_RADIUS = 1;
+const int UNIT_LENGTHS_PER_METER = 1000; //1000 mm in a meter, so each meter measurement is 1000 unit lengths
+const int UNIT_LENGTHS_PER_CENTIMETER = 10; //10 mm in a meter, so each meter measurement is 1000 unit lengths
+
+const int ARM_LENGTH = 305; // 1 Foot or 305 mm so a unit distance in world space is 1mm
+const int ARM_RADIUS = 61; // ~2.4 inches or 61 mm
 const int CHANNELS = 6;
 const double PI = 3.1415;
 
@@ -301,7 +304,7 @@ string generateArmScene(Properties simulation){
  
     //create the medium
     armScene += "MakeNamedMedium \"smoke\" \"string type\" \"skin_heterogeneous\" \"integer trans_x\" " + to_string(simulation.arm.x) + " \"integer trans_y\" " + to_string(simulation.arm.y) + " \"integer trans_z\" " + to_string(simulation.arm.z) + "\n";
-    armScene += "\t\"point p0\" [ -2.5 -1. -1. ] \"point p1\" [ 2.5 1 1 ]\n";
+    armScene += "\t\"point p0\" [ -" + to_string(ARM_LENGTH / 2) + " -" + to_string(ARM_RADIUS) + " -" + to_string(ARM_RADIUS) + " ] \"point p1\" [ " + to_string(ARM_LENGTH / 2) + " " + to_string(ARM_RADIUS) + " " + to_string(ARM_RADIUS) + " ]\n";
     armScene += "\t\"string density_file\" [\"" + PBRT_VOLUME_FOLDER + simulation.arm.filename + "\"]\n";
     armScene += "\t\"string volumetric_colors\" [\"" + PBRT_VOLUME_FOLDER + simulation.arm.filename + "\"]\n\n";
     armScene += "\t\"color sigma_a\" [30 30 30] \"color sigma_s\" [50 50 50]\n\n";
@@ -331,9 +334,9 @@ string generateArmScene(Properties simulation){
     armScene += "\t\t\"float asr\" 130 \"float asg\" 80 \"float asb\" 180\n";
     armScene += "\t\t\"float uroughness\" [0.05] \"float vroughness\" [0.05]\n";
     
-    armScene += "\tShape \"cylinder\" \"float radius\" 1\n";
-    armScene += "\t\t\"float zmin\" -2.5\n";
-    armScene += "\t\t\"float zmax\" 2.5\n";
+    armScene += "\tShape \"cylinder\" \"float radius\" " + to_string(ARM_RADIUS) + " \n";
+    armScene += "\t\t\"float zmin\" -" + to_string(ARM_LENGTH / 2) + "\n";
+    armScene += "\t\t\"float zmax\" " + to_string(ARM_LENGTH / 2) + "\n";
     armScene += "\t\t\"float phimax\" 360\n";
     armScene += "AttributeEnd\n\n\n";
     
@@ -354,7 +357,7 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
 
     roomScene += "AttributeBegin\n";
@@ -363,7 +366,7 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     roomScene += "AttributeBegin\n";
@@ -372,7 +375,7 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     roomScene += "AttributeBegin\n";
@@ -381,7 +384,7 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     roomScene += "AttributeBegin\n";
@@ -390,7 +393,7 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.y) + " -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     roomScene += "AttributeBegin\n";
@@ -399,13 +402,13 @@ string generateRoomScene(Properties simulation){
     roomScene += "\t\"rgb tex1\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.room.materialRgb[0]) + " " + to_string(simulation.room.materialRgb[1]) + " " + to_string(simulation.room.materialRgb[2]) + " ]\n";
     roomScene += "\tMaterial \"matte\" \"texture Kd\" \"checks\" Shape \"trianglemesh\"\n";
     roomScene += "\t\"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " " + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x) + " -" + to_string(simulation.room.y) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     roomScene += "AttributeBegin\n";
     roomScene += "\tAreaLightSource \"diffuse\" \"rgb L\" [ " + to_string(simulation.room.lightRgb[0]) + " " + to_string(simulation.room.lightRgb[1]) + " " + to_string(simulation.room.lightRgb[2]) + " ]\n";
     roomScene += "\tShape \"trianglemesh\"        \"integer indices\" [0 1 2 0 2 3]\n";
-    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x / 3) + " -" + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "   -" + to_string(simulation.room.x / 3) + " " + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x / 3) + " " + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + "    " + to_string(simulation.room.x / 3) + " -" + to_string(simulation.room.y / 3) + " " + to_string(simulation.room.z) + " ]\n";
+    roomScene += "\t\"point P\" [ -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER / 3) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "   -" + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + "    " + to_string(simulation.room.x * UNIT_LENGTHS_PER_METER / 3) + " -" + to_string(simulation.room.y * UNIT_LENGTHS_PER_METER / 3) + " " + to_string(simulation.room.z * UNIT_LENGTHS_PER_METER) + " ]\n";
     roomScene += "AttributeEnd\n\n";
     
     return roomScene;
@@ -434,7 +437,8 @@ string generateView(Properties simulation){
     string sceneView = "";
     
     sceneView += "###############\n# Create View #\n###############\n";
-    sceneView += "LookAt 0 0.1 " + to_string(1 + simulation.view.z) + " #eye\n";
+    //sceneView += "LookAt 0 0.1 " + to_string(simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER + ARM_RADIUS) + " #eye\n";
+    sceneView += "LookAt 80 0 80 #eye\n";
     sceneView += "\t 0 0 0 #look at point\n";
     sceneView += "\t0 0 1 #up vector\n";
     sceneView += "Camera \"perspective\" \"float fov\" " + to_string(simulation.view.fov) + "\n";
@@ -455,35 +459,35 @@ string generateDermatascope(Properties simulation){
     
     dermatascopeView += "TransformBegin\n";
     dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTranslate 0 0 1.3\n";
+    dermatascopeView += "\t\tTranslate 0 0 7.3\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"rgb Kd\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tShape \"cylinder\" \"float radius\" .5\n";
-    dermatascopeView += "\t\t\"float zmin\" -.5\n";
-    dermatascopeView += "\t\t\"float zmax\" .5\n";
+    dermatascopeView += "\t\tShape \"cylinder\" \"float radius\" 15.\n";
+    dermatascopeView += "\t\t\"float zmin\" -7.5\n";
+    dermatascopeView += "\t\t\"float zmax\" 7.5\n";
     dermatascopeView += "\t\t\"float phimax\" 360\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\t#Light from scope form halo\n";
     dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ .5 0 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 15. 0 " + to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ -.5 0 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ -15. 0 " + to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 -.5 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 -15. " + to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 .5 " + to_string(1.01 + simulation.view.z) + " ]\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 15. " + to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
     dermatascopeView += "\t\tAreaLightSource \"diffuse\" \"rgb L\" [ " + to_string(simulation.dermatascope.lightRgb[0]) + " " + to_string(simulation.dermatascope.lightRgb[1]) + " " + to_string(simulation.dermatascope.lightRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tShape \"disk\" \"float height\" 1.71\n";
-    dermatascopeView += "\t\t\t\"float radius\" .5\n";
+    dermatascopeView += "\t\tShape \"disk\" \"float height\" " + to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + "\n";
+    dermatascopeView += "\t\t\t\"float radius\" 15.\n";
     dermatascopeView += "\t\t\t\"float innerradius\" 0\n";
     dermatascopeView += "\t\t\t\"float phimax\" 360\n";
     dermatascopeView += "\tAttributeEnd\n\n";
@@ -494,7 +498,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   1. -.5 1.8   1. .5 1.8   -.5 .5 1.8 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ -15 -15 " + to_string(ARM_RADIUS + 14.8) + "   30 -15 " + to_string(ARM_RADIUS + 14.8) + "   30 15 " + to_string(ARM_RADIUS + 14.8) + "   -15 15 " + to_string(ARM_RADIUS + 14.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
@@ -503,7 +507,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   -.5 .5 1.8   -.5 .5 2.3   -.5 -.5 2.3 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ -15 -15 14.8   -15 15 " + to_string(ARM_RADIUS + 14.8) + "   -15 15 " + to_string(ARM_RADIUS + 24.8) + "   -15 -15 " + to_string(ARM_RADIUS + 24.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
@@ -512,7 +516,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 1.8   1. -.5 1.8   1. -.5 2.3   -.5 -.5 2.3 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ -15 -15 14.8   30 -15 " + to_string(ARM_RADIUS + 14.8) + "   30 -15 " + to_string(ARM_RADIUS + 24.8) + "   -15 -15 " + to_string(ARM_RADIUS + 24.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
@@ -521,7 +525,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -.5 .5 2.3   -.5 .5 1.8    1. .5 1.8    1. .5 2.3 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ -15 15 24.8   -15 15 " + to_string(ARM_RADIUS + 14.8) + "    30 15 " + to_string(ARM_RADIUS + 14.8) + "    30 15 " + to_string(ARM_RADIUS + 24.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
@@ -530,7 +534,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ 1. .5 2.3   1. .5 1.8    1. -.5 1.8    1. -.5 2.3 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ 30 15 24.8   30 15 " + to_string(ARM_RADIUS + 14.8) + "    30 -15 " + to_string(ARM_RADIUS + 14.8) + "    30 -15 " + to_string(ARM_RADIUS + 24.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
 
     dermatascopeView += "\tAttributeBegin\n";
@@ -539,7 +543,7 @@ string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"rgb tex1\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + to_string(simulation.dermatascope.materialRgb[0]) + " " + to_string(simulation.dermatascope.materialRgb[1]) + " " + to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
     dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
     dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -.5 -.5 2.3   -.5 .5 2.3    1. .5 2.3    1. -.5 2.3 ]\n";
+    dermatascopeView += "\t\t\"point P\" [ -15 -15 24.8   -15 15 " + to_string(ARM_RADIUS + 24.8) + "    30 15 " + to_string(ARM_RADIUS + 24.8) + "    30 -15 " + to_string(ARM_RADIUS + 24.8) + " ]\n";
     dermatascopeView += "\tAttributeEnd\n\n";
     dermatascopeView += "TransformEnd\n\n";
     

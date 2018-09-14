@@ -1,0 +1,3 @@
+/home/bseipp/Documents/research/skinrender/skinModelGenerator/src/breastMass/CMakeFiles/edit_cache.dir
+/home/bseipp/Documents/research/skinrender/skinModelGenerator/src/breastMass/CMakeFiles/rebuild_cache.dir
+/home/bseipp/Documents/research/skinrender/skinModelGenerator/src/breastMass/CMakeFiles/breastMass.dir

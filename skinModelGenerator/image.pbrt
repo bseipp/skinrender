@@ -1,0 +1,117 @@
+###############
+# Create View #
+###############
+LookAt 500 500 500 #eye
+	 0 0.1 0 #look at point
+	0 0 1 #up vector
+Camera "perspective" "float fov" 24.394014
+Sampler "02sequence" "integer pixelsamples" 128
+Integrator "volpath" "integer maxdepth" [1]
+Film "image" "string filename" "scene.png"
+"integer xresolution" [400] "integer yresolution" [400]
+
+WorldBegin
+
+##############
+# Create Arm #
+##############
+MakeNamedMedium "smoke" "string type" "skin_heterogeneous" "integer trans_x" 626 "integer trans_y" 626 "integer trans_z" 3130
+	"point p0" [ -61 -61 -61 ] "point p1" [ 61 61 61 ]
+	"string density_file" ["volume/density.raw"]
+	"string volumetric_colors" ["volume/density.raw"]
+
+	"color sigma_a" [30 30 30] "color sigma_s" [50 50 50]
+
+AttributeBegin
+	Rotate 90 0 1 0
+	Texture "brianskin" "color" "imagemap"
+		"string filename" ["scenes/textures/brian.png"]
+	MediumInterface "smoke" ""
+	Material "skin" "texture Kd" "brianskin"
+		"float eta" [1.33] "color mfp" [1.2953e-03 9.5238e-04 6.7114e-04]
+		"string t1" ["0.172982 0.112202 0.102329 0.827018 0.887798 0.897671 0.765914 0.441713 0.258535 0.234086 0.558287 0.741465 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.776247 0.512861 0.281838 0.223753 0.487139 0.718162 0.956860 1.000000 0.980390 0.000000 0.000000 0.000000 "]
+		"float asr" 130 "float asg" 80 "float asb" 180
+		"float uroughness" [0.05] "float vroughness" [0.05]
+#    Shape "plymesh" "string filename" "box.ply"
+	Shape "cylinder" "float radius" 61
+		"float zmin" -61
+		"float zmax" 61
+		"float phimax" 360
+AttributeEnd
+
+
+AttributeBegin
+	Translate 0 0 71
+	Material "matte" "rgb kd" [1 0 0]
+	Shape "sphere" "float radius" 10
+AttributeEnd
+
+
+######################
+#     build room     #
+######################
+
+###############
+# Create Room #
+###############
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -5000 -5000 -5000   5000 -5000 -5000   5000 5000 -5000   -5000 5000 -5000 ]
+AttributeEnd
+
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -5000 -5000 -5000   -5000 5000 -5000   -5000 5000 5000   -5000 -5000 5000 ]
+AttributeEnd
+
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -5000 -5000 -5000   5000 -5000 -5000   5000 -5000 5000   -5000 -5000 5000 ]
+AttributeEnd
+
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -5000 5000 5000   -5000 5000 -5000    5000 5000 -5000    5000 5000 5000 ]
+AttributeEnd
+
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ 5000 5000 5000   5000 5000 -5000    5000 -5000 -5000    5000 -5000 5000 ]
+AttributeEnd
+
+AttributeBegin
+	Texture "checks" "spectrum" "checkerboard"
+	"float uscale" [8] "float vscale" [8]
+	"rgb tex1" [ 0.950000 0.950000 0.950000 ] "rgb tex2" [ 0.950000 0.950000 0.950000 ]
+	Material "matte" "texture Kd" "checks" Shape "trianglemesh"
+	"integer indices" [0 1 2 0 2 3]
+	"point P" [ -5000 -5000 5000   -5000 5000 5000    5000 5000 5000    5000 -5000 5000 ]
+AttributeEnd
+
+AttributeBegin
+	AreaLightSource "diffuse" "rgb L" [ 4.784300 5.000000 4.901950 ]
+	Shape "trianglemesh"        "integer indices" [0 1 2 0 2 3]
+	"point P" [ -1666 -1666 5000   -1666 1666 5000    1666 1666 5000    1666 -1666 5000 ]
+AttributeEnd
+
+WorldEnd

@@ -51,7 +51,7 @@ void run(string filename){
         pbrtFile << generateArmScene(simulation);
         pbrtFile << generateDermatascope(simulation);
         pbrtFile << generateRoomScene(simulation);
-        pbrtFile << generateHair(simulation);
+        //pbrtFile << generateHair(simulation);
         pbrtFile << "WorldEnd";
         pbrtFile.close();
 

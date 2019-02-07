@@ -16,7 +16,31 @@
           <in>density.cpp</in>
           <in>test.cpp</in>
         </df>
-        <in>buildPbrtInput.cpp</in>
+        <df name="src">
+          <df name="config">
+            <in>config.h</in>
+          </df>
+          <df name="scene_components">
+            <df name="header">
+              <in>arm.h</in>
+              <in>density.h</in>
+              <in>dermatoscope.h</in>
+              <in>hair.h</in>
+              <in>noise.h</in>
+              <in>room.h</in>
+              <in>view.h</in>
+            </df>
+            <df name="src">
+              <in>arm.cpp</in>
+              <in>density.cpp</in>
+              <in>dermatoscope.cpp</in>
+              <in>hair.cpp</in>
+              <in>noise.cpp</in>
+              <in>room.cpp</in>
+              <in>view.cpp</in>
+            </df>
+          </df>
+        </df>
         <in>properties.h</in>
       </df>
       <df name="src">
@@ -777,11 +801,6 @@
           <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_C_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_CXX_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .</preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="skinModelGenerator/buildPbrtInput.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="skinModelGenerator/dart_throwing/PDSample.cpp"
             ex="false"
             tool="1"
@@ -828,6 +847,81 @@
             flavor2="0">
       </item>
       <item path="skinModelGenerator/properties.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/config/config.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/arm.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/density.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/dermatoscope.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/hair.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/noise.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/room.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/header/view.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/arm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/density.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/dermatoscope.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/hair.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/noise.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/room.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="skinModelGenerator/src/scene_components/src/view.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="src/accelerators/bvh.cpp" ex="false" tool="1" flavor2="0">
       </item>

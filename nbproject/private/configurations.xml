@@ -44,39 +44,116 @@
         <df name="dart_throwing">
           <in>PDSample.cpp</in>
           <in>PDSampling.cpp</in>
-          <in>PDSampling.h</in>
           <in>RNG.cpp</in>
-          <in>RNG.h</in>
           <in>RangeList.cpp</in>
-          <in>RangeList.h</in>
           <in>ScallopedSector.cpp</in>
-          <in>ScallopedSector.h</in>
           <in>WeightedDiscretePDF.cpp</in>
-          <in>WeightedDiscretePDF.h</in>
-          <in>quasisampler_prototype.h</in>
         </df>
         <df name="density">
-          <df name="density.dSYM">
-            <df name="Contents">
-              <df name="Resources">
-                <df name="DWARF">
-                </df>
-              </df>
-            </df>
-          </df>
           <in>Shader.cpp</in>
-          <in>Shader.hpp</in>
           <in>density.cpp</in>
           <in>test.cpp</in>
         </df>
-        <df name="geometry">
+        <df name="images">
+          <df name="Old Stuff">
+          </df>
+        </df>
+        <df name="legacy">
+          <df name="density">
+            <df name="density.dSYM">
+              <df name="Contents">
+                <df name="Resources">
+                  <df name="DWARF">
+                  </df>
+                </df>
+              </df>
+            </df>
+            <in>Shader.cpp</in>
+            <in>Shader.hpp</in>
+            <in>density.cpp</in>
+            <in>test.cpp</in>
+          </df>
+          <df name="geometry">
+          </df>
+          <in>mat2.h</in>
+        </df>
+        <df name="scenes">
+          <df name="textures">
+          </df>
+        </df>
+        <df name="simulations">
+        </df>
+        <df name="src">
+          <df name="breastMass">
+            <df name="CMakeFiles">
+              <df name="3.5.1">
+                <df name="CompilerIdC">
+                  <in>CMakeCCompilerId.c</in>
+                </df>
+                <df name="CompilerIdCXX">
+                  <in>CMakeCXXCompilerId.cpp</in>
+                </df>
+              </df>
+              <df name="breastMass.dir">
+              </df>
+              <df name="CMakeTmp">
+              </df>
+              <in>feature_tests.c</in>
+              <in>feature_tests.cxx</in>
+            </df>
+            <in>breastMass.cxx</in>
+            <in>breastMass.hxx</in>
+          </df>
+          <df name="config">
+            <in>config.h</in>
+          </df>
+          <df name="dart_throwing">
+            <in>PDSample.cpp</in>
+            <in>PDSampling.cpp</in>
+            <in>PDSampling.h</in>
+            <in>RNG.cpp</in>
+            <in>RNG.h</in>
+            <in>RangeList.cpp</in>
+            <in>RangeList.h</in>
+            <in>ScallopedSector.cpp</in>
+            <in>ScallopedSector.h</in>
+            <in>WeightedDiscretePDF.cpp</in>
+            <in>WeightedDiscretePDF.h</in>
+            <in>quasisampler_prototype.h</in>
+          </df>
+          <df name="scene_components">
+            <df name="header">
+              <in>arm.h</in>
+              <in>density.h</in>
+              <in>dermatoscope.h</in>
+              <in>hair.h</in>
+              <in>noise.h</in>
+              <in>room.h</in>
+              <in>view.h</in>
+            </df>
+            <df name="src">
+              <in>arm.cpp</in>
+              <in>density.cpp</in>
+              <in>dermatoscope.cpp</in>
+              <in>hair.cpp</in>
+              <in>noise.cpp</in>
+              <in>room.cpp</in>
+              <in>view.cpp</in>
+            </df>
+          </df>
+          <df name="scene_description">
+            <in>properties.h</in>
+          </df>
+          <df name="utility">
+            <in>vec2.h</in>
+          </df>
+          <in>driver.cpp</in>
         </df>
         <df name="textures">
         </df>
-        <in>buildPbrtInput.cpp</in>
-        <in>mat2.h</in>
+        <df name="volume">
+        </df>
         <in>properties.h</in>
-        <in>vec2.h</in>
       </df>
       <df name="src">
         <df name="accelerators">

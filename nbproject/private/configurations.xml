@@ -41,6 +41,8 @@
         </df>
       </df>
       <df name="skinModelGenerator">
+        <df name="build">
+        </df>
         <df name="dart_throwing">
           <in>PDSample.cpp</in>
           <in>PDSampling.cpp</in>

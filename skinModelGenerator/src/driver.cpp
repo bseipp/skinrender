@@ -62,10 +62,10 @@ void run(string filename){
         }
 
         cmd = "./pbrt " + simulation.filename + ".pbrt";
-        system(cmd.c_str());
+        //system(cmd.c_str());
         
         cmd = "mv " + simulation.filename + ".pbrt " + PBRT_SCENE_FOLDER;
-        system(cmd.c_str());
+        //system(cmd.c_str());
     } 
 }
 

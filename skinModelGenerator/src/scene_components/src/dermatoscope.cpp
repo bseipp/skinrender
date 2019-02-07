@@ -23,94 +23,44 @@ std::string generateDermatascope(Properties simulation){
     dermatascopeView += "\t\t\"float phimax\" 360\n";
     dermatascopeView += "\tAttributeEnd\n\n";
     
-    for (int angle = 0; angle < 90; angle+=15) {
-        dermatascopeView += "TransformBegin\n";
-        dermatascopeView += "\tRotate " + std::to_string(angle) + " 0 0 1\n";
-        dermatascopeView += "\t#Light from scope form halo\n";
-        dermatascopeView += "\tAttributeBegin\n";
-        dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 15. 0 " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
-        dermatascopeView += "\tAttributeEnd\n\n";
-
-        dermatascopeView += "\tAttributeBegin\n";
-        dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ -15. 0 " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
-        dermatascopeView += "\tAttributeEnd\n\n";
-
-        dermatascopeView += "\tAttributeBegin\n";
-        dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 -15. " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
-        dermatascopeView += "\tAttributeEnd\n\n";
-
-        dermatascopeView += "\tAttributeBegin\n";
-        dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 15. " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " ]\n";
-        dermatascopeView += "\tAttributeEnd\n\n";
-        dermatascopeView += "TransformEnd\n";
-    }
+    //Handle Light components
+    dermatascopeView += "TransformBegin\n";
     
-    
-    
+    dermatascopeView += "\tTranslate 0 0 " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + "\n";
+
     dermatascopeView += "\tAttributeBegin\n";
     dermatascopeView += "\t\tAreaLightSource \"diffuse\" \"rgb L\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tShape \"disk\" \"float height\" " + std::to_string(ARM_RADIUS + .1 + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + "\n";
+    dermatascopeView += "\t\tShape \"disk\" \"float height\" 0\n";
     dermatascopeView += "\t\t\t\"float radius\" 15.\n";
     dermatascopeView += "\t\t\t\"float innerradius\" 0\n";
     dermatascopeView += "\t\t\t\"float phimax\" 360\n";
     dermatascopeView += "\tAttributeEnd\n\n";
-
     
+    dermatascopeView += "\t#Light from scope form halo\n";
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 15. 0 0 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ -15. 0 0 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 -15. 0 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";
+
+    dermatascopeView += "\tAttributeBegin\n";
+    dermatascopeView += "\t\tLightSource \"point\" \"rgb I\" [ " + std::to_string(simulation.dermatascope.lightRgb[0]) + " " + std::to_string(simulation.dermatascope.lightRgb[1]) + " " + std::to_string(simulation.dermatascope.lightRgb[2]) + " ] \"point from\" [ 0 15. 0 ]\n";
+    dermatascopeView += "\tAttributeEnd\n\n";    
     
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -15 -15 " + std::to_string(ARM_RADIUS + 14.8) + "   30 -15 " + std::to_string(ARM_RADIUS + 14.8) + "   30 15 " + std::to_string(ARM_RADIUS + 14.8) + "   -15 15 " + std::to_string(ARM_RADIUS + 14.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -15 -15 14.8   -15 15 " + std::to_string(ARM_RADIUS + 14.8) + "   -15 15 " + std::to_string(ARM_RADIUS + 24.8) + "   -15 -15 " + std::to_string(ARM_RADIUS + 24.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -15 -15 14.8   30 -15 " + std::to_string(ARM_RADIUS + 14.8) + "   30 -15 " + std::to_string(ARM_RADIUS + 24.8) + "   -15 -15 " + std::to_string(ARM_RADIUS + 24.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -15 15 24.8   -15 15 " + std::to_string(ARM_RADIUS + 14.8) + "    30 15 " + std::to_string(ARM_RADIUS + 14.8) + "    30 15 " + std::to_string(ARM_RADIUS + 24.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ 30 15 24.8   30 15 " + std::to_string(ARM_RADIUS + 14.8) + "    30 -15 " + std::to_string(ARM_RADIUS + 14.8) + "    30 -15 " + std::to_string(ARM_RADIUS + 24.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-
-    dermatascopeView += "\tAttributeBegin\n";
-    dermatascopeView += "\t\tTexture \"checks\" \"spectrum\" \"checkerboard\"\n";
-    dermatascopeView += "\t\t\"float uscale\" [8] \"float vscale\" [8]\n";
-    dermatascopeView += "\t\t\"rgb tex1\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ] \"rgb tex2\" [ " + std::to_string(simulation.dermatascope.materialRgb[0]) + " " + std::to_string(simulation.dermatascope.materialRgb[1]) + " " + std::to_string(simulation.dermatascope.materialRgb[2]) + " ]\n";
-    dermatascopeView += "\t\tMaterial \"matte\" \"texture Kd\" \"checks\"    Shape \"trianglemesh\"\n";
-    dermatascopeView += "\t\t\"integer indices\" [0 1 2 0 2 3]\n";
-    dermatascopeView += "\t\t\"point P\" [ -15 -15 24.8   -15 15 " + std::to_string(ARM_RADIUS + 24.8) + "    30 15 " + std::to_string(ARM_RADIUS + 24.8) + "    30 -15 " + std::to_string(ARM_RADIUS + 24.8) + " ]\n";
-    dermatascopeView += "\tAttributeEnd\n\n";
-    dermatascopeView += "TransformEnd\n\n";
+    dermatascopeView += "TransformEnd\n";
+   
+    dermatascopeView += "AttributeBegin\n";
+    dermatascopeView += "\tTranslate 0 0 " + std::to_string(ARM_RADIUS + 19.8) + "\n";
+    dermatascopeView += "\tMaterial \"matte\" \"rgb Kd\" [ " + std::to_string(simulation.room.materialRgb[0]) + " " + std::to_string(simulation.room.materialRgb[1]) + " " + std::to_string(simulation.room.materialRgb[2]) + " ]\n";
+    dermatascopeView += "\tShape \"trianglemesh\"  \"integer indices\" [0 1 5   5 4 0   0 3 7   7 4 0   5 6 7   7 4 5   3 2 6   6 7 3   2 1 5   5 6 2   1 2 3   3 0 1]\n";
+    dermatascopeView += "\t\"point P\" [ -15 -30  5    -15 15  5    15 15  5    15 -30  5  -15 -30 -5    -15 15 -5    15 15 -5    15 -30 -5 ]\n";
+    dermatascopeView += "AttributeEnd\n\n";
     
     return dermatascopeView;
 }

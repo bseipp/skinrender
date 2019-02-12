@@ -14,7 +14,7 @@ std::string addHair(float hairy_factor)
     
     std::cout << "Placing hairs..." << std::endl;
 
-    sampler = new PureSampler(hairy_factor);
+    sampler = new PureSampler(hairy_factor / 2.);
     sampler->complete();
     std::cout << std::endl;
     
@@ -31,10 +31,10 @@ std::string addHair(float hairy_factor)
          * This is for the first set of the arm from z = 0 -> z = 2
          *************************************************************************/
         
-        z = sampler->points[i].y + 1;
+        z = (sampler->points[i].y) * (ARM_LENGTH / 2); //Gets a number between -ARM_LENGTH/2 and + ARM_LENGTH/2
         theta = sampler->points[i].x * PI;
-        points[0][0] = (ARM_RADIUS - .05) * cos(theta);
-        points[0][1] = (ARM_RADIUS - .05) * sin(theta);
+        points[0][0] = (ARM_RADIUS - 1.525) * cos(theta);
+        points[0][1] = (ARM_RADIUS - 1.525) * sin(theta);
         points[0][2] = z;
         
         //NIH Visible human - Possible source for model
@@ -43,27 +43,27 @@ std::string addHair(float hairy_factor)
         //Someone may have made 3d geometric models for the body based off this, find out
         //Cryosection MRI and CT data NIH Geometric model?
         
-        z += .1;
-        points[1][0] = (ARM_RADIUS + .1) * cos(theta);
-        points[1][1] = (ARM_RADIUS + .1) * sin(theta);
+        z += 6;
+        points[1][0] = (ARM_RADIUS + 3.05) * cos(theta);
+        points[1][1] = (ARM_RADIUS + 3.05) * sin(theta);
         points[1][2] = z;
         
-        z += .1;
+        z += 6;
         theta_prime = theta + (.01 * PI);
-        points[2][0] = (ARM_RADIUS + .1) * cos(theta_prime);
-        points[2][1] = (ARM_RADIUS + .1) * sin(theta_prime);
+        points[2][0] = (ARM_RADIUS + 3.05) * cos(theta_prime);
+        points[2][1] = (ARM_RADIUS + 3.05) * sin(theta_prime);
         points[2][2] = z;
 
-        z += .1;
-        points[3][0] = (ARM_RADIUS + .1) * cos(theta);
-        points[3][1] = (ARM_RADIUS + .1) * sin(theta);
+        z += 6;
+        points[3][0] = (ARM_RADIUS + 3.05) * cos(theta);
+        points[3][1] = (ARM_RADIUS + 3.05) * sin(theta);
         points[3][2] = z;
         
         for (int j = 0; j < 4; j++){
             hairGeometry += std::to_string(points[j][0]) + " " + std::to_string(points[j][1]) + " " + std::to_string(points[j][2]) + " ";
         }
         
-        hairGeometry += "] \"float width0\" [ 0.004972 ] \"float width1\" [ 0.004278 ]\n\n";
+        hairGeometry += "] \"float width0\" [ 0.04972 ] \"float width1\" [ 0.04278 ]\n\n";
         
         
         hairGeometry += "\tShape \"curve\" \"string type\" [ \"cylinder\" ] \"point P\" [ ";

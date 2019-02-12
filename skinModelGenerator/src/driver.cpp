@@ -49,9 +49,9 @@ void run(string filename){
         pbrtFile << generateView(simulation);  
         pbrtFile << "WorldBegin\n\n";
         pbrtFile << generateArmScene(simulation);
-        pbrtFile << generateDermatascope(simulation);
+        //pbrtFile << generateDermatascope(simulation);
         pbrtFile << generateRoomScene(simulation);
-        //pbrtFile << generateHair(simulation);
+        pbrtFile << generateHair(simulation);
         pbrtFile << "WorldEnd";
         pbrtFile.close();
 
@@ -62,10 +62,10 @@ void run(string filename){
         }
 
         cmd = "./pbrt " + simulation.filename + ".pbrt";
-        //system(cmd.c_str());
+        system(cmd.c_str());
         
         cmd = "mv " + simulation.filename + ".pbrt " + PBRT_SCENE_FOLDER;
-        //system(cmd.c_str());
+        system(cmd.c_str());
     } 
 }
 

@@ -5,3 +5,5 @@ src/objs
 .sconsign.dblite
 .DS_Store
 *.o
+*.pbrt
+*.png

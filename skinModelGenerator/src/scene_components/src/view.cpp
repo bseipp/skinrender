@@ -10,8 +10,13 @@ std::string generateView(Properties simulation){
     std::string sceneView = "";
     
     sceneView += "###############\n# Create View #\n###############\n";
-    //sceneView += "LookAt 0 0.1 " + to_string(simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER + ARM_RADIUS) + " #eye\n";
-    sceneView += "LookAt 0 0 " + std::to_string(ARM_RADIUS + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " #eye\n";
+    
+    if (DEBUG_SCENEVIEW){
+        sceneView += "LookAt 100 100 100 #eye\n";
+    } else {
+        sceneView += "LookAt 0 0 " + std::to_string(ARM_RADIUS + simulation.view.z * UNIT_LENGTHS_PER_CENTIMETER) + " #eye\n";
+    }
+    
     sceneView += "\t 0 0.1 0 #look at point\n";
     sceneView += "\t0 0 1 #up vector\n";
     sceneView += "Camera \"perspective\" \"float fov\" " + std::to_string(simulation.view.fov) + "\n";

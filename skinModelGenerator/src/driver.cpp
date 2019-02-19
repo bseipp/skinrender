@@ -49,7 +49,7 @@ void run(string filename){
         pbrtFile << generateView(simulation);  
         pbrtFile << "WorldBegin\n\n";
         pbrtFile << generateArmScene(simulation);
-        //pbrtFile << generateDermatascope(simulation);
+        pbrtFile << generateDermatascope(simulation);
         pbrtFile << generateRoomScene(simulation);
         pbrtFile << generateHair(simulation);
         pbrtFile << "WorldEnd";

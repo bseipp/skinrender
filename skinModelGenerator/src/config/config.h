@@ -47,8 +47,9 @@ const std::string PBRT_VOLUME_FOLDER = "volume/";
 const std::string PBRT_TEXTURE_FOLDER = "textures/";
 
 
-const int DERMATASCOPE_LIGHT_INTENSITY = 6;
+const int DERMATASCOPE_LIGHT_INTENSITY = 4;
 const int ROOM_LIGHT_INTENSITY = 5;
 
+const bool DEBUG_SCENEVIEW = false;
 #endif /* CONFIG_H */
 

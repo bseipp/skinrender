@@ -51,5 +51,11 @@ const int DERMATASCOPE_LIGHT_INTENSITY = 4;
 const int ROOM_LIGHT_INTENSITY = 5;
 
 const bool DEBUG_SCENEVIEW = false;
+
+const bool CYLINDER_ARM_SHAPE = false; //Use either a cylinder or a triangle mesh for the shape of the arm
+const bool RENDER_IMAGE = false; // Render the image after creating the scene
+const bool MOVE_SCENE_FILE = false; // Move the scene file after creating the filw, moves to scenes folder
+
+
 #endif /* CONFIG_H */
 

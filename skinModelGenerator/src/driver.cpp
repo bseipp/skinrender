@@ -60,12 +60,16 @@ void run(string filename){
         if (!f.good()){
             generateVolumeModel(simulation);
         }
+	
+	if (RENDER_IMAGE){
+	  cmd = "./pbrt " + simulation.filename + ".pbrt";
+	  system(cmd.c_str());
+        }
 
-        cmd = "./pbrt " + simulation.filename + ".pbrt";
-        system(cmd.c_str());
-        
-        cmd = "mv " + simulation.filename + ".pbrt " + PBRT_SCENE_FOLDER;
-        system(cmd.c_str());
+	if (MOVE_SCENE_FILE){
+	  cmd = "mv " + simulation.filename + ".pbrt " + PBRT_SCENE_FOLDER;
+	  system(cmd.c_str());
+	}
     } 
 }
 

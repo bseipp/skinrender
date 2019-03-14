@@ -761,3 +761,1555 @@ int main() {
    munmap(ptr, len);   
 }
 
+The system is: Linux - 3.10.0-862.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/bseipp/Documents/skinrender/CMakeFiles/2.8.12.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1767642331/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1767642331.dir/build.make CMakeFiles/cmTryCompileExec1767642331.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1767642331.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1767642331.dir/testCCompiler.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec1767642331
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1767642331.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1767642331.dir/testCCompiler.c.o  -o cmTryCompileExec1767642331 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec160147252/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec160147252.dir/build.make CMakeFiles/cmTryCompileExec160147252.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec160147252
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec160147252.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec160147252 -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec160147252' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec160147252 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec160147252/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec160147252.dir/build.make CMakeFiles/cmTryCompileExec160147252.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec160147252]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec160147252.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec160147252 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec160147252' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec160147252 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec160147252] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
+    arg [CMakeFiles/cmTryCompileExec160147252.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec277996464/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec277996464.dir/build.make CMakeFiles/cmTryCompileExec277996464.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec277996464.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec277996464.dir/CheckIncludeFiles.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec277996464
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec277996464.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec277996464.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec277996464 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec35742249/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec35742249.dir/build.make CMakeFiles/cmTryCompileExec35742249.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec35742249.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec35742249.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec35742249
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec35742249.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec35742249.dir/CheckFunctionExists.c.o  -o cmTryCompileExec35742249 -rdynamic -lpthread 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if files alloca.h exist passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2107569421/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2107569421.dir/build.make CMakeFiles/cmTryCompileExec2107569421.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2107569421.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2107569421.dir/CheckIncludeFiles.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec2107569421
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2107569421.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec2107569421.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2107569421 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if files memory.h exist passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2110917283/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2110917283.dir/build.make CMakeFiles/cmTryCompileExec2110917283.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2110917283.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2110917283.dir/CheckIncludeFiles.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec2110917283
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2110917283.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec2110917283.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2110917283 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec75934039/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec75934039.dir/build.make CMakeFiles/cmTryCompileExec75934039.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec75934039.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec75934039.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec75934039
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec75934039.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec75934039.dir/CheckIncludeFile.c.o  -o cmTryCompileExec75934039 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3742044015/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3742044015.dir/build.make CMakeFiles/cmTryCompileExec3742044015.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3742044015.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3742044015.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec3742044015
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3742044015.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3742044015.dir/CheckIncludeFile.c.o  -o cmTryCompileExec3742044015 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3689828377/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3689828377.dir/build.make CMakeFiles/cmTryCompileExec3689828377.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3689828377.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3689828377.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec3689828377
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3689828377.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3689828377.dir/CheckIncludeFile.c.o  -o cmTryCompileExec3689828377 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining size of off64_t passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1535838495/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1535838495.dir/build.make CMakeFiles/cmTryCompileExec1535838495.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1535838495.dir/OFF64_T.c.o
+/usr/bin/cc  -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  -o CMakeFiles/cmTryCompileExec1535838495.dir/OFF64_T.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CheckTypeSize/OFF64_T.c
+Linking C executable cmTryCompileExec1535838495
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1535838495.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1535838495.dir/OFF64_T.c.o  -o cmTryCompileExec1535838495 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function fseeko exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1417751432/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1417751432.dir/build.make CMakeFiles/cmTryCompileExec1417751432.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1417751432.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fseeko   -o CMakeFiles/cmTryCompileExec1417751432.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1417751432
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1417751432.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fseeko    CMakeFiles/cmTryCompileExec1417751432.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1417751432 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1144953879/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1144953879.dir/build.make CMakeFiles/cmTryCompileExec1144953879.dir/build
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1144953879.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1144953879.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTryCompileExec1144953879
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1144953879.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1144953879.dir/CheckIncludeFile.c.o  -o cmTryCompileExec1144953879 -rdynamic 
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+The system is: Linux - 3.10.0-862.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/bseipp/Documents/skinrender/CMakeFiles/3.13.4/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/bseipp/Documents/skinrender/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_5aee4/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_5aee4.dir/build.make CMakeFiles/cmTC_5aee4.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5aee4.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_5aee4.dir/testCCompiler.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_5aee4
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_5aee4.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_5aee4.dir/testCCompiler.c.o  -o cmTC_5aee4 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_7472e/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_7472e.dir/build.make CMakeFiles/cmTC_7472e.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake3/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_7472e
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_7472e.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o  -o cmTC_7472e 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_7472e' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_7472e /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_7472e/fast"]
+  ignore line: [gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_7472e.dir/build.make CMakeFiles/cmTC_7472e.dir/build]
+  ignore line: [gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake3/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_7472e]
+  ignore line: [/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_7472e.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o  -o cmTC_7472e ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_7472e' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_7472e /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_7472e] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
+    arg [CMakeFiles/cmTC_7472e.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o] ==> ignore
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> [/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_40d46/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_40d46.dir/build.make CMakeFiles/cmTC_40d46.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40d46.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_40d46.dir/feature_tests.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.c
+Linking C executable cmTC_40d46
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_40d46.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_40d46.dir/feature_tests.c.o  -o cmTC_40d46 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_532e5/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_532e5.dir/build.make CMakeFiles/cmTC_532e5.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_532e5.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_532e5.dir/feature_tests.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.c
+Linking C executable cmTC_532e5
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_532e5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_532e5.dir/feature_tests.c.o  -o cmTC_532e5 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_8a8e6/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_8a8e6.dir/build.make CMakeFiles/cmTC_8a8e6.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8a8e6.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_8a8e6.dir/feature_tests.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.c
+Linking C executable cmTC_8a8e6
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_8a8e6.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_8a8e6.dir/feature_tests.c.o  -o cmTC_8a8e6 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_31cd2/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_31cd2.dir/build.make CMakeFiles/cmTC_31cd2.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_31cd2.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_31cd2.dir/testCXXCompiler.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_31cd2
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_31cd2.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_31cd2.dir/testCXXCompiler.cxx.o  -o cmTC_31cd2 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_4b5bf/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_4b5bf.dir/build.make CMakeFiles/cmTC_4b5bf.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake3/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_4b5bf
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_4b5bf.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4b5bf 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4b5bf' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_4b5bf /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_4b5bf/fast"]
+  ignore line: [gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_4b5bf.dir/build.make CMakeFiles/cmTC_4b5bf.dir/build]
+  ignore line: [gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake3/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_4b5bf]
+  ignore line: [/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_4b5bf.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4b5bf ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4b5bf' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_4b5bf /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.. CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/collect2] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_4b5bf] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..]
+    arg [CMakeFiles/cmTC_4b5bf.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/crtn.o] ==> ignore
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.5]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../..] ==> [/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+
+
+Detecting CXX [-std=c++1y] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_a473a/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_a473a.dir/build.make CMakeFiles/cmTC_a473a.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a473a.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTC_a473a.dir/feature_tests.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_a473a
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_a473a.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_a473a.dir/feature_tests.cxx.o  -o cmTC_a473a 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_5e49f/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_5e49f.dir/build.make CMakeFiles/cmTC_5e49f.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5e49f.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_5e49f.dir/feature_tests.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_5e49f
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_5e49f.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_5e49f.dir/feature_tests.cxx.o  -o cmTC_5e49f 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_4e57b/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_4e57b.dir/build.make CMakeFiles/cmTC_4e57b.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4e57b.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_4e57b.dir/feature_tests.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_4e57b
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_4e57b.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_4e57b.dir/feature_tests.cxx.o  -o cmTC_4e57b 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates
+Determining if the include file dlfcn.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_7d454/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_7d454.dir/build.make CMakeFiles/cmTC_7d454.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7d454.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7d454.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_7d454
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_7d454.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7d454.dir/CheckIncludeFile.c.o  -o cmTC_7d454 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file execinfo.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_71fa7/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_71fa7.dir/build.make CMakeFiles/cmTC_71fa7.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_71fa7.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_71fa7.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_71fa7
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_71fa7.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_71fa7.dir/CheckIncludeFile.c.o  -o cmTC_71fa7 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file glob.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_ccb6d/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_ccb6d.dir/build.make CMakeFiles/cmTC_ccb6d.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ccb6d.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_ccb6d.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ccb6d
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_ccb6d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ccb6d.dir/CheckIncludeFile.c.o  -o cmTC_ccb6d 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_4e167/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_4e167.dir/build.make CMakeFiles/cmTC_4e167.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4e167.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_4e167.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_4e167
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_4e167.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_4e167.dir/CheckIncludeFile.c.o  -o cmTC_4e167 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file pwd.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_40a22/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_40a22.dir/build.make CMakeFiles/cmTC_40a22.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40a22.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_40a22.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_40a22
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_40a22.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_40a22.dir/CheckIncludeFile.c.o  -o cmTC_40a22 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_c1bb3/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_c1bb3.dir/build.make CMakeFiles/cmTC_c1bb3.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c1bb3.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c1bb3.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_c1bb3
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_c1bb3.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c1bb3.dir/CheckIncludeFile.c.o  -o cmTC_c1bb3 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_7f773/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_7f773.dir/build.make CMakeFiles/cmTC_7f773.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7f773.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7f773.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_7f773
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_7f773.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7f773.dir/CheckIncludeFile.c.o  -o cmTC_7f773 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_efbc5/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_efbc5.dir/build.make CMakeFiles/cmTC_efbc5.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_efbc5.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_efbc5.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_efbc5
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_efbc5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_efbc5.dir/CheckIncludeFile.c.o  -o cmTC_efbc5 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_f7b2d/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_f7b2d.dir/build.make CMakeFiles/cmTC_f7b2d.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f7b2d.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f7b2d.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_f7b2d
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_f7b2d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f7b2d.dir/CheckIncludeFile.c.o  -o cmTC_f7b2d 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/syscall.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_72299/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_72299.dir/build.make CMakeFiles/cmTC_72299.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_72299.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_72299.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_72299
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_72299.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_72299.dir/CheckIncludeFile.c.o  -o cmTC_72299 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/time.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_204dc/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_204dc.dir/build.make CMakeFiles/cmTC_204dc.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_204dc.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_204dc.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_204dc
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_204dc.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_204dc.dir/CheckIncludeFile.c.o  -o cmTC_204dc 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file sys/utsname.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_0ae40/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_0ae40.dir/build.make CMakeFiles/cmTC_0ae40.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0ae40.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_0ae40.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0ae40
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_0ae40.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_0ae40.dir/CheckIncludeFile.c.o  -o cmTC_0ae40 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file syscall.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_3aa87/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_3aa87.dir/build.make CMakeFiles/cmTC_3aa87.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3aa87.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_3aa87.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_3aa87
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_3aa87.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_3aa87.dir/CheckIncludeFile.c.o  -o cmTC_3aa87 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file syslog.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_15d40/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_15d40.dir/build.make CMakeFiles/cmTC_15d40.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_15d40.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_15d40.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_15d40
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_15d40.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_15d40.dir/CheckIncludeFile.c.o  -o cmTC_15d40 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file ucontext.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_40056/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_40056.dir/build.make CMakeFiles/cmTC_40056.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40056.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_40056.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_40056
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_40056.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_40056.dir/CheckIncludeFile.c.o  -o cmTC_40056 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_9c74e/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_9c74e.dir/build.make CMakeFiles/cmTC_9c74e.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9c74e.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_9c74e.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_9c74e
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_9c74e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9c74e.dir/CheckIncludeFile.c.o  -o cmTC_9c74e 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unwind.h exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_96f9a/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_96f9a.dir/build.make CMakeFiles/cmTC_96f9a.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_96f9a.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_96f9a.dir/CheckIncludeFile.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_96f9a
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_96f9a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_96f9a.dir/CheckIncludeFile.c.o  -o cmTC_96f9a 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file ext/hash_map exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_53d32/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_53d32.dir/build.make CMakeFiles/cmTC_53d32.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_53d32.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_53d32.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/4.8.2/ext/hash_map:60:0,
+                 from /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/4.8.2/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+Linking CXX executable cmTC_53d32
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_53d32.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_53d32.dir/CheckIncludeFile.cxx.o  -o cmTC_53d32 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file ext/hash_set exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_dbb06/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_dbb06.dir/build.make CMakeFiles/cmTC_dbb06.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_dbb06.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_dbb06.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/4.8.2/ext/hash_set:60:0,
+                 from /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/4.8.2/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^
+Linking CXX executable cmTC_dbb06
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_dbb06.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_dbb06.dir/CheckIncludeFile.cxx.o  -o cmTC_dbb06 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file ext/slist exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_86bd4/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_86bd4.dir/build.make CMakeFiles/cmTC_86bd4.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_86bd4.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_86bd4.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_86bd4
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_86bd4.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_86bd4.dir/CheckIncludeFile.cxx.o  -o cmTC_86bd4 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file tr1/unordered_map exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_e9193/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_e9193.dir/build.make CMakeFiles/cmTC_e9193.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e9193.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_e9193.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_e9193
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_e9193.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_e9193.dir/CheckIncludeFile.cxx.o  -o cmTC_e9193 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file tr1/unordered_set exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_e34c7/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_e34c7.dir/build.make CMakeFiles/cmTC_e34c7.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e34c7.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_e34c7.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_e34c7
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_e34c7.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_e34c7.dir/CheckIncludeFile.cxx.o  -o cmTC_e34c7 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unordered_map exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_5b99c/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_5b99c.dir/build.make CMakeFiles/cmTC_5b99c.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5b99c.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_5b99c.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_5b99c
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_5b99c.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_5b99c.dir/CheckIncludeFile.cxx.o  -o cmTC_5b99c 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file unordered_set exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_fe266/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_fe266.dir/build.make CMakeFiles/cmTC_fe266.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_fe266.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null    -o CMakeFiles/cmTC_fe266.dir/CheckIncludeFile.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_fe266
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_fe266.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null     -rdynamic CMakeFiles/cmTC_fe266.dir/CheckIncludeFile.cxx.o  -o cmTC_fe266 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining size of u_int16_t passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_33d7d/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_33d7d.dir/build.make CMakeFiles/cmTC_33d7d.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_33d7d.dir/HAVE_U_INT16_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_33d7d.dir/HAVE_U_INT16_T.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CheckTypeSize/HAVE_U_INT16_T.c
+Linking C executable cmTC_33d7d
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_33d7d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_33d7d.dir/HAVE_U_INT16_T.c.o  -o cmTC_33d7d 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining size of uint16_t passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_e8f1a/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_e8f1a.dir/build.make CMakeFiles/cmTC_e8f1a.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e8f1a.dir/HAVE_UINT16_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e8f1a.dir/HAVE_UINT16_T.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CheckTypeSize/HAVE_UINT16_T.c
+Linking C executable cmTC_e8f1a
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_e8f1a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_e8f1a.dir/HAVE_UINT16_T.c.o  -o cmTC_e8f1a 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function fcntl exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_fd27f/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_fd27f.dir/build.make CMakeFiles/cmTC_fd27f.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fd27f.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fcntl   -o CMakeFiles/cmTC_fd27f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_fd27f
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_fd27f.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=fcntl    -rdynamic CMakeFiles/cmTC_fd27f.dir/CheckFunctionExists.c.o  -o cmTC_fd27f 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pread exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_9ba79/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_9ba79.dir/build.make CMakeFiles/cmTC_9ba79.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9ba79.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pread   -o CMakeFiles/cmTC_9ba79.dir/CheckFunctionExists.c.o   -c /usr/share/cmake3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_9ba79
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_9ba79.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pread    -rdynamic CMakeFiles/cmTC_9ba79.dir/CheckFunctionExists.c.o  -o cmTC_9ba79 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pwrite exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_49254/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_49254.dir/build.make CMakeFiles/cmTC_49254.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_49254.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pwrite   -o CMakeFiles/cmTC_49254.dir/CheckFunctionExists.c.o   -c /usr/share/cmake3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_49254
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_49254.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pwrite    -rdynamic CMakeFiles/cmTC_49254.dir/CheckFunctionExists.c.o  -o cmTC_49254 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function sigaction exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_9f455/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_9f455.dir/build.make CMakeFiles/cmTC_9f455.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9f455.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaction   -o CMakeFiles/cmTC_9f455.dir/CheckFunctionExists.c.o   -c /usr/share/cmake3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_9f455
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_9f455.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaction    -rdynamic CMakeFiles/cmTC_9f455.dir/CheckFunctionExists.c.o  -o cmTC_9f455 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Determining if the function sigaltstack exists passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_37b51/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_37b51.dir/build.make CMakeFiles/cmTC_37b51.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_37b51.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaltstack   -o CMakeFiles/cmTC_37b51.dir/CheckFunctionExists.c.o   -c /usr/share/cmake3/Modules/CheckFunctionExists.c
+Linking C executable cmTC_37b51
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_37b51.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaltstack    -rdynamic CMakeFiles/cmTC_37b51.dir/CheckFunctionExists.c.o  -o cmTC_37b51 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+
+Performing C++ SOURCE FILE Test HAVE_NO_DEPRECATED succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_f7b17/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_f7b17.dir/build.make CMakeFiles/cmTC_f7b17.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f7b17.dir/src.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null -DHAVE_NO_DEPRECATED   -Wno-deprecated -o CMakeFiles/cmTC_f7b17.dir/src.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f7b17
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_f7b17.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null -DHAVE_NO_DEPRECATED    -rdynamic CMakeFiles/cmTC_f7b17.dir/src.cxx.o  -o cmTC_f7b17 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test HAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_a2576/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_a2576.dir/build.make CMakeFiles/cmTC_a2576.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a2576.dir/src.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null -DHAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS   -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_a2576.dir/src.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a2576
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_a2576.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null -DHAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS    -rdynamic CMakeFiles/cmTC_a2576.dir/src.cxx.o  -o cmTC_a2576 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0; }
+Determining if the snprintf exist passed with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_01204/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_01204.dir/build.make CMakeFiles/cmTC_01204.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_01204.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_01204.dir/CheckSymbolExists.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_01204
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_01204.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_01204.dir/CheckSymbolExists.c.o  -o cmTC_01204 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+File /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdio.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef snprintf
+  return ((int*)(&snprintf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__ succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_76127/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_76127.dir/build.make CMakeFiles/cmTC_76127.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_76127.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__   -o CMakeFiles/cmTC_76127.dir/src.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_76127
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_76127.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__    -rdynamic CMakeFiles/cmTC_76127.dir/src.c.o  -o cmTC_76127 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((unused));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_DEFAULT succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_40dc6/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_40dc6.dir/build.make CMakeFiles/cmTC_40dc6.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_40dc6.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__VISIBILITY_DEFAULT   -o CMakeFiles/cmTC_40dc6.dir/src.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c
+/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c:3:1: warning: ‘visibility’ attribute ignored [-Wattributes]
+ static void foo(void) __attribute__ ((visibility("default")));
+ ^
+Linking C executable cmTC_40dc6
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_40dc6.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__VISIBILITY_DEFAULT    -rdynamic CMakeFiles/cmTC_40dc6.dir/src.c.o  -o cmTC_40dc6 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((visibility("default")));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_HIDDEN succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_cfc5b/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_cfc5b.dir/build.make CMakeFiles/cmTC_cfc5b.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cfc5b.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__VISIBILITY_HIDDEN   -o CMakeFiles/cmTC_cfc5b.dir/src.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c
+/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c:3:1: warning: ‘visibility’ attribute ignored [-Wattributes]
+ static void foo(void) __attribute__ ((visibility("hidden")));
+ ^
+Linking C executable cmTC_cfc5b
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_cfc5b.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__VISIBILITY_HIDDEN    -rdynamic CMakeFiles/cmTC_cfc5b.dir/src.c.o  -o cmTC_cfc5b 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((visibility("hidden")));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___BUILTIN_EXPECT succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_5eedb/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_5eedb.dir/build.make CMakeFiles/cmTC_5eedb.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5eedb.dir/src.c.o
+/usr/bin/cc   -DHAVE___BUILTIN_EXPECT   -o CMakeFiles/cmTC_5eedb.dir/src.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_5eedb
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_5eedb.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___BUILTIN_EXPECT    -rdynamic CMakeFiles/cmTC_5eedb.dir/src.c.o  -o cmTC_5eedb 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+int main(void) { if (__builtin_expect(0, 0)) return 1; return 0; }
+
+Performing C SOURCE FILE Test HAVE___SYNC_VAL_COMPARE_AND_SWAP succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_dc5c8/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_dc5c8.dir/build.make CMakeFiles/cmTC_dc5c8.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dc5c8.dir/src.c.o
+/usr/bin/cc   -DHAVE___SYNC_VAL_COMPARE_AND_SWAP   -o CMakeFiles/cmTC_dc5c8.dir/src.c.o   -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_dc5c8
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_dc5c8.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___SYNC_VAL_COMPARE_AND_SWAP    -rdynamic CMakeFiles/cmTC_dc5c8.dir/src.c.o  -o cmTC_dc5c8 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+int main(void)
+{
+  int a; if (__sync_val_compare_and_swap(&a, 0, 1)) return 1; return 0;
+}
+
+Performing C++ SOURCE FILE Test STL_STD_NAMESPACE succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_21a17/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_21a17.dir/build.make CMakeFiles/cmTC_21a17.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_21a17.dir/src.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null -DSTL_STD_NAMESPACE   -o CMakeFiles/cmTC_21a17.dir/src.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_21a17
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_21a17.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null -DSTL_STD_NAMESPACE    -rdynamic CMakeFiles/cmTC_21a17.dir/src.cxx.o  -o cmTC_21a17 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <vector>
+std::vector<int> t; int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_USING_OPERATOR succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_235fa/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_235fa.dir/build.make CMakeFiles/cmTC_235fa.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_235fa.dir/src.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null -DHAVE_USING_OPERATOR   -o CMakeFiles/cmTC_235fa.dir/src.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_235fa
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_235fa.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null -DHAVE_USING_OPERATOR    -rdynamic CMakeFiles/cmTC_235fa.dir/src.cxx.o  -o cmTC_235fa 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <iostream>
+std::ostream& operator<<(std::ostream&, struct s);
+using ::operator<<;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_NAMESPACES succeeded with the following output:
+Change Dir: /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_6dae1/fast"
+gmake[1]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTC_6dae1.dir/build.make CMakeFiles/cmTC_6dae1.dir/build
+gmake[2]: Entering directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6dae1.dir/src.cxx.o
+/usr/bin/c++    -std=gnu++11 -Wno-conversion-null -DHAVE_NAMESPACES   -o CMakeFiles/cmTC_6dae1.dir/src.cxx.o -c /home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_6dae1
+/usr/bin/cmake3 -E cmake_link_script CMakeFiles/cmTC_6dae1.dir/link.txt --verbose=1
+/usr/bin/c++   -std=gnu++11 -Wno-conversion-null -DHAVE_NAMESPACES    -rdynamic CMakeFiles/cmTC_6dae1.dir/src.cxx.o  -o cmTC_6dae1 
+gmake[2]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/bseipp/Documents/skinrender/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+namespace Outer { namespace Inner { int i = 0; }}
+using namespace Outer::Inner;;
+int main() { return i; }
+

@@ -44,11 +44,25 @@ std::string generateArmScene(Properties simulation){
     
     armScene += "\t\t\"float asr\" 130 \"float asg\" 80 \"float asb\" 180\n";
     armScene += "\t\t\"float uroughness\" [0.05] \"float vroughness\" [0.05]\n";
-    
-    armScene += "\tShape \"cylinder\" \"float radius\" " + std::to_string(ARM_RADIUS) + " \n";
-    armScene += "\t\t\"float zmin\" -" + std::to_string(ARM_LENGTH / 2) + "\n";
-    armScene += "\t\t\"float zmax\" " + std::to_string(ARM_LENGTH / 2) + "\n";
-    armScene += "\t\t\"float phimax\" 360\n";
+
+
+    if (CYLINDER_ARM_SHAPE){
+      armScene += "\tShape \"cylinder\" \"float radius\" " + std::to_string(ARM_RADIUS) + " \n";
+      armScene += "\t\t\"float zmin\" -" + std::to_string(ARM_LENGTH / 2) + "\n";
+      armScene += "\t\t\"float zmax\" " + std::to_string(ARM_LENGTH / 2) + "\n";
+      armScene += "\t\t\"float phimax\" 360\n";
+    } else {
+      armScene += "\tShape \"trianglemesh\"  \"integer indices\" [ 0 1 3  1 2 3  2 1 4  4 7 2  3 2 7  7 6 3  0 3 6  6 5 0  1 0 5  5 4 1  4 5 7  5 6 7  ]\n";
+      armScene += "\t\tpoint P\" [ -" + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += "  " + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += "  " + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += " -" + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += "  " + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += " -" + std::to_string(ARM_LENGTH / 2) + "  " + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += " -" + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + "  ";
+      armScene += "  " + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + " -" + std::to_string(ARM_LENGTH / 2) + " ]\n";
+    }
+
     armScene += "AttributeEnd\n\n\n";
     
     return armScene;

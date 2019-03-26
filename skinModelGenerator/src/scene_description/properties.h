@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   properties.h
  * Author: bseipp
  *
@@ -16,14 +16,14 @@
 
 using namespace std;
 
-class Properties 
+class Properties
 {
 public:
 
     class View {
     public:
         float z, fov;
-        int raysPerPixel, xRes, yRes;  
+        int raysPerPixel, xRes, yRes;
     };
 
     class Arm {
@@ -45,14 +45,21 @@ public:
         float lightRgb[3];
         float materialRgb[3];
     };
-    
+
+    class Density {
+    public:
+        int voxelsPerMM;
+        int x, y, z;
+    };
+
     View view;
     Arm arm;
     Dermatascope dermatascope;
     Room room;
     string filename;
-    
-    Properties(string row) 
+    Density density;
+
+    Properties(string row)
     {
         vector<string> result;
         istringstream iss(row);
@@ -61,23 +68,28 @@ public:
         {
             result.push_back(move(token));
         }
-        
+
         filename = result[0];
-        
+
         view.z = stof(result[1], nullptr);
         view.fov = stof(result[2], nullptr);
         view.raysPerPixel = stoi(result[3], nullptr);
         view.xRes = stoi(result[4], nullptr);
         view.yRes = stoi(result[5], nullptr);
-        
+
         arm.x = stoi(result[6], nullptr);
         arm.y = stoi(result[7], nullptr);
         arm.z = stoi(result[8], nullptr);
         arm.filename = result[9];
         arm.hairColor = result[10];
         arm.hairDensityFactor = stoi(result[11], nullptr);
+        density.voxelsPerMM = stoi(result[12], nullptr);
+        density.x = density.voxelsPerMM * arm.x;
+        density.y = density.voxelsPerMM * arm.y;
+        density.z = density.voxelsPerMM * arm.z;
+
         //Handle optics
-        int counter = 12;
+        int counter = 13;
         for (int i = 0; i < 6; i++){
             for (int j = 0; j < 2; j++) {
                 for (int k = 0; k < 3; k++){
@@ -86,25 +98,24 @@ public:
                 }
             }
         }
-        
-        dermatascope.lightRgb[0] = stof(result[42], nullptr);
-        dermatascope.lightRgb[1] = stof(result[43], nullptr);
-        dermatascope.lightRgb[2] = stof(result[44], nullptr);
-        dermatascope.materialRgb[0] = stof(result[45], nullptr);
-        dermatascope.materialRgb[1] = stof(result[46], nullptr);
-        dermatascope.materialRgb[2] = stof(result[47], nullptr);
 
-        room.x = stof(result[48], nullptr);
-        room.y = stof(result[49], nullptr);
-        room.z = stof(result[50], nullptr);
-        room.lightRgb[0] = stof(result[51], nullptr);
-        room.lightRgb[1] = stof(result[52], nullptr);
-        room.lightRgb[2] = stof(result[53], nullptr);
-        room.materialRgb[0] = stof(result[54], nullptr);
-        room.materialRgb[1] = stof(result[55], nullptr);
-        room.materialRgb[2] = stof(result[56], nullptr);        
+        dermatascope.lightRgb[0] = stof(result[43], nullptr);
+        dermatascope.lightRgb[1] = stof(result[44], nullptr);
+        dermatascope.lightRgb[2] = stof(result[45], nullptr);
+        dermatascope.materialRgb[0] = stof(result[46], nullptr);
+        dermatascope.materialRgb[1] = stof(result[47], nullptr);
+        dermatascope.materialRgb[2] = stof(result[48], nullptr);
+
+        room.x = stof(result[49], nullptr);
+        room.y = stof(result[50], nullptr);
+        room.z = stof(result[51], nullptr);
+        room.lightRgb[0] = stof(result[52], nullptr);
+        room.lightRgb[1] = stof(result[53], nullptr);
+        room.lightRgb[2] = stof(result[54], nullptr);
+        room.materialRgb[0] = stof(result[55], nullptr);
+        room.materialRgb[1] = stof(result[56], nullptr);
+        room.materialRgb[2] = stof(result[57], nullptr);
     }
 };
 
 #endif /* PROPERTIES_H */
-

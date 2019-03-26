@@ -19,9 +19,6 @@
 const int UNIT_LENGTHS_PER_METER = 1000; //1000 mm in a meter, so each meter measurement is 1000 unit lengths
 const int UNIT_LENGTHS_PER_CENTIMETER = 10; //10 mm in a meter, so each meter measurement is 1000 unit lengths
 
-const int ARM_LENGTH = 61; // 1 Foot or 305 mm so a unit distance in world space is 1mm
-const int ARM_RADIUS = 61; // ~2.4 inches or 61 mm
-const int CHANNELS = 6;
 const double PI = 3.1415;
 
 //Thickness in micrometers for different internal densities
@@ -53,9 +50,7 @@ const int ROOM_LIGHT_INTENSITY = 5;
 const bool DEBUG_SCENEVIEW = false;
 
 const bool CYLINDER_ARM_SHAPE = true; //Use either a cylinder or a triangle mesh for the shape of the arm
-const bool RENDER_IMAGE = true; // Render the image after creating the scene
-const bool MOVE_SCENE_FILE = true; // Move the scene file after creating the file, moves to scenes folder
-
-const int DENSITY_SCALAR = 8;
+const bool RENDER_IMAGE = false; // Render the image after creating the scene
+const bool MOVE_SCENE_FILE = false; // Move the scene file after creating the file, moves to scenes folder
 
 #endif /* CONFIG_H */

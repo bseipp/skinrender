@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   hair.h
  * Author: bseipp
  *
@@ -21,9 +21,8 @@
 #include "../../config/config.h"
 #include "../../scene_description/properties.h"
 
-std::string addHair(float hairy_factor);
+std::string addHair(Properties simulation);
 std::string generateHair(Properties simulation);
 
 
 #endif /* HAIR_H */
-

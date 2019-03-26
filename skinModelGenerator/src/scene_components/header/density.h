@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   density.h
  * Author: bseipp
  *
@@ -19,10 +19,8 @@
 #include "../../config/config.h"
 #include "../header/noise.h"
 
-int convertToUM(int l);
 char classify(float d, vec2f uv);
-void buildDensityModel(int offset);
+void buildDensityModel(int offset, Properties simulation);
 void generateVolumeModel(Properties simulation);
 
 #endif /* DENSITY_H */
-

@@ -9,11 +9,6 @@
 #include <string.h>
 char* densityGrid;
 
-
-int scaleDensity(int l){
-    return l * DENSITY_SCALAR;
-}
-
 char classify(float d, vec2f uv){
     //calculate noise values for given point
     float bone_noise = 0;
@@ -52,21 +47,19 @@ char classify(float d, vec2f uv){
     return '0';
 }
 
-void buildDensityModel(int thread){
-    int arm_length = scaleDensity(ARM_LENGTH);
-    int arm_radius = scaleDensity(ARM_RADIUS);
-    unsigned int slicesPerThread = arm_length / (THREADS - 1);
-    unsigned int memory_offset = arm_radius * arm_radius * slicesPerThread * thread;
-    int max = (thread + 1 == THREADS ? slicesPerThread * thread + (arm_length % (THREADS - 1)) : slicesPerThread * (thread + 1));
-    unsigned int max_memory_offset = arm_radius * arm_radius * max - 1;
-    vec2f center = vec2f(arm_radius / 2.0, arm_radius / 2.0);
+void buildDensityModel(int thread, Properties simulation){
+    unsigned int slicesPerThread = simulation.density.z / (THREADS - 1);
+    unsigned int memory_offset = simulation.density.x * simulation.density.y * slicesPerThread * thread;
+    int max = (thread + 1 == THREADS ? slicesPerThread * thread + (simulation.density.z % (THREADS - 1)) : slicesPerThread * (thread + 1));
+    unsigned int max_memory_offset = simulation.density.x * simulation.density.y * max - 1;
+    vec2f center = vec2f(simulation.density.x / 2.0, simulation.density.y / 2.0);
 
     float SCALE = 900 / PI;
     string noiseData = "";
     fprintf(stderr, "Thread %d: Building Density Model for %d to %d || Memory_offset %u to %u\n", thread + 1, slicesPerThread * thread, max - 1, memory_offset, max_memory_offset);
     for(int z = slicesPerThread * thread; z < max; z++) {
-        for(int x = 0; x < arm_radius; x++){
-            for(int y = 0; y < arm_radius; y++){
+        for(int x = 0; x < simulation.density.x; x++){
+            for(int y = 0; y < simulation.density.y; y++){
                 vec2f uv = vec2f(atan2(x - center.x, y - center.y) * 180 / PI, z / SCALE);
 
                 float distance = sqrt((x - center.x) * (x - center.x) + (y - center.y) * (y - center.y));
@@ -79,18 +72,14 @@ void buildDensityModel(int thread){
 }
 
 void generateVolumeModel(Properties simulation){
-    unsigned int arm_length = scaleDensity(ARM_LENGTH);
-    unsigned int arm_radius = scaleDensity(ARM_RADIUS);
-
     /*********************************************************************
      *  Create an array that is large enough to hold the entire density  *
      *********************************************************************/
 
-    unsigned int arraySize = arm_length * arm_radius * arm_radius;
-    fprintf(stderr, "Array size: %u. al: %u, ar: %u\n", arraySize, arm_length, arm_radius);
+    unsigned int arraySize = simulation.density.z * simulation.density.x * simulation.density.y;
     try {
         densityGrid = new char[arraySize];
-        memset( densityGrid, '0', sizeof(char)*arraySize );
+        memset( densityGrid, '0', sizeof(char) * arraySize );
     } catch (std::bad_alloc&) {
         cout << endl << "Bad alloc" << endl;
         exit(0);
@@ -102,7 +91,7 @@ void generateVolumeModel(Properties simulation){
     fprintf(stderr, "Building density volume.\n");
     std::thread threads[THREADS];
     for (int i = 0; i < THREADS; i++){
-        threads[i] = std::thread(buildDensityModel, i);
+        threads[i] = std::thread(buildDensityModel, i, simulation);
     }
 
     for (int i = 0; i < THREADS; i++){
@@ -111,6 +100,6 @@ void generateVolumeModel(Properties simulation){
 
     fprintf(stderr, "Writing density volume file.\n");
     FILE* fd = fopen((PBRT_VOLUME_FOLDER + simulation.arm.filename).c_str(), "wb");
-    fwrite(&densityGrid[0], sizeof(char), arm_length * arm_radius * arm_radius, fd);
+    fwrite(&densityGrid[0], sizeof(char), simulation.density.z * simulation.density.x * simulation.density.y, fd);
     fclose(fd);
 }
